@@ -6,11 +6,18 @@ class Transaction:
         self.description = description
         self.merchant = None
         self.tags= []
-        self.priority_list = ["low", "medium", "high"]
+        self.priority_list = [None, "low", "medium", "high"]
         self.priority_rating = None
     
     def set_priority_rating(self, rating):
-        self.priority_rating = self.priority_list[rating]
+        try:
+            rating = int(rating)
+            if 0 <= rating <= 3:
+                self.priority_rating = self.priority_list[rating]
+            else:
+                return "Please enter value between 0 and 3"
+        except:
+            return "Please enter value between 0 and 3"
 
 class DirectDebit(Transaction):
 

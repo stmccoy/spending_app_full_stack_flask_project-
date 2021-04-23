@@ -10,4 +10,15 @@ class User:
         self.direct_debits = []
         self.dark_mode = False
         self.debts=[]
+    
+    def change_theme(self):
+        if self.dark_mode:
+            self.dark_mode = False
+        else:
+            self.dark_mode=True
+    
+    def age_suitability(self, tag_object):
+        if tag_object.adult_rating and self.age < 18:
+            return False
+        return True
 

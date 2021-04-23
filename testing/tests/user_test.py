@@ -55,5 +55,28 @@ class TestUser(unittest.TestCase):
 
     def test_user_has_debts(self):
         self.assertEqual(3, len(self.user_1.debts))
+    
+    def test_change_theme(self):
+        self.user_1.change_theme()
+        self.assertEqual(True, self.user_1.dark_mode)
+    
+    def test_change_theme_back(self):
+        self.user_1.change_theme()
+        self.user_1.change_theme()
+        self.assertEqual(False, self.user_1.dark_mode)
+    
+    def test_age_sutability_test_pass_due_to_age(self):
+        tag_1 = Tag("Gambling", True)
+        self.assertEqual(True, self.user_1.age_suitability(tag_1))
+    
+    def test_age_sutability_test_fail_due_to_age(self):
+        tag_1 = Tag("Gambling", True)
+        user_2 = User("Ben", "Jones", 17)
+        self.assertEqual(False, user_2.age_suitability(tag_1))
+    
+    def test_age_sutability_test_pass_due_to_tag_rating(self):
+        tag_2 = Tag("Ice cream", False)
+        user_2 = User("Ben", "Jones", 17)
+        self.assertEqual(True, user_2.age_suitability(tag_2))
 
     

@@ -24,19 +24,31 @@ class TestTransaction(unittest.TestCase):
         self.assertEqual(3, len(self.transaction_1.tags))
     
     def test_transaction_has_priority_list(self):
-        self.assertEqual(3, len(self.transaction_1.priority_list))
+        self.assertEqual(4, len(self.transaction_1.priority_list))
+    
+    def test_transaction_has_no_priority_rating(self):
+        self.transaction_1.set_priority_rating(0)
+        self.assertEqual(None, self.transaction_1.priority_rating)
     
     def test_transaction_has_low_priority_rating(self):
-        self.transaction_1.set_priority_rating(0)
+        self.transaction_1.set_priority_rating(1)
         self.assertEqual("low", self.transaction_1.priority_rating)
     
     def test_transaction_has_medium_priority_rating(self):
-        self.transaction_1.set_priority_rating(1)
+        self.transaction_1.set_priority_rating(2)
         self.assertEqual("medium", self.transaction_1.priority_rating)
     
     def test_transaction_has_high_priority_rating(self):
-        self.transaction_1.set_priority_rating(2)
+        self.transaction_1.set_priority_rating(3)
         self.assertEqual("high", self.transaction_1.priority_rating)
+
+    def test_transaction_rating_fail_due_to_high_number(self):
+        self.transaction_1.set_priority_rating(4)
+        self.assertEqual(None, self.transaction_1.priority_rating)
+        self.assertEqual("Please enter value between 0 and 3", self.transaction_1.set_priority_rating(4))
+
+    def test_transaction_rating_fail_due_to_incorrect_type(self):
+        self.assertEqual("Please enter value between 0 and 3", self.transaction_1.set_priority_rating('test'))
 
 class TestDirectDebit(unittest.TestCase):
 
