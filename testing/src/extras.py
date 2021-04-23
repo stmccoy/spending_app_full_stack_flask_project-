@@ -7,6 +7,6 @@ class Merchant:
 
 class Tag:
 
-    def __init__(self, name):
+    def __init__(self, name, adult_rating=False):
         self.name = name
-        self.adult_rating = None
+        self.adult_rating = adult_rating

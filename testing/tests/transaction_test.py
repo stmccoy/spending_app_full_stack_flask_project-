@@ -1,15 +1,15 @@
 import unittest
 from src.transaction import *
+from src.extras import *
 
 
 class TestTransaction(unittest.TestCase):
 
     def setUp(self):
+        self.merchant_1 = Merchant("Topshop")
         self.transaction_1 = Transaction(100, "Shoes")
-        self.transaction_1.tags.extend(['test', 'test', 'test'])
-        self.transaction_1.merchant = "test"
-        self.transaction_1.merchant = "test"
-
+        self.transaction_1.tags.extend([Tag("clothes"), Tag("fashion"), Tag("footwear")])
+        self.transaction_1.merchant = self.merchant_1
     
     def test_transaction_has_value(self):
         self.assertEqual(100, self.transaction_1.value)
@@ -18,10 +18,7 @@ class TestTransaction(unittest.TestCase):
         self.assertEqual("Shoes", self.transaction_1.description)
     
     def test_transaction_has_merchant(self):
-        self.assertEqual("test", self.transaction_1.merchant)
-    
-    def test_transaction_has_merchant(self):
-        self.assertEqual("test", self.transaction_1.merchant)
+        self.assertEqual(self.merchant_1, self.transaction_1.merchant)
     
     def test_transaction_has_tags(self):
         self.assertEqual(3, len(self.transaction_1.tags))

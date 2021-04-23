@@ -1,15 +1,29 @@
 import unittest
 from src.user import User
+from src.extras import *
+from src.transaction import *
 
 class TestUser(unittest.TestCase):
     
     def setUp(self):
+        self.merchant_1 = Merchant("Amazon")
+        self.merchant_2 = Merchant("Greggs")
+        self.merchant_3 = Merchant("Farmfoods")
+        self.transaction_1 = Transaction(20, "Kfc")
+        self.transaction_2 = Transaction(30, "Jeans")
+        self.transaction_3 = Transaction(40, "Football Match")
+        self.direct_debit_1 = DirectDebit(20, "Gym")
+        self.direct_debit_2 = DirectDebit(15, "Netflix")
+        self.direct_debit_3 = DirectDebit(6, "Adopt a penguin")
+        self.debt_1 = Debt(400, "Mortgage")
+        self.debt_2 = Debt(50, "Credit card")
+        self.debt_3 = Debt(100, "Student loan")
         self.user_1 = User("Steve", "Smith", 25)
-        self.user_1.favourite_merchants.extend(["test", "test", "test"])
+        self.user_1.favourite_merchants.extend([self.merchant_1, self.merchant_2, self.merchant_3])
         self.user_1.budget = 300
-        self.user_1.transactions.extend(["test", "test", "test"])
-        self.user_1.direct_debits.extend(["test", "test", "test"])
-        self.user_1.debts.extend(["test", "test", "test"])
+        self.user_1.transactions.extend([self.transaction_1, self.transaction_2, self.transaction_3])
+        self.user_1.direct_debits.extend([self.direct_debit_1, self.direct_debit_2, self.direct_debit_3])
+        self.user_1.debts.extend([self.debt_1, self.debt_2, self.debt_3])
     
     def test_user_has_name(self):
         self.assertEqual("Steve", self.user_1.first_name)
