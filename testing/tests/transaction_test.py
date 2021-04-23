@@ -1,3 +1,4 @@
+import datetime
 import unittest
 from src.transaction import *
 from src.extras import *
@@ -87,7 +88,7 @@ class TestDebt(unittest.TestCase):
         self.debt_1.interest = 2
         self.debt_1.reoccurence_frequency_amount = 1
         self.debt_1.late_payment_fine = 15
-        self.debt_1.pay_off_date = "15/11/2021"
+        self.debt_1.pay_off_date = "2021-11-11"
     
     def test_debt_has_value(self):
         self.assertEqual(10, self.debt_1.value)
@@ -106,4 +107,9 @@ class TestDebt(unittest.TestCase):
         self.assertEqual(15, self.debt_1.late_payment_fine)
     
     def test_debt_has_payoff_date(self):
-        self.assertEqual("15/11/2021", self.debt_1.pay_off_date)
+        self.assertEqual("2021-11-11", self.debt_1.pay_off_date)
+    
+    def test_calculate_how_long_left_function(self):
+        date_1 = "2021-11-09"
+        date_2 = self.debt_1.pay_off_date
+        self.assertEqual(2, self.debt_1.calculate_time_left(date_1, date_2))

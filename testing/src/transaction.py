@@ -1,3 +1,5 @@
+from datetime import datetime
+
 class Transaction:
 
     def __init__(self, value, description):
@@ -42,3 +44,8 @@ class Debt(DirectDebit):
         self.interest = None
         self.late_payment_fine = None
         self.pay_off_date = None 
+    
+    def calculate_time_left(self, date_1, date_2):
+        date_1 = datetime.strptime(date_1, "%Y-%m-%d")
+        date_2 = datetime.strptime(date_2, "%Y-%m-%d")
+        return abs((date_2 - date_1).days)
