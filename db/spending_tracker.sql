@@ -1,9 +1,12 @@
+DROP TABLE frequent_trades;
+DROP TABLE transaction_categories;
 DROP TABLE users;
 DROP TABLE merchants;
 DROP TABLE tags;
 DROP TABLE transactions; 
 DROP TABLE direct_debits;
 DROP TABLE debts;
+
 
 CREATE TABLE users(
     id SERIAL PRIMARY KEY,
@@ -76,4 +79,18 @@ CREATE TABLE debts(
     late_payment_fine INT,
     -- technically a date
     pay_off_date VARCHAR(255)
+);
+
+CREATE TABLE frequent_trades(
+    id SERIAL PRIMARY KEY,
+    user_id INT REFERENCES users(id) ON DELETE CASCADE,
+    merchant_id INT REFERENCES merchants(id) ON DELETE CASCADE
+);
+
+CREATE TABLE transaction_categories(
+    id SERIAL PRIMARY KEY,
+    transaction_id INT REFERENCES transactions(id) ON DELETE CASCADE,
+    direct_debit_id INT REFERENCES direct_debits(id) ON DELETE CASCADE,
+    debt_id INT REFERENCES debts(id) ON DELETE CASCADE,
+    tag_id INT REFERENCES tags(id) ON DELETE CASCADE
 );
