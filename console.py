@@ -6,10 +6,13 @@ from models.transaction import *
 import repositories.user_repository as user_repository
 import repositories.merchant_repository as merchant_repository
 import repositories.transaction_repository as transaction_repository
+import repositories.direct_debit_repository as direct_debit_repository
+import repositories.debt_repository as debt_repository
 
 user_repository.delete_all()
 merchant_repository.delete_all()
 transaction_repository.delete_all()
+direct_debit_repository.delete_all()
 
 user_1 = User('John', 'Doe', 20)
 user_1.budget = 100
@@ -54,3 +57,96 @@ transaction_3 = Transaction(user_3, 20, "socks")
 transaction_3.merchant = merchant_3
 transaction_3.priority_rating = 1
 transaction_repository.save(transaction_3)
+
+merchant_4 = Merchant("The Gym Group")
+merchant_4.icon = 'Piccy'
+merchant_4.website = "https//www.thegym.com"
+merchant_repository.save(merchant_4)
+
+merchant_5 = Merchant("Samsung")
+merchant_5.icon = 'Piccy'
+merchant_5.website = "https//www.samsung.com"
+merchant_repository.save(merchant_5)
+
+merchant_6 = Merchant("Ford Motors")
+merchant_6.icon = 'Piccy'
+merchant_6.website = "https//www.ford.com"
+merchant_repository.save(merchant_6)
+
+direct_debit_1 = DirectDebit(user_1, 20, "Gym")
+direct_debit_1.merchant = merchant_4
+direct_debit_1.priority_rating = 2
+direct_debit_1.reoccurence_frequency_amount = 1
+direct_debit_1.reoccurence_frequency_type = 2
+direct_debit_1.reoccurence_frequency_type_amount = 3
+direct_debit_1.icon = "Piccy"
+direct_debit_repository.save(direct_debit_1)
+
+direct_debit_2 = Transaction(user_2, 30, "Phone")
+direct_debit_2.merchant = merchant_5
+direct_debit_2.priority_rating = 2
+direct_debit_2.reoccurence_frequency_amount = 2
+direct_debit_2.reoccurence_frequency_type = 1
+direct_debit_2.reoccurence_frequency_type_amount = 3
+direct_debit_2.icon = "Piccy"
+direct_debit_repository.save(direct_debit_2)
+
+direct_debit_3 = Transaction(user_3, 100, "Car")
+direct_debit_3.merchant = merchant_6
+direct_debit_3.priority_rating = 3
+direct_debit_3.reoccurence_frequency_amount = 1
+direct_debit_3.reoccurence_frequency_type = 3
+direct_debit_3.reoccurence_frequency_type_amount = 2
+direct_debit_3.icon = "Piccy"
+direct_debit_repository.save(direct_debit_3)
+
+merchant_7 = Merchant("Barclays")
+merchant_7.icon = 'Piccy'
+merchant_7.website = "https//www.barclaysbank.com"
+merchant_repository.save(merchant_7)
+
+merchant_8 = Merchant("HMRC")
+merchant_8.icon = 'Piccy'
+merchant_8.website = "https//www.gov.uk"
+merchant_repository.save(merchant_8)
+
+merchant_9 = Merchant("HSBC")
+merchant_9.icon = 'Piccy'
+merchant_9.website = "https//www.hsbc.com"
+merchant_repository.save(merchant_9)
+
+debt_1 = Debt(user_1, 200, "Mortgage")
+debt_1.merchant = merchant_7
+debt_1.priority_rating = 4
+debt_1.reoccurence_frequency_amount = 1
+debt_1.reoccurence_frequency_type = 2
+debt_1.reoccurence_frequency_type_amount = 1
+debt_1.icon = "Piccy"
+debt_1.interest = 2
+debt_1.late_payment_fine = 10
+debt_1.pay_off_date = "2022-02-12"
+debt_repository.save(debt_1)
+
+debt_2 = Debt(user_2, 100, "Tax debt")
+debt_2.merchant = merchant_8
+debt_2.priority_rating = 4
+debt_2.reoccurence_frequency_amount = 1
+debt_2.reoccurence_frequency_type = 2
+debt_2.reoccurence_frequency_type_amount = 2
+debt_2.icon = "Piccy"
+debt_2.interest = 0
+debt_2.late_payment_fine = 50
+debt_2.pay_off_date = "2023-06-12"
+debt_repository.save(debt_2)
+
+debt_3 = Debt(user_2, 100, "Credit Card Debt")
+debt_3.merchant = merchant_9
+debt_3.priority_rating = 3
+debt_3.reoccurence_frequency_amount = 2
+debt_3.reoccurence_frequency_type = 1
+debt_3.reoccurence_frequency_type_amount = 1
+debt_3.icon = "Piccy"
+debt_3.interest = 10
+debt_3.late_payment_fine = 40
+debt_3.pay_off_date = "2021-11-12"
+debt_repository.save(debt_3)

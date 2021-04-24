@@ -55,7 +55,7 @@ CREATE TABLE direct_debits(
     reoccurence_frequency_type_amount INT,
 
     -- needs to be an image
-    special_symbol VARCHAR(255)
+    icon VARCHAR(255)
 );
 
 CREATE TABLE debts(
@@ -72,7 +72,7 @@ CREATE TABLE debts(
     reoccurence_frequency_type_amount INT,
 
     -- needs to be an image
-    special_symbol VARCHAR(255),
+    icon VARCHAR(255),
     interest INT,
     late_payment_fine INT,
     -- technically a date
