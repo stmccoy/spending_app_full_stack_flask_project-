@@ -34,19 +34,19 @@ CREATE TABLE tags(
 -- removed tags from all transactions as I think I'm just doing them in transaction categories table
 CREATE TABLE transactions(
     id SERIAL PRIMARY KEY,
-    user INT REFERENCES users(id) ON DELETE CASCADE,
+    user_id INT REFERENCES users(id) ON DELETE CASCADE,
     value INT,
     description VARCHAR(255),
-    merchant INT REFERENCES merchants(id) ON DELETE CASCADE,
+    merchant_id INT REFERENCES merchants(id) ON DELETE CASCADE,
     priority VARCHAR(255)
 );
 
 CREATE TABLE direct_debits(
     id SERIAL PRIMARY KEY,
-    user INT REFERENCES users(id) ON DELETE CASCADE,
+    user_id INT REFERENCES users(id) ON DELETE CASCADE,
     value INT,
     description VARCHAR(255),
-    merchant INT REFERENCES merchants(id) ON DELETE CASCADE,
+    merchant_id INT REFERENCES merchants(id) ON DELETE CASCADE,
     priority VARCHAR(255),
     reoccurence_frequency_amount INT,
 
@@ -60,10 +60,10 @@ CREATE TABLE direct_debits(
 
 CREATE TABLE debts(
     id SERIAL PRIMARY KEY,
-    user INT REFERENCES users(id) ON DELETE CASCADE,
+    user_id INT REFERENCES users(id) ON DELETE CASCADE,
     value INT,
     description VARCHAR(255),
-    merchant INT REFERENCES merchants(id) ON DELETE CASCADE,
+    merchant_id INT REFERENCES merchants(id) ON DELETE CASCADE,
     priority VARCHAR(255),
     reoccurence_frequency_amount INT,
 
