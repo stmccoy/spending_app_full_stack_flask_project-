@@ -2,12 +2,12 @@ from datetime import datetime
 
 class Transaction:
 
-    def __init__(self, value, description):
+    def __init__(self, user, value, description):
         
+        self.user = user
         self.value = value
         self.description = description
         self.merchant = None
-        self.tags= []
         self.priority_list = [None, "low", "medium", "high"]
         self.priority_rating = None
     
