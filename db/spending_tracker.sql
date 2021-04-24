@@ -14,11 +14,8 @@ CREATE TABLE users(
     first_name VARCHAR(255),
     surname VARCHAR(255),
     age INT,
-    Budget INT,
-    Transactions VARCHAR(255),
-    direct_debits VARCHAR(255),
-    Theme_preference BOOLEAN,
-    Debts VARCHAR(255)
+    budget INT,
+    dark_mode BOOLEAN
 );
 
 CREATE TABLE merchants(
