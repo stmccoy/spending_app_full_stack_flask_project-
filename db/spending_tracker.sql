@@ -1,19 +1,19 @@
 DROP TABLE frequent_trades;
 DROP TABLE transaction_categories;
-DROP TABLE users;
-DROP TABLE merchants;
-DROP TABLE tags;
 DROP TABLE transactions; 
 DROP TABLE direct_debits;
 DROP TABLE debts;
+DROP TABLE users;
+DROP TABLE merchants;
+DROP TABLE tags;
 
 
+-- deleted Favourite_merchants because you can do it with function and many to many table 
 CREATE TABLE users(
     id SERIAL PRIMARY KEY,
     first_name VARCHAR(255),
     surname VARCHAR(255),
     age INT,
-    Favourite_merchants VARCHAR(255),
     Budget INT,
     Transactions VARCHAR(255),
     direct_debits VARCHAR(255),
@@ -34,21 +34,22 @@ CREATE TABLE tags(
     adult_rating BOOLEAN
 );
 
+-- removed tags from all transactions as I think I'm just doing them in transaction categories table
 CREATE TABLE transactions(
     id SERIAL PRIMARY KEY,
+    user_id INT REFERENCES users(id) ON DELETE CASCADE,
     value INT,
     description VARCHAR(255),
     merchant VARCHAR(255),
-    tags VARCHAR(255),
     priority VARCHAR(255)
 );
 
 CREATE TABLE direct_debits(
     id SERIAL PRIMARY KEY,
+    user_id INT REFERENCES users(id) ON DELETE CASCADE,
     value INT,
     description VARCHAR(255),
     merchant VARCHAR(255),
-    tags VARCHAR(255),
     priority VARCHAR(255),
     reoccurence_frequency_amount INT,
 
@@ -62,10 +63,10 @@ CREATE TABLE direct_debits(
 
 CREATE TABLE debts(
     id SERIAL PRIMARY KEY,
+    user_id INT REFERENCES users(id) ON DELETE CASCADE,
     value INT,
     description VARCHAR(255),
     merchant VARCHAR(255),
-    tags VARCHAR(255),
     priority VARCHAR(255),
     reoccurence_frequency_amount INT,
 
