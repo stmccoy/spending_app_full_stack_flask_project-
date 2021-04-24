@@ -2,7 +2,7 @@ from datetime import datetime
 
 class Transaction:
 
-    def __init__(self, user, value, description):
+    def __init__(self, user, value, description, id=None):
         
         self.user = user
         self.value = value
@@ -10,6 +10,7 @@ class Transaction:
         self.merchant = None
         self.priority_list = [None, "low", "medium", "high"]
         self.priority_rating = None
+        self.id = id
     
     def set_priority_rating(self, rating):
         try:

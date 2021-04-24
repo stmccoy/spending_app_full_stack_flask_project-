@@ -8,7 +8,7 @@ class Merchant:
 
 class Tag:
 
-    def __init__(self, name, adult_rating=False, id=None):
-        self.name = name
+    def __init__(self, tag_name, adult_rating=False, id=None):
+        self.tag_name = tag_name
         self.adult_rating = adult_rating
         self.id = id

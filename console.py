@@ -2,17 +2,26 @@ import pdb
 from models.user import User
 from models.extras import *
 from models.transaction import *
+from models.frequent_trades import FrequentTrade
+from models.transaction_category import TransactionCategory
 
 import repositories.user_repository as user_repository
 import repositories.merchant_repository as merchant_repository
 import repositories.transaction_repository as transaction_repository
 import repositories.direct_debit_repository as direct_debit_repository
 import repositories.debt_repository as debt_repository
+import repositories.tag_repository as tag_repository
+import repositories.frequent_trade_repository as frequent_trade_repository
+import repositories.transaction_category_repository as transaction_category_repository
 
 user_repository.delete_all()
 merchant_repository.delete_all()
 transaction_repository.delete_all()
 direct_debit_repository.delete_all()
+debt_repository.delete_all()
+tag_repository.delete_all()
+frequent_trade_repository.delete_all()
+transaction_category_repository.delete_all()
 
 user_1 = User('John', 'Doe', 20)
 user_1.budget = 100
@@ -42,6 +51,12 @@ merchant_3 = Merchant('Asos')
 merchant_3.icon = 'Piccy'
 merchant_3.website = 'https//:www.asos.co.uk'
 merchant_repository.save(merchant_3)
+
+tag_1 = Tag('Food')
+tag_repository.save(tag_1)
+
+tag_2 = Tag('Gambling', True)
+tag_repository.save(tag_2)
 
 transaction_1 = Transaction(user_1, 20, "shoes")
 transaction_1.merchant = merchant_1
@@ -150,3 +165,21 @@ debt_3.interest = 10
 debt_3.late_payment_fine = 40
 debt_3.pay_off_date = "2021-11-12"
 debt_repository.save(debt_3)
+
+frequent_trade_1 = FrequentTrade(user_1, merchant_4)
+frequent_trade_repository.save(frequent_trade_1)
+
+frequent_trade_2 = FrequentTrade(user_2, merchant_7)
+frequent_trade_repository.save(frequent_trade_2)
+
+frequent_trade_3 = FrequentTrade(user_3, merchant_9)
+frequent_trade_repository.save(frequent_trade_3)
+
+transaction_category_1 = TransactionCategory(transaction_1, direct_debit_1, debt_1, tag_1)
+transaction_category_repository.save(transaction_category_1)
+
+transaction_category_2 = TransactionCategory(transaction_2, direct_debit_2, debt_2, tag_2)
+transaction_category_repository.save(transaction_category_2)
+
+transaction_category_3 = TransactionCategory(transaction_3, direct_debit_3, debt_3, tag_1)
+transaction_category_repository.save(transaction_category_3)
