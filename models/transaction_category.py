@@ -2,9 +2,9 @@
 
 class TransactionCategory:
 
-    def __init__(self, transaction, direct_debit, debt, tag, id=None):
-        self.transaction = transaction
-        self.direct_debit = direct_debit
-        self.debt = debt
+    def __init__(self, tag, id=None):
+        self.transaction = None
+        self.direct_debit = None
+        self.debt = None
         self.tag = tag
         self.id = id

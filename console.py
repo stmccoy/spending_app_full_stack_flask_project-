@@ -175,11 +175,14 @@ frequent_trade_repository.save(frequent_trade_2)
 frequent_trade_3 = FrequentTrade(user_3, merchant_9)
 frequent_trade_repository.save(frequent_trade_3)
 
-transaction_category_1 = TransactionCategory(transaction_1, direct_debit_1, debt_1, tag_1)
-transaction_category_repository.save(transaction_category_1)
+transaction_category_1 = TransactionCategory(tag_1)
+transaction_category_1.transaction = transaction_1
+transaction_category_repository.save_transaction_category(transaction_category_1)
 
-transaction_category_2 = TransactionCategory(transaction_2, direct_debit_2, debt_2, tag_2)
-transaction_category_repository.save(transaction_category_2)
+transaction_category_2 = TransactionCategory(tag_2)
+transaction_category_2.direct_debit = direct_debit_2
+transaction_category_repository.save_direct_debit_category(transaction_category_2)
 
-transaction_category_3 = TransactionCategory(transaction_3, direct_debit_3, debt_3, tag_1)
-transaction_category_repository.save(transaction_category_3)
+transaction_category_3 = TransactionCategory(tag_1)
+transaction_category_3.debt = debt_3
+transaction_category_repository.save_debt_category(transaction_category_3)
