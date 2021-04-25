@@ -186,14 +186,14 @@ frequent_trade_repository.save(frequent_trade_3)
 
 transaction_category_1 = TransactionCategory(tag_1)
 transaction_category_1.transaction = transaction_1
-transaction_category_repository.save_transaction_category(transaction_category_1)
+transaction_category_repository.save(transaction_category_1)
 
 transaction_category_2 = TransactionCategory(tag_2)
 transaction_category_2.direct_debit = direct_debit_2
-transaction_category_repository.save_direct_debit_category(transaction_category_2)
+transaction_category_repository.save(transaction_category_2)
 
 transaction_category_3 = TransactionCategory(tag_1)
 transaction_category_3.debt = debt_3
-transaction_category_repository.save_debt_category(transaction_category_3)
+transaction_category_repository.save(transaction_category_3)
 
 pdb.set_trace()

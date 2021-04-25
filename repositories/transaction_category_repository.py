@@ -5,23 +5,14 @@ import repositories.direct_debit_repository as direct_debit_repository
 import repositories.debt_repository as debt_repository
 import repositories.tag_repository as tag_repository
 
-def save_transaction_category(transaction_category):
-    sql = "INSERT INTO transaction_categories (transaction_id, tag_id) VALUES (%s, %s) RETURNING ID"
-    values = [transaction_category.transaction.id, transaction_category.tag.id]
-    results = run_sql( sql, values )
-    transaction_category.id = results[0]['id']
-    return transaction_category
-
-def save_direct_debit_category(transaction_category):
-    sql = "INSERT INTO transaction_categories (direct_debit_id, tag_id) VALUES (%s, %s) RETURNING ID"
-    values = [transaction_category.direct_debit.id, transaction_category.tag.id]
-    results = run_sql( sql, values )
-    transaction_category.id = results[0]['id']
-    return transaction_category
-
-def save_debt_category(transaction_category):
-    sql = "INSERT INTO transaction_categories (debt_id, tag_id) VALUES (%s, %s) RETURNING ID"
-    values = [transaction_category.debt.id, transaction_category.tag.id]
+def save(transaction_category):
+    sql = "INSERT INTO transaction_categories (transaction_id, direct_debit_id, debt_id, tag_id) VALUES (%s, %s, %s, %s) RETURNING ID"
+    if transaction_category.transaction != None:
+        values = [transaction_category.transaction.id, transaction_category.direct_debit, transaction_category.debt, transaction_category.tag.id]
+    elif transaction_category.direct_debit != None:
+        values = [transaction_category.transaction, transaction_category.direct_debit.id, transaction_category.debt, transaction_category.tag.id]
+    elif transaction_category.debt != None:
+        values = [transaction_category.transaction, transaction_category.direct_debit, transaction_category.debt.id, transaction_category.tag.id]
     results = run_sql( sql, values )
     transaction_category.id = results[0]['id']
     return transaction_category
