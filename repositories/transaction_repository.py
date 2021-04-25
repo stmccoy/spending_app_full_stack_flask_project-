@@ -2,8 +2,8 @@ from db.run_sql import run_sql
 from models.transaction import Transaction
 
 def save(transaction):
-    sql = "INSERT INTO transactions (user_id, value, description, merchant_id, priority) VALUES (%s, %s, %s, %s, %s) RETURNING ID"
-    values = [transaction.user.id, transaction.value, transaction.description, transaction.merchant.id, transaction.priority_rating]
+    sql = "INSERT INTO transactions (user_id, date, value, description, merchant_id, priority) VALUES (%s, %s, %s, %s, %s, %s) RETURNING ID"
+    values = [transaction.user.id, transaction.date, transaction.value, transaction.description, transaction.merchant.id, transaction.priority_rating]
     results = run_sql(sql, values)
     transaction.id = results[0]['id']
     return transaction

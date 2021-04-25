@@ -35,6 +35,8 @@ CREATE TABLE tags(
 CREATE TABLE transactions(
     id SERIAL PRIMARY KEY,
     user_id INT REFERENCES users(id) ON DELETE CASCADE,
+    -- needs to be date
+    date VARCHAR(255),
     value INT,
     description VARCHAR(255),
     merchant_id INT REFERENCES merchants(id) ON DELETE CASCADE,
@@ -44,6 +46,8 @@ CREATE TABLE transactions(
 CREATE TABLE direct_debits(
     id SERIAL PRIMARY KEY,
     user_id INT REFERENCES users(id) ON DELETE CASCADE,
+    -- needs to be date
+    date VARCHAR(255),
     value INT,
     description VARCHAR(255),
     merchant_id INT REFERENCES merchants(id) ON DELETE CASCADE,
@@ -61,6 +65,8 @@ CREATE TABLE direct_debits(
 CREATE TABLE debts(
     id SERIAL PRIMARY KEY,
     user_id INT REFERENCES users(id) ON DELETE CASCADE,
+    -- needs to be date
+    date VARCHAR(255),
     value INT,
     description VARCHAR(255),
     merchant_id INT REFERENCES merchants(id) ON DELETE CASCADE,
