@@ -3,4 +3,12 @@
 {% block content %}
     {% include 'transactions/transactions_nav.html' %}
     <p>budget content goes here</p>
+    <form action="/set_budget" method="post">
+        <div>
+            <label for="budget-amount">Budget Amount</label>
+            <input type="number" name="budget" id="budget" placeholder="enter budget" required autofocus>
+            <button class="button" type="submit">Confirm Budget</button>
+    
+        </div>
+    </form>
 {% endblock %}

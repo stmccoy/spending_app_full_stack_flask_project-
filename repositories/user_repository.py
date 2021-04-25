@@ -8,6 +8,12 @@ def save(user):
     user.id = results[0]['id']
     return user
 
+def update_user_budget(amount, id):
+    sql = "UPDATE users SET budget = %s WHERE id = %s;"
+    values = [amount, id]
+    results = run_sql( sql, values )
+
+
 def delete_all():
     sql = "DELETE FROM users"
     run_sql(sql)

@@ -1,14 +1,22 @@
 from app import app
-from flask import render_template, request
+from flask import render_template, request, redirect, url_for
 from flask import Blueprint
+from session import session
+import repositories.user_repository as user_repository
 
 transactions_blueprint = Blueprint('transactions', __name__)
 @transactions_blueprint.route('/transactions')
 def transactions():
-    return render_template('transactions/transactions.html')
+    user = user_repository.select(session)
+    budget = user.budget
+    return render_template('transactions/transactions.html', budget= budget)
 
-@transactions_blueprint.route('/set_budget')
+@transactions_blueprint.route('/set_budget', methods=['GET', 'POST'])
 def set_budget():
+    if request.method == 'POST':
+        budget = request.form['budget']
+        user_repository.update_user_budget(budget, session)  
+        return redirect(url_for('transactions.transactions'))
     return render_template('transactions/set_budget.html')
 
 @transactions_blueprint.route('/add_transaction')
