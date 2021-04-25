@@ -9,5 +9,10 @@ def save(debt):
     return debt
 
 def delete_all():
-    sql = "DELETE FROM direct_debits"
+    sql = "DELETE FROM debts"
     run_sql(sql)
+
+def delete(id):
+    sql = "DELETE FROM debts WHERE id = %s"
+    values = [id]
+    run_sql(sql, values)

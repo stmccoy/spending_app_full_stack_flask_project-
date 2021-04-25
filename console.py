@@ -71,7 +71,7 @@ transaction_2.priority_rating = 1
 transaction_repository.save(transaction_2)
 
 transaction_3 = Transaction(user_3, 20, "socks")
-transaction_1.date = "2021-02-08"
+transaction_3.date = "2021-02-08"
 transaction_3.merchant = merchant_3
 transaction_3.priority_rating = 1
 transaction_repository.save(transaction_3)
@@ -195,3 +195,5 @@ transaction_category_repository.save_direct_debit_category(transaction_category_
 transaction_category_3 = TransactionCategory(tag_1)
 transaction_category_3.debt = debt_3
 transaction_category_repository.save_debt_category(transaction_category_3)
+
+pdb.set_trace()

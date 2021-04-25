@@ -11,3 +11,8 @@ def save(frequent_trade):
 def delete_all():
     sql = "DELETE FROM frequent_trades"
     run_sql(sql)
+
+def delete(id):
+    sql = "DELETE FROM frequent_trades WHERE id = %s"
+    values = [id]
+    run_sql(sql, values)

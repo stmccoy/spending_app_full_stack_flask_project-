@@ -11,3 +11,8 @@ def save(direct_debit):
 def delete_all():
     sql = "DELETE FROM direct_debits"
     run_sql(sql)
+
+def delete(id):
+    sql = "DELETE FROM direct_debits WHERE id = %s"
+    values = [id]
+    run_sql(sql, values)
