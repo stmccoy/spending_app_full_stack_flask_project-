@@ -28,3 +28,16 @@ def select(id):
         merchant.icon = result['icon']
         merchant.website = result['website']
     return merchant
+
+def select_all():
+    merchants = []
+
+    sql = "SELECT * FROM merchants"
+    results = run_sql(sql)
+
+    for row in results:
+        merchant = Merchant(row['merchant_name'], row['id'])
+        merchant.icon = row['icon']
+        merchant.website = row['website']
+        merchants.append(merchant)
+    return merchants

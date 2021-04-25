@@ -42,10 +42,6 @@ def select(id):
     result = run_sql(sql, values)[0]
 
     if result is not None:
-
-        # transaction = transaction_repository.select(result['transaction_id'])
-        # direct_debit = direct_debit_repository.select(result['direct_debit_id'])
-        # if result['debt_id']:
         tag = tag_repository.select(result['tag_id'])
         transaction_category = TransactionCategory(tag, result['id'])   
         if result['debt_id'] != None:
@@ -58,3 +54,24 @@ def select(id):
             direct_debit = direct_debit_repository.select(result['direct_debit_id'])  
             transaction_category.direct_debit = direct_debit
     return transaction_category
+
+def select_all():
+    transaction_categories = []
+
+    sql = "SELECT * FROM transaction_categories"
+    results = run_sql(sql)
+
+    for row in results:
+        tag = tag_repository.select(row['tag_id'])
+        transaction_category = TransactionCategory(tag, row['id'])   
+        if row['debt_id'] != None:
+            debt = debt_repository.select(row['debt_id'])
+            transaction_category.debt = debt
+        elif row['transaction_id'] != None:
+            transaction = transaction_repository.select(row['transaction_id'])
+            transaction_category.transaction = transaction
+        elif row['direct_debit_id'] != None:
+            direct_debit = direct_debit_repository.select(row['direct_debit_id'])  
+            transaction_category.direct_debit = direct_debit
+        transaction_categories.append(transaction_category)
+    return transaction_categories

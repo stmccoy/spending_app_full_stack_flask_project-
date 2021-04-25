@@ -28,3 +28,16 @@ def select(id):
         user.budget = result['budget']
         user.dark_mode = result['dark_mode']
     return user
+
+def select_all():
+    users = []
+
+    sql = "SELECT * FROM users"
+    results = run_sql(sql)
+
+    for row in results:
+        user = User(row['first_name'], row['surname'], row['age'], row['id'])
+        user.budget = row['budget']
+        user.dark_mode = row['dark_mode']
+        users.append(user)
+    return users

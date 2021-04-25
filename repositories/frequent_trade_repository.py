@@ -30,3 +30,16 @@ def select(id):
         merchant = merchant_repository.select(result['merchant_id'])
         frequent_trade = FrequentTrade(user, merchant, result['id'])
     return frequent_trade
+
+def select_all():
+    frequent_trades = []
+
+    sql = "SELECT * FROM frequent_trades"
+    results = run_sql(sql)
+
+    for row in results:
+        user = user_repository.select(row['user_id'])
+        merchant = merchant_repository.select(row['merchant_id'])
+        frequent_trade = FrequentTrade(user, merchant, row['id'])
+        frequent_trades.append(frequent_trade)
+    return frequent_trades

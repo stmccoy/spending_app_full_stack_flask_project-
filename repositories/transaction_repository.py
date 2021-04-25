@@ -33,3 +33,19 @@ def select(id):
         transaction.merchant = merchant
         transaction.priority_rating = result['priority']
     return transaction
+
+def select_all():
+    transactions = []
+
+    sql = "SELECT * FROM transactions"
+    results = run_sql(sql)
+
+    for row in results:
+        user = user_repository.select(row['user_id'])
+        merchant = merchant_repository.select(row['merchant_id'])
+        transaction = Transaction(user, row['value'], row['description'], row['id'])
+        transaction.date = row['date']
+        transaction.merchant = merchant
+        transaction.priority_rating = row['priority']
+        transactions.append(transaction)
+    return transactions
