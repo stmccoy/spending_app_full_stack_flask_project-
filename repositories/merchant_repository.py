@@ -41,3 +41,19 @@ def select_all():
         merchant.website = row['website']
         merchants.append(merchant)
     return merchants
+
+def select_by_name(name):
+    merchants = []
+
+    sql = "SELECT * FROM merchants WHERE merchant_name = %s"
+    values = [name]
+    results = run_sql(sql, values)
+
+    for row in results:
+        merchant = Merchant(row['merchant_name'], row['id'])
+        merchant.icon = row['icon']
+        merchant.website = row['website']
+        merchants.append(merchant)
+    return merchants
+
+
