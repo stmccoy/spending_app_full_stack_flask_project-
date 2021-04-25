@@ -16,3 +16,13 @@ def delete(id):
     sql = "DELETE FROM tags WHERE id = %s"
     values = [id]
     run_sql(sql, values)
+
+def select(id):
+    tag = None
+    sql = "SELECT * FROM tags WHERE id = %s"
+    values = [id]
+    result = run_sql(sql, values)[0]
+
+    if result is not None:
+        tag = Tag(result['tag_name'], result['adult_rating'], result['id'])
+    return tag
