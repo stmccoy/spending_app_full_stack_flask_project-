@@ -16,3 +16,15 @@ def delete(id):
     sql = "DELETE FROM merchants WHERE id = %s"
     values = [id]
     run_sql(sql, values)
+
+def select(id):
+    merchant = None
+    sql = "SELECT * FROM merchants WHERE id = %s"
+    values = [id]
+    result = run_sql(sql, values)[0]
+
+    if result is not None:
+        merchant = Merchant(result['merchant_name'], result['id'])
+        merchant.icon = result['icon']
+        merchant.website = result['website']
+    return merchant

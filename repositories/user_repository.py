@@ -17,3 +17,14 @@ def delete(id):
     values = [id]
     run_sql(sql, values)
 
+def select(id):
+    user = None
+    sql = "SELECT * FROM users WHERE id = %s"
+    values = [id]
+    result = run_sql(sql, values)[0]
+
+    if result is not None:
+        user = User(result['first_name'], result['surname'], result['age'], result['id'])
+        user.budget = result['budget']
+        user.dark_mode = result['dark_mode']
+    return user
