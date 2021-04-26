@@ -1,13 +1,17 @@
 from db.run_sql import run_sql
 from models.transaction import Transaction
+from models.frequent_trades import FrequentTrade
 import repositories.user_repository as user_repository
 import repositories.merchant_repository as merchant_repository
+import repositories.frequent_trade_repository as frequent_trade_repository
 
 def save(transaction):
     sql = "INSERT INTO transactions (user_id, date, value, description, merchant_id, priority) VALUES (%s, %s, %s, %s, %s, %s) RETURNING ID"
     values = [transaction.user.id, transaction.date, transaction.value, transaction.description, transaction.merchant.id, transaction.priority_rating]
     results = run_sql(sql, values)
     transaction.id = results[0]['id']
+    frequent_trade = FrequentTrade(transaction.user, transaction.merchant)
+    frequent_trade_repository.save(frequent_trade)
     return transaction
 
 def delete_all():

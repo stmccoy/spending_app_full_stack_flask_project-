@@ -1,7 +1,9 @@
 from db.run_sql import run_sql
 from models.transaction import Debt
+from models.frequent_trades import FrequentTrade
 import repositories.user_repository as user_repository
 import repositories.merchant_repository as merchant_repository
+import repositories.frequent_trade_repository as frequent_trade_repository
 
 
 def save(debt):
@@ -9,6 +11,8 @@ def save(debt):
     values = [debt.user.id, debt.date, debt.value, debt.description, debt.merchant.id, debt.priority_rating, debt.reoccurence_frequency_amount, debt.reoccurence_frequency_type, debt.reoccurence_frequency_type_amount, debt.icon, debt.interest, debt.late_payment_fine, debt.pay_off_date]
     results = run_sql(sql, values)
     debt.id = results[0]['id']
+    frequent_trade = FrequentTrade(debt.user, debt.merchant)
+    frequent_trade_repository.save(frequent_trade)
     return debt
 
 def delete_all():

@@ -4,13 +4,6 @@ from models.extras import Merchant
 import repositories.user_repository as user_repository
 import repositories.merchant_repository as merchant_repository
 
-def save(frequent_trade):
-    sql = "INSERT INTO frequent_trades (user_id, merchant_id) VALUES (%s, %s) RETURNING ID"
-    values = [frequent_trade.user.id, frequent_trade.merchant.id]
-    results = run_sql( sql, values )
-    frequent_trade.id = results[0]['id']
-    return frequent_trade
-
 def delete_all():
     sql = "DELETE FROM frequent_trades"
     run_sql(sql)
@@ -62,4 +55,31 @@ def select_all_by_user(user_id):
         merchants.append(merchant)
 
     return merchants
-    
+
+def select_all_by_user_and_merchant(user_id, merchant_id):
+    merchants = []
+
+    sql = "SELECT * FROM frequent_trades INNER JOIN merchants ON merchants.id = frequent_trades.merchant_id WHERE user_id = %s AND merchant_id = %s"
+    values = [user_id, merchant_id]
+    results = run_sql(sql, values)
+
+    for row in results:
+        merchant_name = row['merchant_name']
+        merchant_icon = row['icon']
+        merchant_website = row['website']
+        merchant = Merchant(merchant_name)
+        merchant.website = merchant_website
+        merchant.icon = merchant_icon
+        merchants.append(merchant)
+
+    return merchants
+
+
+def save(frequent_trade):
+    if select_all_by_user_and_merchant(frequent_trade.user.id, frequent_trade.merchant.id) != []:
+        return False
+    sql = "INSERT INTO frequent_trades (user_id, merchant_id) VALUES (%s, %s) RETURNING ID"
+    values = [frequent_trade.user.id, frequent_trade.merchant.id]
+    results = run_sql( sql, values )
+    frequent_trade.id = results[0]['id']
+    return frequent_trade
