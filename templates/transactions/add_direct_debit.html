@@ -4,6 +4,33 @@
     {% include 'transactions/transactions_nav.html' %}
     {% include 'transactions/add_transaction_nav.html' %}
     <p>Add Direct Debt Content goes here</p>
+    <form action="/add_direct_debit" method="post">
+        <div>
+            <label for="value">Value</label>
+            <input type="number" name="value" id="value" placeholder="Write value here" required autofocus>
+            <label for="description">Description</label>
+            <input type="text" name="description" id="direct_debit_description" placeholder="Direct Debit description">
+            <label for="date">Date</label>
+            <input type="date" name="date" id="direct_debit_date">
+            <label for="merchant">Merchant</label>
+            <input type="text" name="merchant" id="direct_debit_merchant" placeholder="Write merchant here">
+            <label for="priority-rating">Priority rating</label>
+            <input type="number" name="priority_rating" id="direct_debit_priority_rating" placeholder="0-3">
+            <label for="reoccurence-frequency-amount">How Often</label>
+            <input type="number" name="reoccurence_frequency_amount" id="direct_debit_reoccurence_frequency_amount" placeholder="How Often">
+            <br>
+            <label for="reoccurence-frequency-type">Time Scale</label>
+            <select name="reoccurence_frequency_type" id="reoccurence_frequency_type">
+                <option value="default" selected="selected" disabled>Pick a time scale</option>
+                <option value="day">Day</option>
+                <option value="week">Week</option>
+                <option value="fortnight">Fortnight</option>
+                <option value="month">Month</option>
+                <option value="year">Year</option>
+            </select>
+            <button class="button" type="submit">Add Direct Debit</button>    
+        </div>
+    </form>
     {% include 'transactions/add_transaction_footer.html' %}
 {% endblock %}
 

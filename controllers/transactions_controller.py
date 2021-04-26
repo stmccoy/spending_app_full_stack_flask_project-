@@ -6,6 +6,7 @@ from models.transaction import *
 import repositories.user_repository as user_repository
 import repositories.transaction_repository as transaction_repository
 import repositories.merchant_repository as merchant_repository
+import repositories.direct_debit_repository as direct_debit_repository
 
 
 
@@ -41,11 +42,26 @@ def add_transaction():
         return redirect(url_for('transactions.transactions'))
     return render_template('transactions/add_transaction.html')
 
-@transactions_blueprint.route('/add_direct_debit')
+@transactions_blueprint.route('/add_direct_debit', methods=['GET', 'POST'])
 def add_direct_debit():
+    if request.method == "POST":
+        user = user_repository.select(session)
+        value = request.form['value']
+        description = request.form['description']
+        direct_debit = DirectDebit(user, value, description)
+        direct_debit.date = request.form['date']
+        direct_debit.priority_rating = request.form['priority_rating']
+        merchant_name = request.form['merchant']
+        #if statement for if merchant = [] do add merchant method else do below
+        merchant = merchant_repository.select_by_name(merchant_name)[0]
+        direct_debit.merchant = merchant
+        direct_debit.reoccurence_frequency_amount = request.form['reoccurence_frequency_amount']
+        direct_debit_repository.save(direct_debit)
+        #need to fix table to allow for string and add freq amount type 
+        return redirect(url_for('transactions.transactions'))
     return render_template('transactions/add_direct_debit.html')
 
-@transactions_blueprint.route('/add_debt')
+@transactions_blueprint.route('/add_debt', methods=['GET', 'POST'])
 def add_debt():
     return render_template('transactions/add_debt.html')
 
