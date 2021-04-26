@@ -48,8 +48,9 @@ def add_transaction():
         return redirect(url_for('transactions.transactions'))
     user = user_repository.select(session)  
     merchants = frequent_trade_repository.select_all_by_user(str(user.id))
+    tags = tag_repository.select_all_by_user(str(user.id))
     transaction_priority_list = ["none", "low", "medium", "high"]
-    return render_template('transactions/add_transaction.html', transaction_priority_list=transaction_priority_list, merchants=merchants)
+    return render_template('transactions/add_transaction.html', transaction_priority_list=transaction_priority_list, merchants=merchants, tags=tags)
 
 @transactions_blueprint.route('/add_direct_debit', methods=['GET', 'POST'])
 def add_direct_debit():

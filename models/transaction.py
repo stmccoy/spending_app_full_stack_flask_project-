@@ -11,6 +11,7 @@ class Transaction:
         self.merchant = None
         self.priority_rating = None
         self.id = id
+        self.tag = None
     
     def set_priority_rating(self, rating):
         try:

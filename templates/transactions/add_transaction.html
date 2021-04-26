@@ -26,6 +26,12 @@
                 <option value={{transaction_priority}}>{{transaction_priority}}</option>
                 {% endfor %}
             </select>
+            <select name="tag" id="priority-rating">
+                <option value="default" selected="selected" disabled>Pick a tag</option>
+                {% for tag in tags %}
+                <option value={{tag.tag_name}}>{{tag.tag_name}}</option>
+                {% endfor %}
+            </select>
             <button class="button" type="submit">Add Transaction</button>
     
         </div>

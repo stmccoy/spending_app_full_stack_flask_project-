@@ -40,7 +40,8 @@ CREATE TABLE transactions(
     value INT,
     description VARCHAR(255),
     merchant_id INT REFERENCES merchants(id) ON DELETE CASCADE,
-    priority VARCHAR(255)
+    priority VARCHAR(255),
+    tag_id INT REFERENCES tags(id) ON DELETE CASCADE
 );
 
 CREATE TABLE direct_debits(
@@ -91,10 +92,10 @@ CREATE TABLE frequent_trades(
     merchant_id INT REFERENCES merchants(id) ON DELETE CASCADE
 );
 
-CREATE TABLE transaction_categories(
-    id SERIAL PRIMARY KEY,
-    transaction_id INT REFERENCES transactions(id) ON DELETE CASCADE,
-    direct_debit_id INT REFERENCES direct_debits(id) ON DELETE CASCADE,
-    debt_id INT REFERENCES debts(id) ON DELETE CASCADE,
-    tag_id INT REFERENCES tags(id) ON DELETE CASCADE
-);
+-- CREATE TABLE transaction_categories(
+--     id SERIAL PRIMARY KEY,
+--     transaction_id INT REFERENCES transactions(id) ON DELETE CASCADE,
+--     direct_debit_id INT REFERENCES direct_debits(id) ON DELETE CASCADE,
+--     debt_id INT REFERENCES debts(id) ON DELETE CASCADE,
+--     tag_id INT REFERENCES tags(id) ON DELETE CASCADE
+-- );

@@ -37,3 +37,15 @@ def select_all():
         tag = Tag(row['tag_name'], row['adult_rating'], row['id'])
         tags.append(tag)
     return tags
+
+def select_all_by_user(user_id):
+    tags = []
+
+    sql = "SELECT * FROM tags INNER JOIN transactions ON transactions.tag_id = tags.id WHERE transactions.user_id = %s"
+    values = [user_id]
+    results = run_sql(sql, values)
+
+    for row in results:
+        tag = Tag(row['tag_name'], row['adult_rating'], row['id'])
+        tags.append(tag)
+    return tags

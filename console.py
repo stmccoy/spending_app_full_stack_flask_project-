@@ -21,7 +21,7 @@ direct_debit_repository.delete_all()
 debt_repository.delete_all()
 tag_repository.delete_all()
 frequent_trade_repository.delete_all()
-transaction_category_repository.delete_all()
+# transaction_category_repository.delete_all()
 
 user_1 = User('John', 'Doe', 20)
 user_1.budget = 100
@@ -62,18 +62,21 @@ transaction_1 = Transaction(user_1, 20, "shoes")
 transaction_1.date = "2021-04-11"
 transaction_1.merchant = merchant_1
 transaction_1.priority_rating = None
+transaction_1.tag = tag_1
 transaction_repository.save(transaction_1)
 
 transaction_2 = Transaction(user_2, 20, "hairclips")
 transaction_2.date = "2021-03-09"
 transaction_2.merchant = merchant_2
 transaction_2.priority_rating = "low"
+transaction_2.tag = tag_2
 transaction_repository.save(transaction_2)
 
 transaction_3 = Transaction(user_3, 20, "socks")
 transaction_3.date = "2021-02-08"
 transaction_3.merchant = merchant_3
 transaction_3.priority_rating = "medium"
+transaction_3.tag = tag_1
 transaction_repository.save(transaction_3)
 
 merchant_4 = Merchant("The Gym Group")
@@ -184,16 +187,16 @@ frequent_trade_repository.save(frequent_trade_2)
 frequent_trade_3 = FrequentTrade(user_3, merchant_9)
 frequent_trade_repository.save(frequent_trade_3)
 
-transaction_category_1 = TransactionCategory(tag_1)
-transaction_category_1.transaction = transaction_1
-transaction_category_repository.save(transaction_category_1)
+# transaction_category_1 = TransactionCategory(tag_1)
+# transaction_category_1.transaction = transaction_1
+# transaction_category_repository.save(transaction_category_1)
 
-transaction_category_2 = TransactionCategory(tag_2)
-transaction_category_2.direct_debit = direct_debit_2
-transaction_category_repository.save(transaction_category_2)
+# transaction_category_2 = TransactionCategory(tag_2)
+# transaction_category_2.direct_debit = direct_debit_2
+# transaction_category_repository.save(transaction_category_2)
 
-transaction_category_3 = TransactionCategory(tag_1)
-transaction_category_3.debt = debt_3
-transaction_category_repository.save(transaction_category_3)
+# transaction_category_3 = TransactionCategory(tag_1)
+# transaction_category_3.debt = debt_3
+# transaction_category_repository.save(transaction_category_3)
 
 pdb.set_trace()
