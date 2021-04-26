@@ -1,3 +1,4 @@
+import pdb
 from app import app
 from flask import render_template, request, redirect, url_for
 from flask import Blueprint
@@ -13,7 +14,8 @@ merchants_blueprint = Blueprint('merchants', __name__)
 
 @merchants_blueprint.route('/merchants')
 def merchants():
-    merchants = merchant_repository.select_all()
+    user = user_repository.select(session)  
+    merchants = frequent_trade_repository.select_all_by_user(str(user.id))
     return render_template('merchants/merchants.html', merchants=merchants)
 
 @merchants_blueprint.route('/add_favourite_merchant', methods=['GET', 'POST'])
