@@ -4,6 +4,22 @@
     {% include 'transactions/transactions_nav.html' %}
     {% include 'transactions/add_transaction_nav.html' %}
     <p>Add Transaction Content goes here</p>
+    <form action="/add_transaction" method="post">
+        <div>
+            <label for="value">Value</label>
+            <input type="number" name="value" id="value" placeholder="Write value here" required autofocus>
+            <label for="description">Description</label>
+            <input type="text" name="description" id="transaction_description" placeholder="Transaction description">
+            <label for="date">Date</label>
+            <input type="date" name="date" id="transaction_date">
+            <label for="merchant">Merchant</label>
+            <input type="text" name="merchant" id="transaction_merchant" placeholder="Write merchant here">
+            <label for="priority-rating">Priority rating</label>
+            <input type="number" name="priority_rating" id="transaction_priority_rating" placeholder="0-3">
+            <button class="button" type="submit">Add Transaction</button>
+    
+        </div>
+    </form>
     {% include 'transactions/add_transaction_footer.html' %}
 {% endblock %}
 
