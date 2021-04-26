@@ -88,6 +88,6 @@ def add_debt():
 def add_custom_tag():
     return render_template('transactions/extras/add_custom_tag.html')
 
-@transactions_blueprint.route('/add_merchant')
-def add_merchant():
-    return render_template('transactions/extras/add_merchant.html')
+# @transactions_blueprint.route('/add_merchant')
+# def add_merchant():
+#     return render_template('transactions/extras/add_merchant.html')
