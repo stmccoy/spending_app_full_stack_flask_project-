@@ -114,6 +114,8 @@ def add_custom_tag():
         tag = Tag(tag_name)
         if 'adult_rating' in request.form:
             tag = Tag(tag_name, True)
+        user = user_repository.select(session)
+        tag.user = user
         tag_repository.save(tag)
         return redirect(url_for('transactions.transactions'))
     return render_template('transactions/extras/add_custom_tag.html')

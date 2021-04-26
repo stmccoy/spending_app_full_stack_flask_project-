@@ -12,3 +12,4 @@ class Tag:
         self.tag_name = tag_name
         self.adult_rating = adult_rating
         self.id = id
+        self.user = None

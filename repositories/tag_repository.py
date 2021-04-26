@@ -1,9 +1,13 @@
 from db.run_sql import run_sql
 from models.extras import Tag
 
+
 def save(tag):
-    sql = "INSERT INTO tags (tag_name, adult_rating) VALUES (%s, %s) RETURNING ID"
-    values = [tag.tag_name, tag.adult_rating]
+    sql = "INSERT INTO tags (tag_name, adult_rating, user_id) VALUES (%s, %s, %s) RETURNING ID"
+    if tag.user != None:
+        values = [tag.tag_name, tag.adult_rating, tag.user.id]
+    else:
+        values = [tag.tag_name, tag.adult_rating, tag.user]    
     results = run_sql( sql, values )
     tag.id = results[0]['id']
     return tag
