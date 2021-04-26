@@ -14,19 +14,21 @@
             <input type="date" name="date" id="debt_date">
             <label for="merchant">Merchant</label>
             <input type="text" name="merchant" id="debt_merchant" placeholder="Write merchant here">
-            <label for="priority-rating">Priority rating</label>
-            <input type="number" name="priority_rating" id="debt_priority_rating" placeholder="0-3">
+            <select name="priority-rating" id="priority-rating">
+                <option value="default" selected="selected" disabled>Pick a priority rating</option>
+                {% for debt_priority in debt_priority_list %}
+                <option value={{debt_priority}}>{{debt_priority}}</option>
+                {% endfor %}
+            </select>
             <label for="reoccurence-frequency-amount">How Often</label>
             <input type="number" name="reoccurence_frequency_amount" id="debt_reoccurence_frequency_amount" placeholder="How Often">
             <br>
             <label for="reoccurence-frequency-type">Time Scale</label>
             <select name="reoccurence_frequency_type" id="reoccurence_frequency_type">
                 <option value="default" selected="selected" disabled>Pick a time scale</option>
-                <option value="day">Day</option>
-                <option value="week">Week</option>
-                <option value="fortnight">Fortnight</option>
-                <option value="month">Month</option>
-                <option value="year">Year</option>
+                {% for debt_time_scale in debt_time_scales %}
+                <option value={{debt_time_scale}}>{{debt_time_scale}}</option>
+                {% endfor %}
             </select>
             <label for="interest">Interest</label>
             <input type="number" name="interest" id="debt_interest" placeholder="Interest Rate">

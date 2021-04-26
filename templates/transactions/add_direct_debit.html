@@ -15,18 +15,21 @@
             <label for="merchant">Merchant</label>
             <input type="text" name="merchant" id="direct_debit_merchant" placeholder="Write merchant here">
             <label for="priority-rating">Priority rating</label>
-            <input type="number" name="priority_rating" id="direct_debit_priority_rating" placeholder="0-3">
+            <select name="priority-rating" id="priority-rating">
+                <option value="default" selected="selected" disabled>Pick a priority rating</option>
+                {% for direct_debit_priority in direct_debit_priority_list %}
+                <option value={{direct_debit_priority}}>{{direct_debit_priority}}</option>
+                {% endfor %}
+            </select>
             <label for="reoccurence-frequency-amount">How Often</label>
             <input type="number" name="reoccurence_frequency_amount" id="direct_debit_reoccurence_frequency_amount" placeholder="How Often">
             <br>
-            <label for="reoccurence-frequency-type">Time Scale</label>
+            <label for="reoccurence_frequency_type">Time Scale</label>
             <select name="reoccurence_frequency_type" id="reoccurence_frequency_type">
                 <option value="default" selected="selected" disabled>Pick a time scale</option>
-                <option value="day">Day</option>
-                <option value="week">Week</option>
-                <option value="fortnight">Fortnight</option>
-                <option value="month">Month</option>
-                <option value="year">Year</option>
+                {% for direct_debit_time_scale in direct_debit_time_scales %}
+                <option value={{direct_debit_time_scale}}>{{direct_debit_time_scale}}</option>
+                {% endfor %}
             </select>
             <button class="button" type="submit">Add Direct Debit</button>    
         </div>
