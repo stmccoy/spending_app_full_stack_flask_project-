@@ -4,6 +4,8 @@ from models.frequent_trades import FrequentTrade
 import repositories.user_repository as user_repository
 import repositories.merchant_repository as merchant_repository
 import repositories.frequent_trade_repository as frequent_trade_repository
+import repositories.tag_repository as tag_repository
+
 
 def save(transaction):
     sql = "INSERT INTO transactions (user_id, date, value, description, merchant_id, priority, tag_id) VALUES (%s, %s, %s, %s, %s, %s, %s) RETURNING ID"
@@ -97,9 +99,11 @@ def select_by_user(user_id):
     for row in results:
         user = user_repository.select(row['user_id'])
         merchant = merchant_repository.select(row['merchant_id'])
+        tag = tag_repository.select(row['tag_id'])
         transaction = Transaction(user, row['value'], row['description'], row['id'])
         transaction.date = row['date']
         transaction.merchant = merchant
+        transaction.tag = tag
         transaction.priority_rating = row['priority']
         transactions.append(transaction)
     return transactions

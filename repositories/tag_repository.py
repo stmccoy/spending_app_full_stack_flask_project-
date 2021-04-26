@@ -73,3 +73,15 @@ def select_all_by_user_debt(user_id):
         tag = Tag(row['tag_name'], row['adult_rating'], row['id'])
         tags.append(tag)
     return tags
+
+def select_by_name(name):
+    tags = []
+
+    sql = "SELECT * FROM tags WHERE tag_name = %s"
+    values = [name]
+    results = run_sql(sql, values)
+
+    for row in results:
+        tag = Tag(row['tag_name'], row['adult_rating'], row['id'])
+        tags.append(tag)
+    return tags

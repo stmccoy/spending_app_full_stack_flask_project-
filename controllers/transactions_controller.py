@@ -11,6 +11,7 @@ import repositories.direct_debit_repository as direct_debit_repository
 import repositories.debt_repository as debt_repository
 import repositories.tag_repository as tag_repository
 import repositories.frequent_trade_repository as frequent_trade_repository
+import pdb
 
 
 transactions_blueprint = Blueprint('transactions', __name__)
@@ -21,6 +22,7 @@ def transactions():
     transactions = transaction_repository.select_by_user(str(user.id))
     direct_debits = direct_debit_repository.select_by_user(str(user.id))
     debts = debt_repository.select_by_user(str(user.id))
+    # pdb.set_trace()
     return render_template('transactions/transactions.html', budget= budget, transactions=transactions, direct_debits=direct_debits, debts= debts)
 
 @transactions_blueprint.route('/set_budget', methods=['GET', 'POST'])
@@ -44,6 +46,9 @@ def add_transaction():
         #if statement for if merchant = [] do add merchant method else do below
         merchant = merchant_repository.select_by_name(merchant_name)[0]
         transaction.merchant = merchant
+        tag_name = request.form['tag']
+        tag = tag_repository.select_by_name(tag_name)[0]
+        transaction.tag = tag
         transaction_repository.save(transaction)
         return redirect(url_for('transactions.transactions'))
     user = user_repository.select(session)  
