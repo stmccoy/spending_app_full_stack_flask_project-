@@ -14,6 +14,7 @@ import repositories.frequent_trade_repository as frequent_trade_repository
 
 
 
+
 transactions_blueprint = Blueprint('transactions', __name__)
 @transactions_blueprint.route('/transactions')
 def transactions():
@@ -68,6 +69,9 @@ def add_direct_debit():
         merchant_name = request.form['merchant']
         #if statement for if merchant = [] do add merchant method else do below
         merchant = merchant_repository.select_by_name(merchant_name)[0]
+        tag_name = request.form['tag']
+        tag = tag_repository.select_by_name(tag_name)[0]
+        direct_debit.tag = tag
         direct_debit.merchant = merchant
         direct_debit.reoccurence_frequency_amount = request.form['reoccurence_frequency_amount']
         direct_debit_repository.save(direct_debit)
@@ -75,7 +79,7 @@ def add_direct_debit():
         return redirect(url_for('transactions.transactions'))
     user = user_repository.select(session)  
     merchants = frequent_trade_repository.select_all_by_user(str(user.id))
-    tags = tag_repository.select_all_by_user_direct_debit(str(user.id))
+    tags = tag_repository.select_all_by_user(str(user.id))
     direct_debit_priority_list = ["none", "low", "medium", "high"]
     direct_debit_time_scales = ["week", "fortnight", "month", "year"]
     return render_template('transactions/add_direct_debit.html', direct_debit_priority_list=direct_debit_priority_list, direct_debit_time_scales=direct_debit_time_scales, merchants=merchants, tags=tags)
@@ -93,6 +97,9 @@ def add_debt():
         #if statement for if merchant = [] do add merchant method else do below
         merchant = merchant_repository.select_by_name(merchant_name)[0]
         debt.merchant = merchant
+        tag_name = request.form['tag']
+        tag = tag_repository.select_by_name(tag_name)[0]
+        debt.tag = tag
         debt.reoccurence_frequency_amount = request.form['reoccurence_frequency_amount']
         debt.interest = request.form['interest']
         debt.late_payment_fine = request.form['late_payment_fine']
@@ -102,13 +109,14 @@ def add_debt():
         return redirect(url_for('transactions.transactions'))
     user = user_repository.select(session)  
     merchants = frequent_trade_repository.select_all_by_user(str(user.id))
-    tags = tag_repository.select_all_by_user_debt(str(user.id))
+    tags = tag_repository.select_all_by_user(str(user.id))
     debt_priority_list = ["none", "low", "medium", "high"]
     debt_time_scales = ["week", "fortnight", "month", "year"]
     return render_template('transactions/add_debt.html', debt_priority_list=debt_priority_list, debt_time_scales=debt_time_scales, merchants=merchants, tags=tags)
 
 @transactions_blueprint.route('/add_custom_tag', methods=['GET', 'POST'])
 def add_custom_tag():
+    user = user_repository.select(session)
     if request.method == 'POST':
         tag_name = request.form['tag_name']
         tag = Tag(tag_name)
@@ -117,8 +125,9 @@ def add_custom_tag():
         user = user_repository.select(session)
         tag.user = user
         tag_repository.save(tag)
-        return redirect(url_for('transactions.transactions'))
-    return render_template('transactions/extras/add_custom_tag.html')
+        return redirect(url_for('transactions.add_custom_tag'))
+    tags = tag_repository.select_all_by_user(str(user.id))
+    return render_template('transactions/extras/add_custom_tag.html', tags=tags)
 
 # @transactions_blueprint.route('/add_merchant')
 # def add_merchant():

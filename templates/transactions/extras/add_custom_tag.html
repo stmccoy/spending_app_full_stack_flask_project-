@@ -14,5 +14,14 @@
     
         </div>
     </form>
+    <br>
+    <hr>
+    <p>My Tags</p>
+    <hr>
+    {% for tag in tags %}
+    <p>Tag: {{tag.tag_name}}</p>
+    <p>Adult Rating: {{tag.adult_rating}}</p>
+    <hr>
+    {% endfor %}
     {% include 'transactions/add_transaction_footer.html' %}
 {% endblock %}
