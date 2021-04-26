@@ -4,6 +4,42 @@
     {% include 'transactions/transactions_nav.html' %}
     {% include 'transactions/add_transaction_nav.html' %}
     <p>Add Debt Content goes here</p>
+    <form action="/add_debt" method="post">
+        <div>
+            <label for="value">Value</label>
+            <input type="number" name="value" id="value" placeholder="Write value here" required autofocus>
+            <label for="description">Description</label>
+            <input type="text" name="description" id="debt_description" placeholder="Debt description">
+            <label for="date">Date</label>
+            <input type="date" name="date" id="debt_date">
+            <label for="merchant">Merchant</label>
+            <input type="text" name="merchant" id="debt_merchant" placeholder="Write merchant here">
+            <label for="priority-rating">Priority rating</label>
+            <input type="number" name="priority_rating" id="debt_priority_rating" placeholder="0-3">
+            <label for="reoccurence-frequency-amount">How Often</label>
+            <input type="number" name="reoccurence_frequency_amount" id="debt_reoccurence_frequency_amount" placeholder="How Often">
+            <br>
+            <label for="reoccurence-frequency-type">Time Scale</label>
+            <select name="reoccurence_frequency_type" id="reoccurence_frequency_type">
+                <option value="default" selected="selected" disabled>Pick a time scale</option>
+                <option value="day">Day</option>
+                <option value="week">Week</option>
+                <option value="fortnight">Fortnight</option>
+                <option value="month">Month</option>
+                <option value="year">Year</option>
+            </select>
+            <label for="interest">Interest</label>
+            <input type="number" name="interest" id="debt_interest" placeholder="Interest Rate">
+            <label for="late-payment-fine">Late Payment Fine</label>
+            <input type="number" name="late_payment_fine" id="late_payment_fine" placeholder="late_payment_fine">
+            <label for="date">Pay Off Date</label>
+            <input type="date" name="pay_off_date" id="pay_off_date">
+            <button class="button" type="submit">Add Debt</button>    
+        </div>
+    </form>
+
+
+
     {% include 'transactions/add_transaction_footer.html' %}
 {% endblock %}
 
