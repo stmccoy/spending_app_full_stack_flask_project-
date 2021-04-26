@@ -57,3 +57,24 @@ def select_all():
         direct_debit.icon = row['icon']
         direct_debits.append(direct_debit)
     return direct_debits
+
+def select_by_user(user_id):
+    direct_debits = []
+    sql = "SELECT * FROM direct_debits WHERE user_id = %s"
+    values = [user_id]
+    results = run_sql(sql, values)
+
+    for row in results:
+        user = user_repository.select(row['user_id'])
+        merchant = merchant_repository.select(row['merchant_id'])
+        direct_debit = DirectDebit(user, row['value'], row['description'], row['id'])
+        direct_debit.date = row['date']
+        direct_debit.merchant = merchant
+        direct_debit.priority_rating = row['priority']
+        direct_debit.priority_rating = row['priority']
+        direct_debit.reoccurence_frequency_amount = row['reoccurence_frequency_amount']
+        direct_debit.reoccurence_frequency_type = row['reoccurence_frequency_type']
+        direct_debit.reoccurence_frequency_type_amount = row['reoccurence_frequency_type_amount']
+        direct_debit.icon = row['icon']
+        direct_debits.append(direct_debit)
+    return direct_debits

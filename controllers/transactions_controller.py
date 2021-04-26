@@ -18,7 +18,10 @@ transactions_blueprint = Blueprint('transactions', __name__)
 def transactions():
     user = user_repository.select(session)
     budget = user.budget
-    return render_template('transactions/transactions.html', budget= budget)
+    transactions = transaction_repository.select_by_user(str(user.id))
+    direct_debits = direct_debit_repository.select_by_user(str(user.id))
+    debts = debt_repository.select_by_user(str(user.id))
+    return render_template('transactions/transactions.html', budget= budget, transactions=transactions, direct_debits=direct_debits, debts= debts)
 
 @transactions_blueprint.route('/set_budget', methods=['GET', 'POST'])
 def set_budget():

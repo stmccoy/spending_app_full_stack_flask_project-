@@ -83,3 +83,19 @@ def select_by_merchant(merchant):
         transaction.priority_rating = row['priority']
         transactions.append(transaction)
     return transactions
+
+def select_by_user(user_id):
+    transactions = []
+    sql = "SELECT * FROM transactions WHERE user_id = %s"
+    values = [user_id]
+    results = run_sql(sql, values)
+
+    for row in results:
+        user = user_repository.select(row['user_id'])
+        merchant = merchant_repository.select(row['merchant_id'])
+        transaction = Transaction(user, row['value'], row['description'], row['id'])
+        transaction.date = row['date']
+        transaction.merchant = merchant
+        transaction.priority_rating = row['priority']
+        transactions.append(transaction)
+    return transactions

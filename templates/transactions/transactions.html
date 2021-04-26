@@ -3,7 +3,34 @@
 {% block content %}
     {% include 'transactions/transactions_nav.html' %}
 <h1>Transactions</h1>
-<p>Transactions content goes here</p>
 <p>budget = {{ budget }}</p>
+<p>My Transactions</p>
+<hr>
+{% for transaction in transactions %}
+    <p>Transaction Value: {{transaction.value}}</p>
+    <p>Transaction Description: {{transaction.description}}</p>
+    <p>Transaction Date: {{transaction.date}}</p>
+    <p>Transaction Priority: Edit a lot before this</p>
+    <hr>
+{% endfor %}
+<p>My Direct Debits</p>
+<hr>
+{% for direct_debit in direct_debits %}
+    <p>Direct Debit Value: {{direct_debit.value}}</p>
+    <p>Direct Debit Description: {{direct_debit.description}}</p>
+    <p>Direct Debit Date: {{direct_debit.date}}</p>
+    <p>Direct Debit Priority: Edit a lot before this</p>
+    <hr>
+{% endfor %}
+
+<p>My Debts</p>
+<hr>
+{% for debt in debts %}
+    <p>Debt Value: {{debt.value}}</p>
+    <p>Debt Description: {{debt.description}}</p>
+    <p>Debt Date: {{debt.date}}</p>
+    <p>Debt Priority: Edit a lot before this</p>
+    <hr>
+{% endfor %}
 
 {% endblock %}
