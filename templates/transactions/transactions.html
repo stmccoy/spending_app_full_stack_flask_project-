@@ -9,6 +9,7 @@
 {% for transaction in transactions %}
     <p>Transaction Value: {{transaction.value}}</p>
     <p>Transaction Description: {{transaction.description}}</p>
+    <p>Transaction Merchant: {{transaction.merchant.merchant_name}}</p>
     <p>Transaction Date: {{transaction.date}}</p>
     <p>Transaction Priority: {{transaction.priority_rating}}</p>
     <hr>
@@ -18,6 +19,7 @@
 {% for direct_debit in direct_debits %}
     <p>Direct Debit Value: {{direct_debit.value}}</p>
     <p>Direct Debit Description: {{direct_debit.description}}</p>
+    <p>Direct Debit Merchant: {{direct_debit.merchant.merchant_name}}</p>
     <p>Direct Debit Date: {{direct_debit.date}}</p>
     <p>Direct Debit Priority: {{direct_debit.priority_rating}}</p>
     <hr>
@@ -28,6 +30,7 @@
 {% for debt in debts %}
     <p>Debt Value: {{debt.value}}</p>
     <p>Debt Description: {{debt.description}}</p>
+    <p>Debt Merchant: {{debt.merchant.merchant_name}}</p>
     <p>Debt Date: {{debt.date}}</p>
     <p>Debt Priority: {{debt.priority_rating}}</p>
     <hr>

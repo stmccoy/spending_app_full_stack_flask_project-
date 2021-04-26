@@ -10,6 +10,7 @@ import repositories.merchant_repository as merchant_repository
 import repositories.direct_debit_repository as direct_debit_repository
 import repositories.debt_repository as debt_repository
 import repositories.tag_repository as tag_repository
+import repositories.frequent_trade_repository as frequent_trade_repository
 
 
 transactions_blueprint = Blueprint('transactions', __name__)
@@ -45,8 +46,10 @@ def add_transaction():
         transaction.merchant = merchant
         transaction_repository.save(transaction)
         return redirect(url_for('transactions.transactions'))
+    user = user_repository.select(session)  
+    merchants = frequent_trade_repository.select_all_by_user(str(user.id))
     transaction_priority_list = ["none", "low", "medium", "high"]
-    return render_template('transactions/add_transaction.html', transaction_priority_list=transaction_priority_list)
+    return render_template('transactions/add_transaction.html', transaction_priority_list=transaction_priority_list, merchants=merchants)
 
 @transactions_blueprint.route('/add_direct_debit', methods=['GET', 'POST'])
 def add_direct_debit():

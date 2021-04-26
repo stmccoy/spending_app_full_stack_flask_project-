@@ -67,7 +67,7 @@ def select_all():
 
 def select_by_user(user_id):
     debts = []
-    sql = "SELECT * FROM debts WHERE user_id = %s"
+    sql = "SELECT * FROM debts INNER JOIN merchants ON merchants.id = debts.merchant_id WHERE user_id = %s"
     values = [user_id]
     results = run_sql(sql, values)
 

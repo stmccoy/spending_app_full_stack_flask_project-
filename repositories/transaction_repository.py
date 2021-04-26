@@ -86,7 +86,7 @@ def select_by_merchant(merchant):
 
 def select_by_user(user_id):
     transactions = []
-    sql = "SELECT * FROM transactions WHERE user_id = %s"
+    sql = "SELECT * FROM transactions INNER JOIN merchants ON merchants.id = transactions.merchant_id WHERE user_id = %s"
     values = [user_id]
     results = run_sql(sql, values)
 
