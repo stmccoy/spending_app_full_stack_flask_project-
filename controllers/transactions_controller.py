@@ -3,11 +3,13 @@ from flask import render_template, request, redirect, url_for
 from flask import Blueprint
 from session import session
 from models.transaction import *
+from models.extras import *
 import repositories.user_repository as user_repository
 import repositories.transaction_repository as transaction_repository
 import repositories.merchant_repository as merchant_repository
 import repositories.direct_debit_repository as direct_debit_repository
 import repositories.debt_repository as debt_repository
+import repositories.tag_repository as tag_repository
 
 
 
@@ -84,8 +86,15 @@ def add_debt():
         return redirect(url_for('transactions.transactions'))
     return render_template('transactions/add_debt.html')
 
-@transactions_blueprint.route('/add_custom_tag')
+@transactions_blueprint.route('/add_custom_tag', methods=['GET', 'POST'])
 def add_custom_tag():
+    if request.method == 'POST':
+        tag_name = request.form['tag_name']
+        tag = Tag(tag_name)
+        if 'adult_rating' in request.form:
+            tag = Tag(tag_name, True)
+        tag_repository.save(tag)
+        return redirect(url_for('transactions.transactions'))
     return render_template('transactions/extras/add_custom_tag.html')
 
 # @transactions_blueprint.route('/add_merchant')
