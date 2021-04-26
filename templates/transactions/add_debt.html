@@ -14,7 +14,7 @@
             <input type="date" name="date" id="debt_date">
             <label for="merchant">Merchant</label>
             <input type="text" name="merchant" id="debt_merchant" placeholder="Write merchant here">
-            <select name="priority-rating" id="priority-rating">
+            <select name="priority_rating" id="priority_rating">
                 <option value="default" selected="selected" disabled>Pick a priority rating</option>
                 {% for debt_priority in debt_priority_list %}
                 <option value={{debt_priority}}>{{debt_priority}}</option>

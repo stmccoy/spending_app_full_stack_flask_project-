@@ -10,7 +10,7 @@
     <p>Transaction Value: {{transaction.value}}</p>
     <p>Transaction Description: {{transaction.description}}</p>
     <p>Transaction Date: {{transaction.date}}</p>
-    <p>Transaction Priority: Edit a lot before this</p>
+    <p>Transaction Priority: {{transaction.priority_rating}}</p>
     <hr>
 {% endfor %}
 <p>My Direct Debits</p>
@@ -19,7 +19,7 @@
     <p>Direct Debit Value: {{direct_debit.value}}</p>
     <p>Direct Debit Description: {{direct_debit.description}}</p>
     <p>Direct Debit Date: {{direct_debit.date}}</p>
-    <p>Direct Debit Priority: Edit a lot before this</p>
+    <p>Direct Debit Priority: {{direct_debit.priority_rating}}</p>
     <hr>
 {% endfor %}
 
@@ -29,7 +29,7 @@
     <p>Debt Value: {{debt.value}}</p>
     <p>Debt Description: {{debt.description}}</p>
     <p>Debt Date: {{debt.date}}</p>
-    <p>Debt Priority: Edit a lot before this</p>
+    <p>Debt Priority: {{debt.priority_rating}}</p>
     <hr>
 {% endfor %}
 

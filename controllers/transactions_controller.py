@@ -45,7 +45,7 @@ def add_transaction():
         transaction.merchant = merchant
         transaction_repository.save(transaction)
         return redirect(url_for('transactions.transactions'))
-    transaction_priority_list = ["low", "medium", "high"]
+    transaction_priority_list = ["none", "low", "medium", "high"]
     return render_template('transactions/add_transaction.html', transaction_priority_list=transaction_priority_list)
 
 @transactions_blueprint.route('/add_direct_debit', methods=['GET', 'POST'])
@@ -65,7 +65,7 @@ def add_direct_debit():
         direct_debit_repository.save(direct_debit)
         #need to fix table to allow for string and add freq amount type 
         return redirect(url_for('transactions.transactions'))
-    direct_debit_priority_list = ["low", "medium", "high"]
+    direct_debit_priority_list = ["none", "low", "medium", "high"]
     direct_debit_time_scales = ["week", "fortnight", "month", "year"]
     return render_template('transactions/add_direct_debit.html', direct_debit_priority_list=direct_debit_priority_list, direct_debit_time_scales=direct_debit_time_scales)
 
@@ -89,9 +89,9 @@ def add_debt():
         debt_repository.save(debt)
         #need to fix table to allow for string and add freq amount type 
         return redirect(url_for('transactions.transactions'))
-    debt_priority_list = ["low", "medium", "high"]
+    debt_priority_list = ["none", "low", "medium", "high"]
     debt_time_scales = ["week", "fortnight", "month", "year"]
-    return render_template('transactions/add_debt.html', debt_time_scales=debt_time_scales)
+    return render_template('transactions/add_debt.html', debt_priority_list=debt_priority_list, debt_time_scales=debt_time_scales)
 
 @transactions_blueprint.route('/add_custom_tag', methods=['GET', 'POST'])
 def add_custom_tag():

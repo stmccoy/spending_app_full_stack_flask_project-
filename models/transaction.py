@@ -9,7 +9,6 @@ class Transaction:
         self.description = description
         self.date = None
         self.merchant = None
-        self.priority_list = [None, "low", "medium", "high"]
         self.priority_rating = None
         self.id = id
     
