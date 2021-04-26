@@ -4,6 +4,7 @@ from models.frequent_trades import FrequentTrade
 import repositories.user_repository as user_repository
 import repositories.merchant_repository as merchant_repository
 import repositories.frequent_trade_repository as frequent_trade_repository
+import repositories.tag_repository as tag_repository
 
 
 def save(debt):
@@ -33,9 +34,11 @@ def select(id):
     if result is not None:
         user = user_repository.select(result['user_id'])
         merchant = merchant_repository.select(result['merchant_id'])
+        tag = tag_repository.select(row['tag_id'])
         debt = Debt(user, result['value'], result['description'], result['id'])
         debt.date = result['date']
         debt.merchant = merchant
+        debt.tag = tag
         debt.priority_rating = result['priority']
         debt.reoccurence_frequency_amount = result['reoccurence_frequency_amount']
         debt.reoccurence_frequency_type = result['reoccurence_frequency_type']
@@ -55,9 +58,11 @@ def select_all():
     for row in results:
         user = user_repository.select(row['user_id'])
         merchant = merchant_repository.select(row['merchant_id'])
+        tag = tag_repository.select(row['tag_id'])
         debt = Debt(user, row['value'], row['description'], row['id'])
         debt.date = row['date']
         debt.merchant = merchant
+        debt.tag = tag
         debt.priority_rating = row['priority']
         debt.reoccurence_frequency_amount = row['reoccurence_frequency_amount']
         debt.reoccurence_frequency_type = row['reoccurence_frequency_type']
@@ -78,9 +83,11 @@ def select_by_user(user_id):
     for row in results:
         user = user_repository.select(row['user_id'])
         merchant = merchant_repository.select(row['merchant_id'])
+        tag = tag_repository.select(row['tag_id'])
         debt = Debt(user, row['value'], row['description'], row['id'])
         debt.date = row['date']
         debt.merchant = merchant
+        debt.tag = tag
         debt.priority_rating = row['priority']
         debt.priority_rating = row['priority']
         debt.reoccurence_frequency_amount = row['reoccurence_frequency_amount']

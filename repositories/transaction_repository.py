@@ -34,9 +34,11 @@ def select(id):
     if result is not None:
         user = user_repository.select(result['user_id'])
         merchant = merchant_repository.select(result['merchant_id'])
+        tag = tag_repository.select(row['tag_id'])
         transaction = Transaction(user, result['value'], result['description'], result['id'])
         transaction.date = result['date']
         transaction.merchant = merchant
+        transaction.tag = tag
         transaction.priority_rating = result['priority']
     return transaction
 
@@ -49,9 +51,11 @@ def select_all():
     for row in results:
         user = user_repository.select(row['user_id'])
         merchant = merchant_repository.select(row['merchant_id'])
+        tag = tag_repository.select(row['tag_id'])
         transaction = Transaction(user, row['value'], row['description'], row['id'])
         transaction.date = row['date']
         transaction.merchant = merchant
+        transaction.tag = tag
         transaction.priority_rating = row['priority']
         transactions.append(transaction)
     return transactions
@@ -66,9 +70,11 @@ def select_by_name(name):
     for row in results:
         user = user_repository.select(row['user_id'])
         merchant = merchant_repository.select(row['merchant_id'])
+        tag = tag_repository.select(row['tag_id'])
         transaction = Transaction(user, row['value'], row['description'], row['id'])
         transaction.date = row['date']
         transaction.merchant = merchant
+        transaction.tag = tag
         transaction.priority_rating = row['priority']
         transactions.append(transaction)
     return transactions
@@ -83,9 +89,11 @@ def select_by_merchant(merchant):
     for row in results:
         user = user_repository.select(row['user_id'])
         merchant = merchant_repository.select(row['merchant_id'])
+        tag = tag_repository.select(row['tag_id'])
         transaction = Transaction(user, row['value'], row['description'], row['id'])
         transaction.date = row['date']
         transaction.merchant = merchant
+        transaction.tag = tag
         transaction.priority_rating = row['priority']
         transactions.append(transaction)
     return transactions
