@@ -53,6 +53,7 @@ CREATE TABLE direct_debits(
     description VARCHAR(255),
     merchant_id INT REFERENCES merchants(id) ON DELETE CASCADE,
     priority VARCHAR(255),
+    tag_id INT REFERENCES tags(id) ON DELETE CASCADE,
     reoccurence_frequency_amount INT,
 
     -- missing type list as I don't think I need it
@@ -72,6 +73,7 @@ CREATE TABLE debts(
     description VARCHAR(255),
     merchant_id INT REFERENCES merchants(id) ON DELETE CASCADE,
     priority VARCHAR(255),
+    tag_id INT REFERENCES tags(id) ON DELETE CASCADE,
     reoccurence_frequency_amount INT,
 
     -- missing type list as I don't think I need it

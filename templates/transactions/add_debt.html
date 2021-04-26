@@ -40,6 +40,12 @@
             <input type="number" name="late_payment_fine" id="late_payment_fine" placeholder="late_payment_fine">
             <label for="date">Pay Off Date</label>
             <input type="date" name="pay_off_date" id="pay_off_date">
+            <select name="tag" id="tag">
+                <option value="default" selected="selected" disabled>Pick a tag</option>
+                {% for tag in tags %}
+                <option value={{tag.tag_name}}>{{tag.tag_name}}</option>
+                {% endfor %}
+            </select>
             <button class="button" type="submit">Add Debt</button>    
         </div>
     </form>

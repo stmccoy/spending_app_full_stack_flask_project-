@@ -35,6 +35,13 @@
                 <option value={{direct_debit_time_scale}}>{{direct_debit_time_scale}}</option>
                 {% endfor %}
             </select>
+            <label for="tag">Tag</label>
+            <select name="tag" id="tag">
+                <option value="default" selected="selected" disabled>Pick a tag</option>
+                {% for tag in tags %}
+                <option value={{tag.tag_name}}>{{tag.tag_name}}</option>
+                {% endfor %}
+            </select>
             <button class="button" type="submit">Add Direct Debit</button>    
         </div>
     </form>

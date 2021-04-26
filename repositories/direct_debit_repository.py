@@ -6,8 +6,8 @@ import repositories.merchant_repository as merchant_repository
 import repositories.frequent_trade_repository as frequent_trade_repository
 
 def save(direct_debit):
-    sql = "INSERT INTO direct_debits (user_id, date, value, description, merchant_id, priority, reoccurence_frequency_amount, reoccurence_frequency_type, reoccurence_frequency_type_amount, icon) VALUES (%s, %s,%s, %s, %s, %s, %s, %s, %s, %s) RETURNING ID"
-    values = [direct_debit.user.id, direct_debit.date, direct_debit.value, direct_debit.description, direct_debit.merchant.id, direct_debit.priority_rating, direct_debit.reoccurence_frequency_amount, direct_debit.reoccurence_frequency_type, direct_debit.reoccurence_frequency_type_amount, direct_debit.icon]
+    sql = "INSERT INTO direct_debits (user_id, date, value, description, merchant_id, priority, tag_id, reoccurence_frequency_amount, reoccurence_frequency_type, reoccurence_frequency_type_amount, icon) VALUES (%s, %s,%s, %s, %s, %s, %s, %s, %s, %s, %s) RETURNING ID"
+    values = [direct_debit.user.id, direct_debit.date, direct_debit.value, direct_debit.description, direct_debit.merchant.id, direct_debit.priority_rating, direct_debit.tag.id, direct_debit.reoccurence_frequency_amount, direct_debit.reoccurence_frequency_type, direct_debit.reoccurence_frequency_type_amount, direct_debit.icon]
     results = run_sql(sql, values)
     direct_debit.id = results[0]['id']
     frequent_trade = FrequentTrade(direct_debit.user, direct_debit.merchant)

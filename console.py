@@ -102,6 +102,7 @@ direct_debit_1.reoccurence_frequency_amount = 1
 direct_debit_1.reoccurence_frequency_type = 2
 direct_debit_1.reoccurence_frequency_type_amount = 3
 direct_debit_1.icon = "Piccy"
+direct_debit_1.tag = tag_1
 direct_debit_repository.save(direct_debit_1)
 
 direct_debit_2 = Transaction(user_2, 30, "Phone")
@@ -112,6 +113,7 @@ direct_debit_2.reoccurence_frequency_amount = 2
 direct_debit_2.reoccurence_frequency_type = 1
 direct_debit_2.reoccurence_frequency_type_amount = 3
 direct_debit_2.icon = "Piccy"
+direct_debit_2.tag = tag_2
 direct_debit_repository.save(direct_debit_2)
 
 direct_debit_3 = Transaction(user_3, 100, "Car")
@@ -122,6 +124,7 @@ direct_debit_3.reoccurence_frequency_amount = 1
 direct_debit_3.reoccurence_frequency_type = 3
 direct_debit_3.reoccurence_frequency_type_amount = 2
 direct_debit_3.icon = "Piccy"
+direct_debit_3.tag = tag_1
 direct_debit_repository.save(direct_debit_3)
 
 merchant_7 = Merchant("Barclays")
@@ -150,6 +153,7 @@ debt_1.icon = "Piccy"
 debt_1.interest = 2
 debt_1.late_payment_fine = 10
 debt_1.pay_off_date = "2022-02-12"
+debt_1.tag = tag_1
 debt_repository.save(debt_1)
 
 debt_2 = Debt(user_2, 100, "Tax debt")
@@ -163,6 +167,7 @@ debt_2.icon = "Piccy"
 debt_2.interest = 0
 debt_2.late_payment_fine = 50
 debt_2.pay_off_date = "2023-06-12"
+debt_2.tag = tag_2
 debt_repository.save(debt_2)
 
 debt_3 = Debt(user_2, 100, "Credit Card Debt")
@@ -176,6 +181,7 @@ debt_3.icon = "Piccy"
 debt_3.interest = 10
 debt_3.late_payment_fine = 40
 debt_3.pay_off_date = "2021-11-12"
+debt_3.tag = tag_1
 debt_repository.save(debt_3)
 
 frequent_trade_1 = FrequentTrade(user_1, merchant_4)
