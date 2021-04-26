@@ -61,19 +61,19 @@ tag_repository.save(tag_2)
 transaction_1 = Transaction(user_1, 20, "shoes")
 transaction_1.date = "2021-04-11"
 transaction_1.merchant = merchant_1
-transaction_1.priority_rating = 0
+transaction_1.priority_rating = None
 transaction_repository.save(transaction_1)
 
 transaction_2 = Transaction(user_2, 20, "hairclips")
 transaction_2.date = "2021-03-09"
 transaction_2.merchant = merchant_2
-transaction_2.priority_rating = 1
+transaction_2.priority_rating = "low"
 transaction_repository.save(transaction_2)
 
 transaction_3 = Transaction(user_3, 20, "socks")
 transaction_3.date = "2021-02-08"
 transaction_3.merchant = merchant_3
-transaction_3.priority_rating = 1
+transaction_3.priority_rating = "medium"
 transaction_repository.save(transaction_3)
 
 merchant_4 = Merchant("The Gym Group")
@@ -94,7 +94,7 @@ merchant_repository.save(merchant_6)
 direct_debit_1 = DirectDebit(user_1, 20, "Gym")
 direct_debit_1.date = "2021-02-07"
 direct_debit_1.merchant = merchant_4
-direct_debit_1.priority_rating = 2
+direct_debit_1.priority_rating = "medium"
 direct_debit_1.reoccurence_frequency_amount = 1
 direct_debit_1.reoccurence_frequency_type = 2
 direct_debit_1.reoccurence_frequency_type_amount = 3
@@ -104,7 +104,7 @@ direct_debit_repository.save(direct_debit_1)
 direct_debit_2 = Transaction(user_2, 30, "Phone")
 direct_debit_2.date = "2021-05-05"
 direct_debit_2.merchant = merchant_5
-direct_debit_2.priority_rating = 2
+direct_debit_2.priority_rating = "medium"
 direct_debit_2.reoccurence_frequency_amount = 2
 direct_debit_2.reoccurence_frequency_type = 1
 direct_debit_2.reoccurence_frequency_type_amount = 3
@@ -114,7 +114,7 @@ direct_debit_repository.save(direct_debit_2)
 direct_debit_3 = Transaction(user_3, 100, "Car")
 direct_debit_3.date = "2021-04-08"
 direct_debit_3.merchant = merchant_6
-direct_debit_3.priority_rating = 3
+direct_debit_3.priority_rating = "high"
 direct_debit_3.reoccurence_frequency_amount = 1
 direct_debit_3.reoccurence_frequency_type = 3
 direct_debit_3.reoccurence_frequency_type_amount = 2
@@ -139,7 +139,7 @@ merchant_repository.save(merchant_9)
 debt_1 = Debt(user_1, 200, "Mortgage")
 debt_1.date = "2022-05-11"
 debt_1.merchant = merchant_7
-debt_1.priority_rating = 4
+debt_1.priority_rating = "high"
 debt_1.reoccurence_frequency_amount = 1
 debt_1.reoccurence_frequency_type = 2
 debt_1.reoccurence_frequency_type_amount = 1
@@ -152,7 +152,7 @@ debt_repository.save(debt_1)
 debt_2 = Debt(user_2, 100, "Tax debt")
 debt_2.date = "2021-03-11"
 debt_2.merchant = merchant_8
-debt_2.priority_rating = 4
+debt_2.priority_rating = "high"
 debt_2.reoccurence_frequency_amount = 1
 debt_2.reoccurence_frequency_type = 2
 debt_2.reoccurence_frequency_type_amount = 2
@@ -165,7 +165,7 @@ debt_repository.save(debt_2)
 debt_3 = Debt(user_2, 100, "Credit Card Debt")
 debt_3.date = "2023-01-12"
 debt_3.merchant = merchant_9
-debt_3.priority_rating = 3
+debt_3.priority_rating = "high"
 debt_3.reoccurence_frequency_amount = 2
 debt_3.reoccurence_frequency_type = 1
 debt_3.reoccurence_frequency_type_amount = 1
