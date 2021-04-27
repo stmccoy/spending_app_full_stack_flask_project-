@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+    {% include 'navs_and_footers/transactions_nav.html' %}
+    {% include 'navs_and_footers/add_transaction_nav.html' %}
+    <p>My Tags</p>
+    <hr>
+    {% for tag in tags %}
+    <p>Tag: {{tag.tag_name}}</p>
+    <p>Adult Rating: {{tag.adult_rating}}</p>
+    <div>
+        <form action="/tag/{{tag.id}}/update">  
+            <button type="submit">Edit</button>
+        </form> 
+    </div>
+    <div>
+        <form action="/tag/{{tag.id}}/delete" method='post'>
+            <button type="submit">Delete</button>
+        </form>
+    </div>
+    <hr>
+    {% endfor %}
+    {% include 'navs_and_footers/add_transaction_footer.html' %}
+{% endblock %}

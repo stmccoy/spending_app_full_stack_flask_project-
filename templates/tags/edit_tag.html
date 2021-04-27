@@ -2,7 +2,6 @@
 
 {% block content %}
     {% include 'navs_and_footers/transactions_nav.html' %}
-    {% include 'navs_and_footers/add_transaction_nav.html' %}
     <p>Edit Custom Tag content goes here</p>
     <form action="/tag/{{tag.id}}/update" method="post">
         <div>
@@ -13,6 +12,4 @@
             <button class="button" type="submit">Update Tag</button>
         </div>
     </form>
-
-    {% include 'navs_and_footers/add_transaction_footer.html' %}
 {% endblock %}

@@ -2,27 +2,35 @@
 
 {% block content %}
 
-<h1>Merchants</h1>
-<hr>
+<h2>Merchants</h2>
+<table>
+    <tr>
+        <th>Merchant name</th>
+        <th>Merchant Website</th>
+        <th>Merchant Icon</th>
+        <th>Merchant Id</th>
+        <th>Edit Merchant</th>
+        <th>Delete Merchant</th>
+    </tr>
 {% for merchant in merchants %}
-<div>
-    <p>Merchant name: {{merchant.merchant_name}}</p>
-    <p>Merchant website: {{merchant.website}} {{merchant.icon}}</p>
-    <p>Merchant id: {{merchant.id}}</p>
-    <div>
+    <tr>
+        <td>{{merchant.merchant_name}}</td>
+        <td>{{merchant.website}}</td>
+        <td>{{merchant.icon}}</td>
+        <td>Merchant id: {{merchant.id}}</td>
+        <td>
         <form action="/merchant/{{merchant.id}}/update">  
             <button type="submit">Edit</button>
         </form> 
-    </div>
-    <div>
-        <form action="/merchant/{{merchant.id}}/delete" method='post'>
-            <button type="submit">Delete</button>
-        </form>
-    </div>
-    <hr>
-</div>
-
+        </td>  
+        <td>
+            <form action="/merchant/{{merchant.id}}/delete" method='post'>
+                <button type="submit">Delete</button>
+            </form>
+        </td>
+    </tr>
 {% endfor %}
+</table>
 <p><a href="/add_favourite_merchant">Add Merchant</a></p>
 
 {% endblock %}

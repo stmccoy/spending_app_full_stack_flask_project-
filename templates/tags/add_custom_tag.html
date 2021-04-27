@@ -1,8 +1,6 @@
 {% extends "base.html" %}
 
 {% block content %}
-    {% include 'navs_and_footers/transactions_nav.html' %}
-    {% include 'navs_and_footers/add_transaction_nav.html' %}
     <p>Add Custom Tag content goes here</p>
     <form action="/add_custom_tag" method="post">
         <div>
@@ -27,5 +25,4 @@
     </div>
     <hr>
     {% endfor %} -->
-    {% include 'navs_and_footers/add_transaction_footer.html' %}
 {% endblock %}
