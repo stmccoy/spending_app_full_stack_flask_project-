@@ -58,7 +58,7 @@ CREATE TABLE direct_debits(
     reoccurence_frequency_amount INT,
 
     -- missing type list as I don't think I need it
-    reoccurence_frequency_type INT,
+    reoccurence_frequency_type VARCHAR(255),
     reoccurence_frequency_type_amount INT,
 
     -- needs to be an image

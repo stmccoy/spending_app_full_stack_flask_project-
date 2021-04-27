@@ -33,7 +33,7 @@ def select(id):
     if result is not None:
         user = user_repository.select(result['user_id'])
         merchant = merchant_repository.select(result['merchant_id'])
-        tag = tag_repository.select(row['tag_id'])
+        tag = tag_repository.select(result['tag_id'])
         direct_debit = DirectDebit(user, result['value'], result['description'], result['id'])
         direct_debit.date = result['date']
         direct_debit.merchant = merchant
@@ -89,3 +89,8 @@ def select_by_user(user_id):
         direct_debit.icon = row['icon']
         direct_debits.append(direct_debit)
     return direct_debits
+
+def update(direct_debit):
+    sql = "UPDATE direct_debits SET (date, value, description, merchant_id, priority, tag_id, reoccurence_frequency_amount, reoccurence_frequency_type) = (%s, %s, %s, %s, %s, %s, %s, %s) WHERE id = %s"
+    values = [direct_debit.date, direct_debit.value, direct_debit.description, direct_debit.merchant.id, direct_debit.priority_rating, direct_debit.tag.id, direct_debit.reoccurence_frequency_amount, direct_debit.reoccurence_frequency_type, direct_debit.id]
+    run_sql(sql, values)
