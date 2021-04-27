@@ -12,9 +12,6 @@ import repositories.debt_repository as debt_repository
 import repositories.tag_repository as tag_repository
 import repositories.frequent_trade_repository as frequent_trade_repository
 
-
-
-
 transactions_blueprint = Blueprint('transactions', __name__)
 @transactions_blueprint.route('/transactions')
 def transactions():

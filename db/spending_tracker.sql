@@ -29,13 +29,13 @@ CREATE TABLE tags(
     id SERIAL PRIMARY KEY,
     tag_name VARCHAR(255),
     adult_rating BOOLEAN,
-    user_id INT REFERENCES users(id) ON DELETE CASCADE
+    user_id INT REFERENCES users(id) 
 );
 
 -- removed tags from all transactions as I think I'm just doing them in transaction categories table
 CREATE TABLE transactions(
     id SERIAL PRIMARY KEY,
-    user_id INT REFERENCES users(id) ON DELETE CASCADE,
+    user_id INT REFERENCES users(id),
     -- needs to be date
     date VARCHAR(255),
     value INT,
@@ -47,7 +47,7 @@ CREATE TABLE transactions(
 
 CREATE TABLE direct_debits(
     id SERIAL PRIMARY KEY,
-    user_id INT REFERENCES users(id) ON DELETE CASCADE,
+    user_id INT REFERENCES users(id),
     -- needs to be date
     date VARCHAR(255),
     value INT,
@@ -67,7 +67,7 @@ CREATE TABLE direct_debits(
 
 CREATE TABLE debts(
     id SERIAL PRIMARY KEY,
-    user_id INT REFERENCES users(id) ON DELETE CASCADE,
+    user_id INT REFERENCES users(id),
     -- needs to be date
     date VARCHAR(255),
     value INT,
@@ -91,7 +91,7 @@ CREATE TABLE debts(
 
 CREATE TABLE frequent_trades(
     id SERIAL PRIMARY KEY,
-    user_id INT REFERENCES users(id) ON DELETE CASCADE,
+    user_id INT REFERENCES users(id),
     merchant_id INT REFERENCES merchants(id) ON DELETE CASCADE
 );
 
