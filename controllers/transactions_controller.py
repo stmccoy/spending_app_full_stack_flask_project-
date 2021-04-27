@@ -126,6 +126,18 @@ def add_custom_tag():
     tags = tag_repository.select_all_by_user(str(user.id))
     return render_template('transactions/extras/add_custom_tag.html', tags=tags)
 
+@transactions_blueprint.route('/view_tags', methods=['GET', 'POST'])
+def view_tags():
+    user = user_repository.select(session)        
+    tags = tag_repository.select_all_by_user(str(user.id))
+    return render_template('transactions/extras/view_tags.html', tags=tags)
+
+@transactions_blueprint.route("/tag/<id>/delete", methods=['POST'])
+def delete_tag(id):
+    tag_repository.delete(id)
+    return redirect(url_for('transactions.view_tags'))
+
+
 # @transactions_blueprint.route('/add_merchant')
 # def add_merchant():
 #     return render_template('transactions/extras/add_merchant.html')

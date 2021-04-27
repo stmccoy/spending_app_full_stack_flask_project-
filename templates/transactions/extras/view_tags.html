@@ -3,18 +3,6 @@
 {% block content %}
     {% include 'transactions/transactions_nav.html' %}
     {% include 'transactions/add_transaction_nav.html' %}
-    <p>Add Custom Tag content goes here</p>
-    <form action="/add_custom_tag" method="post">
-        <div>
-            <label for="tag-name">Tag Name</label>
-            <input type="text" name="tag_name" id="tag-name" placeholder="Tag Name" required autofocus>
-            <label for="adult-rating">Adult Rating?</label>
-            <input type="checkbox" id="adult_rating" name="adult_rating">
-            <button class="button" type="submit">Add Tag</button>
-        </div>
-    </form>
-    <br>
-    <hr>
     <p>My Tags</p>
     <hr>
     {% for tag in tags %}
