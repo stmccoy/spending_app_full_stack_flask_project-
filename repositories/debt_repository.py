@@ -34,7 +34,7 @@ def select(id):
     if result is not None:
         user = user_repository.select(result['user_id'])
         merchant = merchant_repository.select(result['merchant_id'])
-        tag = tag_repository.select(row['tag_id'])
+        tag = tag_repository.select(result['tag_id'])
         debt = Debt(user, result['value'], result['description'], result['id'])
         debt.date = result['date']
         debt.merchant = merchant
@@ -99,3 +99,8 @@ def select_by_user(user_id):
         debt.pay_off_date = row['pay_off_date']
         debts.append(debt)
     return debts
+
+def update(debt):
+    sql = "UPDATE debts SET (date, value, description, merchant_id, priority, tag_id, reoccurence_frequency_amount, reoccurence_frequency_type, interest, late_payment_fine, pay_off_date) = (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s) WHERE id = %s"
+    values = [debt.date, debt.value, debt.description, debt.merchant.id, debt.priority_rating, debt.tag.id, debt.reoccurence_frequency_amount, debt.reoccurence_frequency_type, debt.interest, debt.late_payment_fine, debt.pay_off_date, debt.id]
+    run_sql(sql, values)

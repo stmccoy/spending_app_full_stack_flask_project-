@@ -137,9 +137,9 @@ def edit_transaction(id, transaction_type):
     elif transaction_type == 'direct_debit':
         direct_debit = direct_debit_repository.select(id)
         return render_template('transactions/edit_direct_debit.html', transaction_priority_list=transaction_priority_list, merchants=merchants, tags=tags, direct_debit=direct_debit, direct_debit_time_scales=direct_debit_time_scales)
-        return 'Hello Direct Debit'
     elif transaction_type == 'debt':
-        return 'Hello Debt'
+        debt = debt_repository.select(id)
+        return render_template('transactions/edit_debt.html', transaction_priority_list=transaction_priority_list, merchants=merchants, tags=tags, debt=debt, direct_debit_time_scales=direct_debit_time_scales)        
 
 @transactions_blueprint.route('/transaction_edit/<transaction_type>/<id>/edit', methods=['POST'])
 def edit_transaction_post(id, transaction_type):
@@ -186,6 +186,32 @@ def edit_transaction_post(id, transaction_type):
                 direct_debit.reoccurence_frequency_type = request.form['reoccurence_frequency_type']
             direct_debit.id = id
             direct_debit_repository.update(direct_debit)
+            return redirect(url_for('transactions.transactions'))
+    elif transaction_type == 'debt':
+            value = request.form['value']
+            description = request.form['description']
+            date = request.form['date']
+            debt = Debt(user, value, description)
+            debt.date = date
+            if 'merchant' in request.form:
+                merchant_name = request.form['merchant']
+                merchant = merchant_repository.select_by_name(merchant_name)[0]
+                debt.merchant = merchant
+            if 'priority_rating' in request.form:
+                priority_rating = request.form['priority_rating']
+                debt.priority_rating = priority_rating
+            if 'tag' in request.form:
+                tag_name = request.form['tag']
+                tag = tag_repository.select_by_name(tag_name)[0]
+                debt.tag = tag
+            debt.reoccurence_frequency_amount = request.form['reoccurence_frequency_amount']
+            if 'reoccurence_frequency_type' in request.form:
+                debt.reoccurence_frequency_type = request.form['reoccurence_frequency_type']
+            debt.interest = request.form['interest']
+            debt.late_payment_fine = request.form['late_payment_fine']
+            debt.pay_off_date = request.form['pay_off_date']
+            debt.id = id
+            debt_repository.update(debt)
             return redirect(url_for('transactions.transactions'))
     # user = user_repository.select(session)  
     # merchants = frequent_trade_repository.select_all_by_user(str(user.id))
