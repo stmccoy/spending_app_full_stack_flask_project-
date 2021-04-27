@@ -56,4 +56,8 @@ def select_by_name(name):
         merchants.append(merchant)
     return merchants
 
+def update(merchant):
+    sql = "UPDATE merchants SET (merchant_name, website) = (%s, %s) WHERE id = %s"
+    values = [merchant.merchant_name, merchant.website, merchant.id]
+    run_sql(sql, values)
 

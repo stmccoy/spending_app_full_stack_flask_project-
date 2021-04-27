@@ -51,3 +51,15 @@ def add_merchant():
 def delete_merchant(id):
     merchant_repository.delete(id)
     return redirect(url_for('merchants.merchants'))
+
+@merchants_blueprint.route("/merchant/<id>/update", methods=['GET','POST'])
+def update_merchant(id):
+    merchant = merchant_repository.select(id)
+    if request.method == 'POST':
+        merchant.merchant_name = request.form['merchant_name']
+        merchant.website = request.form['merchant_website']
+        merchant_repository.update(merchant)
+        return redirect(url_for('merchants.merchants'))
+    return render_template('merchants/edit_merchant.html', merchant=merchant)
+    
+
