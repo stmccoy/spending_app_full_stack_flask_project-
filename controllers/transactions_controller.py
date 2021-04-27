@@ -150,6 +150,16 @@ def delete_tag(id):
     tag_repository.delete(id)
     return redirect(url_for('transactions.view_tags'))
 
+@transactions_blueprint.route("/tag/<id>/update", methods=['GET', 'POST'])
+def update_tag(id):
+    tag = tag_repository.select(id)
+    if request.method == 'POST':
+        tag.tag_name = request.form['tag_name']
+        if 'adult_rating' in request.form:
+            tag.adult_rating = True
+        tag_repository.update(tag)
+        return redirect(url_for('transactions.view_tags'))
+    return render_template('transactions/extras/edit_tag.html', tag=tag)
 
 # @transactions_blueprint.route('/add_merchant')
 # def add_merchant():

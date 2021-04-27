@@ -96,3 +96,8 @@ def select_by_name(name):
         tag.user = row['user_id']
         tags.append(tag)
     return tags
+
+def update(tag):
+    sql = "UPDATE tags SET (tag_name, adult_rating) = (%s, %s) WHERE id = %s"
+    values = [tag.tag_name, tag.adult_rating, tag.id]
+    run_sql(sql, values)

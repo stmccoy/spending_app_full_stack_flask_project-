@@ -9,6 +9,11 @@
     <p>Tag: {{tag.tag_name}}</p>
     <p>Adult Rating: {{tag.adult_rating}}</p>
     <div>
+        <form action="/tag/{{tag.id}}/update">  
+            <button type="submit">Edit</button>
+        </form> 
+    </div>
+    <div>
         <form action="/tag/{{tag.id}}/delete" method='post'>
             <button type="submit">Delete</button>
         </form>
