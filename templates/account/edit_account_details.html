@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Edit Account Details</h1>
+
+<form action="/edit_account_details/{{user.id}}" method='post'>
+    <label for="first-name">First Name</label>
+    <input type="text" name="first_name" id="first-name" placeholder="{{user.first_name}}" required autofocus>
+    <label for="Surname">Surname</label>
+    <input type="text" name="surname" id="surname" placeholder="{{user.surname}}" required>
+    <label for="Age">Age</label>
+    <input type="number" name="age" id="age" placeholder="{{user.age}}" required>
+    <label for="Budget">Budget</label>
+    <input type="number" name="budget" id="budget" placeholder="{{user.budget}}" required>
+    <label for="Dark-Mode">Dark Mode</label>
+    <input type="checkbox" id="dark-mode" name="dark_mode">
+    <button class="button" type="submit">Update Details</button>
+</form>
+
+
+{% endblock %}

@@ -47,3 +47,8 @@ def select_all():
         user.dark_mode = row['dark_mode']
         users.append(user)
     return users
+
+def update(user):
+    sql = "UPDATE users SET (first_name, surname, age, budget, dark_mode) = (%s, %s, %s, %s, %s) WHERE id = %s"
+    values = [user.first_name, user.surname, user.age, user.budget, user.dark_mode, user.id]
+    run_sql(sql, values)
