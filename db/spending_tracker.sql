@@ -83,7 +83,7 @@ CREATE TABLE debts(
 
     -- needs to be an image
     icon VARCHAR(255),
-    interest INT,
+    -- interest INT,
     late_payment_fine INT,
     -- technically a date
     pay_off_date VARCHAR(255)

@@ -43,7 +43,7 @@ class Debt(DirectDebit):
     def __init__(self, *args, **kwargs):        
         #function that facilitates extention of init from parent class
         super(Debt, self).__init__(*args, **kwargs)  
-        self.interest = None
+        # self.interest = None
         self.late_payment_fine = None
         self.pay_off_date = None 
     

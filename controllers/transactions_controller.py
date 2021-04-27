@@ -105,7 +105,7 @@ def add_debt():
         tag = tag_repository.select_by_name(tag_name)[0]
         debt.tag = tag
         debt.reoccurence_frequency_amount = request.form['reoccurence_frequency_amount']
-        debt.interest = request.form['interest']
+        # debt.interest = request.form['interest']
         debt.late_payment_fine = request.form['late_payment_fine']
         debt.pay_off_date = request.form['pay_off_date']
         debt_repository.save(debt)
@@ -211,7 +211,7 @@ def edit_transaction_post(id, transaction_type):
             debt.reoccurence_frequency_amount = request.form['reoccurence_frequency_amount']
             # if 'reoccurence_frequency_type' in request.form:
             debt.reoccurence_frequency_type = request.form['reoccurence_frequency_type']
-            debt.interest = request.form['interest']
+            # debt.interest = request.form['interest']
             debt.late_payment_fine = request.form['late_payment_fine']
             debt.pay_off_date = request.form['pay_off_date']
             debt.id = id

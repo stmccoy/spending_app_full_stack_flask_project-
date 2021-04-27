@@ -8,8 +8,8 @@ import repositories.tag_repository as tag_repository
 
 
 def save(debt):
-    sql = "INSERT INTO debts (user_id, date, value, description, merchant_id, priority, tag_id,reoccurence_frequency_amount, reoccurence_frequency_type, reoccurence_frequency_type_amount, icon, interest, late_payment_fine, pay_off_date) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s) RETURNING ID"
-    values = [debt.user.id, debt.date, debt.value, debt.description, debt.merchant.id, debt.priority_rating, debt.tag.id, debt.reoccurence_frequency_amount, debt.reoccurence_frequency_type, debt.reoccurence_frequency_type_amount, debt.icon, debt.interest, debt.late_payment_fine, debt.pay_off_date]
+    sql = "INSERT INTO debts (user_id, date, value, description, merchant_id, priority, tag_id,reoccurence_frequency_amount, reoccurence_frequency_type, reoccurence_frequency_type_amount, icon, late_payment_fine, pay_off_date) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s) RETURNING ID"
+    values = [debt.user.id, debt.date, debt.value, debt.description, debt.merchant.id, debt.priority_rating, debt.tag.id, debt.reoccurence_frequency_amount, debt.reoccurence_frequency_type, debt.reoccurence_frequency_type_amount, debt.icon, debt.late_payment_fine, debt.pay_off_date]
     results = run_sql(sql, values)
     debt.id = results[0]['id']
     frequent_trade = FrequentTrade(debt.user, debt.merchant)
@@ -44,7 +44,7 @@ def select(id):
         debt.reoccurence_frequency_type = result['reoccurence_frequency_type']
         debt.reoccurence_frequency_type_amount = result['reoccurence_frequency_type_amount']
         debt.icon = result['icon']
-        debt.interest = result['interest']
+        # debt.interest = result['interest']
         debt.late_payment_fine = result['late_payment_fine']
         debt.pay_off_date = result['pay_off_date']
     return debt
@@ -68,7 +68,7 @@ def select_all():
         debt.reoccurence_frequency_type = row['reoccurence_frequency_type']
         debt.reoccurence_frequency_type_amount = row['reoccurence_frequency_type_amount']
         debt.icon = row['icon']
-        debt.interest = row['interest']
+        # debt.interest = row['interest']
         debt.late_payment_fine = row['late_payment_fine']
         debt.pay_off_date = row['pay_off_date']
         debts.append(debt)
@@ -94,20 +94,20 @@ def select_by_user(user_id):
         debt.reoccurence_frequency_type = row['reoccurence_frequency_type']
         debt.reoccurence_frequency_type_amount = row['reoccurence_frequency_type_amount']
         debt.icon = row['icon']
-        debt.interest = row['interest']
+        # debt.interest = row['interest']
         debt.late_payment_fine = row['late_payment_fine']
         debt.pay_off_date = row['pay_off_date']
         debts.append(debt)
     return debts
 
 def update(debt):
-    sql = "UPDATE debts SET (date, value, description, merchant_id, priority, tag_id, reoccurence_frequency_amount, reoccurence_frequency_type, interest, late_payment_fine, pay_off_date) = (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s) WHERE id = %s"
-    if debt.merchant == None and debt.tag == None:
-        values = [debt.user.id, debt.date, debt.value, debt.description, debt.merchant, debt.priority_rating, debt.tag, debt.reoccurence_frequency_amount, debt.reoccurence_frequency_type, debt.reoccurence_frequency_type_amount, debt.icon, debt.interest, debt.late_payment_fine, debt.pay_off_date]
-    elif debt.merchant == None:
-        values = [debt.user.id, debt.date, debt.value, debt.description, debt.merchant, debt.priority_rating, debt.tag.id, debt.reoccurence_frequency_amount, debt.reoccurence_frequency_type, debt.reoccurence_frequency_type_amount, debt.icon, debt.interest, debt.late_payment_fine, debt.pay_off_date]
-    elif debt.tag == None:
-        values = [debt.user.id, debt.date, debt.value, debt.description, debt.merchant.id, debt.priority_rating, debt.tag, debt.reoccurence_frequency_amount, debt.reoccurence_frequency_type, debt.reoccurence_frequency_type_amount, debt.icon, debt.interest, debt.late_payment_fine, debt.pay_off_date]
-    else:
-        values = [debt.user.id, debt.date, debt.value, debt.description, debt.merchant.id, debt.priority_rating, debt.tag.id, debt.reoccurence_frequency_amount, debt.reoccurence_frequency_type, debt.reoccurence_frequency_type_amount, debt.icon, debt.interest, debt.late_payment_fine, debt.pay_off_date]
+    sql = "UPDATE debts SET (date, value, description, merchant_id, priority, tag_id, reoccurence_frequency_amount, reoccurence_frequency_type, late_payment_fine, pay_off_date) = (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s) WHERE id = %s"
+    # if debt.merchant == None and debt.tag == None:
+    #     values = [debt.date, debt.value, debt.description, debt.merchant, debt.priority_rating, debt.tag, debt.reoccurence_frequency_amount, debt.reoccurence_frequency_type, debt.reoccurence_frequency_type_amount, debt.icon, debt.interest, debt.late_payment_fine, debt.pay_off_date]
+    # elif debt.merchant == None:
+    #     values = [debt.date, debt.value, debt.description, debt.merchant, debt.priority_rating, debt.tag.id, debt.reoccurence_frequency_amount, debt.reoccurence_frequency_type, debt.reoccurence_frequency_type_amount, debt.icon, debt.interest, debt.late_payment_fine, debt.pay_off_date]
+    # elif debt.tag == None:
+    #     values = [debt.date, debt.value, debt.description, debt.merchant.id, debt.priority_rating, debt.tag, debt.reoccurence_frequency_amount, debt.reoccurence_frequency_type, debt.reoccurence_frequency_type_amount, debt.icon, debt.interest, debt.late_payment_fine, debt.pay_off_date]
+    # else:
+    values = [debt.date, debt.value, debt.description, debt.merchant.id, debt.priority_rating, debt.tag.id, debt.reoccurence_frequency_amount, debt.reoccurence_frequency_type, debt.late_payment_fine, debt.pay_off_date, debt.id]
     run_sql(sql, values)

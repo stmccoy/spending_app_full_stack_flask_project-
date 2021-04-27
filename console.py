@@ -3,7 +3,7 @@ from models.user import User
 from models.extras import *
 from models.transaction import *
 from models.frequent_trades import FrequentTrade
-from models.transaction_category import TransactionCategory
+# from models.transaction_category import TransactionCategory
 
 import repositories.user_repository as user_repository
 import repositories.merchant_repository as merchant_repository
@@ -12,7 +12,7 @@ import repositories.direct_debit_repository as direct_debit_repository
 import repositories.debt_repository as debt_repository
 import repositories.tag_repository as tag_repository
 import repositories.frequent_trade_repository as frequent_trade_repository
-import repositories.transaction_category_repository as transaction_category_repository
+# import repositories.transaction_category_repository as transaction_category_repository
 
 user_repository.delete_all()
 merchant_repository.delete_all()
@@ -150,7 +150,7 @@ debt_1.reoccurence_frequency_amount = 1
 debt_1.reoccurence_frequency_type = 'Year'
 debt_1.reoccurence_frequency_type_amount = 1
 debt_1.icon = "Piccy"
-debt_1.interest = 2
+# debt_1.interest = 2
 debt_1.late_payment_fine = 10
 debt_1.pay_off_date = "2022-02-12"
 debt_1.tag = tag_1
@@ -164,7 +164,7 @@ debt_2.reoccurence_frequency_amount = 1
 debt_2.reoccurence_frequency_type = 'Month'
 debt_2.reoccurence_frequency_type_amount = 2
 debt_2.icon = "Piccy"
-debt_2.interest = 0
+# debt_2.interest = 0
 debt_2.late_payment_fine = 50
 debt_2.pay_off_date = "2023-06-12"
 debt_2.tag = tag_2
@@ -178,7 +178,7 @@ debt_3.reoccurence_frequency_amount = 2
 debt_3.reoccurence_frequency_type = 'Week'
 debt_3.reoccurence_frequency_type_amount = 1
 debt_3.icon = "Piccy"
-debt_3.interest = 10
+# debt_3.interest = 10
 debt_3.late_payment_fine = 40
 debt_3.pay_off_date = "2021-11-12"
 debt_3.tag = tag_1
