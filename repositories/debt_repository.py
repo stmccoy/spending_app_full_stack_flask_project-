@@ -102,5 +102,12 @@ def select_by_user(user_id):
 
 def update(debt):
     sql = "UPDATE debts SET (date, value, description, merchant_id, priority, tag_id, reoccurence_frequency_amount, reoccurence_frequency_type, interest, late_payment_fine, pay_off_date) = (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s) WHERE id = %s"
-    values = [debt.date, debt.value, debt.description, debt.merchant.id, debt.priority_rating, debt.tag.id, debt.reoccurence_frequency_amount, debt.reoccurence_frequency_type, debt.interest, debt.late_payment_fine, debt.pay_off_date, debt.id]
+    if debt.merchant == None and debt.tag == None:
+        values = [debt.user.id, debt.date, debt.value, debt.description, debt.merchant, debt.priority_rating, debt.tag, debt.reoccurence_frequency_amount, debt.reoccurence_frequency_type, debt.reoccurence_frequency_type_amount, debt.icon, debt.interest, debt.late_payment_fine, debt.pay_off_date]
+    elif debt.merchant == None:
+        values = [debt.user.id, debt.date, debt.value, debt.description, debt.merchant, debt.priority_rating, debt.tag.id, debt.reoccurence_frequency_amount, debt.reoccurence_frequency_type, debt.reoccurence_frequency_type_amount, debt.icon, debt.interest, debt.late_payment_fine, debt.pay_off_date]
+    elif debt.tag == None:
+        values = [debt.user.id, debt.date, debt.value, debt.description, debt.merchant.id, debt.priority_rating, debt.tag, debt.reoccurence_frequency_amount, debt.reoccurence_frequency_type, debt.reoccurence_frequency_type_amount, debt.icon, debt.interest, debt.late_payment_fine, debt.pay_off_date]
+    else:
+        values = [debt.user.id, debt.date, debt.value, debt.description, debt.merchant.id, debt.priority_rating, debt.tag.id, debt.reoccurence_frequency_amount, debt.reoccurence_frequency_type, debt.reoccurence_frequency_type_amount, debt.icon, debt.interest, debt.late_payment_fine, debt.pay_off_date]
     run_sql(sql, values)

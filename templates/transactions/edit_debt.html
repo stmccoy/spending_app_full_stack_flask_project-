@@ -9,42 +9,42 @@
             <label for="value">Value</label>
             <input type="number" name="value" id="value" placeholder="Write value here" required autofocus>
             <label for="description">Description</label>
-            <input type="text" name="description" id="debt_description" placeholder="Transaction description">
+            <input type="text" name="description" id="debt_description" placeholder="Transaction description" required>
             <label for="date">Date</label>
-            <input type="date" name="date" id="debt_date">
+            <input type="date" name="date" id="debt_date" required>
             <label for="merchant">Merchant</label>
-            <select name="merchant" id="merchant">
-                <option value="default" selected="selected" disabled>Pick a merchant</option>
+            <select name="merchant" id="merchant" required>
+                <option value="" selected disabled>Pick a merchant</option>
                 {% for merchant in merchants %}
                 <option value="{{merchant.merchant_name}}">{{merchant.merchant_name}}</option>
                 {% endfor %}
             </select>
             <label for="priority-rating">Priority rating</label>
-            <select name="priority_rating" id="priority-rating">
-                <option value="default" selected="selected" disabled>Pick a priority rating</option>
+            <select name="priority_rating" id="priority-rating" required>
+                <option value="" selected disabled>Pick a priority rating</option>
                 {% for transaction_priority in transaction_priority_list %}
                 <option value={{transaction_priority}}>{{transaction_priority}}</option>
                 {% endfor %}
             </select>
             <label for="reoccurence-frequency-amount">How Often</label>
-            <input type="number" name="reoccurence_frequency_amount" id="debt_reoccurence_frequency_amount" placeholder="How Often">
+            <input type="number" name="reoccurence_frequency_amount" id="debt_reoccurence_frequency_amount" placeholder="How Often" required>
             <br>
             <label for="reoccurence_frequency_type">Time Scale</label>
-            <select name="reoccurence_frequency_type" id="reoccurence_frequency_type">
-                <option value="default" selected="selected" disabled>Pick a time scale</option>
+            <select name="reoccurence_frequency_type" id="reoccurence_frequency_type" required>
+                <option value="" selected disabled>Pick a time scale</option>
                 {% for direct_debit_time_scale in direct_debit_time_scales %}
                 <option value={{direct_debit_time_scale}}>{{direct_debit_time_scale}}</option>
                 {% endfor %}
             </select>
             <label for="interest">Interest</label>
-            <input type="number" name="interest" id="debt_interest" placeholder="Interest Rate">
+            <input type="number" name="interest" id="debt_interest" placeholder="Interest Rate" required>
             <label for="late-payment-fine">Late Payment Fine</label>
-            <input type="number" name="late_payment_fine" id="late_payment_fine" placeholder="late_payment_fine">
+            <input type="number" name="late_payment_fine" id="late_payment_fine" placeholder="late_payment_fine" required>
             <label for="date">Pay Off Date</label>
-            <input type="date" name="pay_off_date" id="pay_off_date">
+            <input type="date" name="pay_off_date" id="pay_off_date" required>
             <label for="tag">Tag</label>
-            <select name="tag" id="tag">
-                <option value="default" selected="selected" disabled>Pick a tag</option>
+            <select name="tag" id="tag" required>
+                <option value="" selected disabled>Pick a tag</option>
                 {% for tag in tags %}
                 <option value={{tag.tag_name}}>{{tag.tag_name}}</option>
                 {% endfor %}

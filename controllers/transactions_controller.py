@@ -92,14 +92,17 @@ def add_debt():
         description = request.form['description']
         debt = Debt(user, value, description)
         debt.date = request.form['date']
-        debt.priority_rating = request.form['priority_rating']
-        merchant_name = request.form['merchant']
+        if 'priority_rating' in request.form:
+            debt.priority_rating = request.form['priority_rating']
+        if 'merchant' in request.form:
+            merchant_name = request.form['merchant']
         #if statement for if merchant = [] do add merchant method else do below
-        merchant = merchant_repository.select_by_name(merchant_name)[0]
-        debt.merchant = merchant
-        tag_name = request.form['tag']
-        tag = tag_repository.select_by_name(tag_name)[0]
-        debt.tag = tag
+            merchant = merchant_repository.select_by_name(merchant_name)[0]
+            debt.merchant = merchant
+        if 'tag' in request.form:
+            tag_name = request.form['tag']
+            tag = tag_repository.select_by_name(tag_name)[0]
+            debt.tag = tag
         debt.reoccurence_frequency_amount = request.form['reoccurence_frequency_amount']
         debt.interest = request.form['interest']
         debt.late_payment_fine = request.form['late_payment_fine']
