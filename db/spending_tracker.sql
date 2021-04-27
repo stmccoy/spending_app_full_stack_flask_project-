@@ -40,7 +40,7 @@ CREATE TABLE transactions(
     date VARCHAR(255),
     value INT,
     description VARCHAR(255),
-    merchant_id INT REFERENCES merchants(id),
+    merchant_id INT REFERENCES merchants(id) ON DELETE CASCADE,
     priority VARCHAR(255),
     tag_id INT REFERENCES tags(id) 
 );
@@ -52,7 +52,7 @@ CREATE TABLE direct_debits(
     date VARCHAR(255),
     value INT,
     description VARCHAR(255),
-    merchant_id INT REFERENCES merchants(id),
+    merchant_id INT REFERENCES merchants(id) ON DELETE CASCADE,
     priority VARCHAR(255),
     tag_id INT REFERENCES tags(id),
     reoccurence_frequency_amount INT,
@@ -72,7 +72,7 @@ CREATE TABLE debts(
     date VARCHAR(255),
     value INT,
     description VARCHAR(255),
-    merchant_id INT REFERENCES merchants(id),
+    merchant_id INT REFERENCES merchants(id) ON DELETE CASCADE,
     priority VARCHAR(255),
     tag_id INT REFERENCES tags(id),
     reoccurence_frequency_amount INT,
@@ -92,7 +92,7 @@ CREATE TABLE debts(
 CREATE TABLE frequent_trades(
     id SERIAL PRIMARY KEY,
     user_id INT REFERENCES users(id),
-    merchant_id INT REFERENCES merchants(id) 
+    merchant_id INT REFERENCES merchants(id) ON DELETE CASCADE
 );
 
 -- CREATE TABLE transaction_categories(

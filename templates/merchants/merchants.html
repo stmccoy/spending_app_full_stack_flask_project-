@@ -8,8 +8,13 @@
 <div>
     <p>Merchant name: {{merchant.merchant_name}}</p>
     <p>Merchant website: {{merchant.website}} {{merchant.icon}}</p>
+    <p>Merchant_id {{merchant.id}}</p>
     <button type="submit">Edit</button>
-    <button type="submit">Delete</button>
+    <div>
+        <form action="/merchant/{{merchant.id}}/delete" method='post'>
+            <button type="submit">Delete</button>
+        </form>
+    </div>
     <hr>
 </div>
 

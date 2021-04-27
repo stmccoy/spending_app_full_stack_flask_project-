@@ -46,3 +46,8 @@ def add_merchant():
         frequent_trade_repository.save(frequent_trade)
         return redirect(url_for('merchants.merchants'))    
     return render_template('merchants/add_favourite_merchant.html')
+
+@merchants_blueprint.route("/merchant/<id>/delete", methods=['POST'])
+def delete_merchant(id):
+    merchant_repository.delete(id)
+    return redirect(url_for('merchants.merchants'))

@@ -49,7 +49,8 @@ def select_all_by_user(user_id):
         merchant_name = row['merchant_name']
         merchant_icon = row['icon']
         merchant_website = row['website']
-        merchant = Merchant(merchant_name)
+        merchant_id = row['merchant_id']
+        merchant = Merchant(merchant_name, merchant_id)
         merchant.website = merchant_website
         merchant.icon = merchant_icon
         merchants.append(merchant)
