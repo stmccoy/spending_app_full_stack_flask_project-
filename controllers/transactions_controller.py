@@ -11,6 +11,7 @@ import repositories.direct_debit_repository as direct_debit_repository
 import repositories.debt_repository as debt_repository
 import repositories.tag_repository as tag_repository
 import repositories.frequent_trade_repository as frequent_trade_repository
+import pdb
 
 transactions_blueprint = Blueprint('transactions', __name__)
 @transactions_blueprint.route('/transactions')
@@ -52,7 +53,9 @@ def add_transaction():
     merchants = frequent_trade_repository.select_all_by_user(str(user.id))
     tags = tag_repository.select_all_by_user(str(user.id))
     transaction_priority_list = ["none", "low", "medium", "high"]
-    return render_template('transactions/add_transaction.html', transaction_priority_list=transaction_priority_list, merchants=merchants, tags=tags)
+    return render_template('transactions/add_transaction.html', 
+    transaction_priority_list=transaction_priority_list, merchants=merchants, tags=tags)
+
 
 @transactions_blueprint.route('/add_direct_debit', methods=['GET', 'POST'])
 def add_direct_debit():
@@ -110,6 +113,16 @@ def add_debt():
     debt_priority_list = ["none", "low", "medium", "high"]
     debt_time_scales = ["week", "fortnight", "month", "year"]
     return render_template('transactions/add_debt.html', debt_priority_list=debt_priority_list, debt_time_scales=debt_time_scales, merchants=merchants, tags=tags)
+
+@transactions_blueprint.route('/transaction_delete/<transaction_type>/<id>/delete', methods=['POST'])
+def delete_transaction(id, transaction_type):
+    if transaction_type == 'transaction':
+        transaction_repository.delete(id)
+    elif transaction_type == 'direct_debit':
+        direct_debit_repository.delete(id)
+    elif transaction_type == 'debt':
+        debt_repository.delete(id)
+    return redirect(url_for('transactions.transactions'))
 
 @transactions_blueprint.route('/add_custom_tag', methods=['GET', 'POST'])
 def add_custom_tag():

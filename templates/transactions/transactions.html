@@ -13,6 +13,12 @@
     <p>Transaction Date: {{transaction.date}}</p>
     <p>Transaction Priority: {{transaction.priority_rating}}</p>
     <p>Transaction Tag: {{transaction.tag.tag_name}}</p>
+    <p>Transaction id: {{transaction.id}}</p>
+    <div>
+        <form action="/transaction_delete/transaction/{{transaction.id}}/delete" method='post'>
+            <button type="submit">Delete</button>
+        </form>
+    </div>
     <hr>
 {% endfor %}
 <p>My Direct Debits</p>
@@ -24,6 +30,12 @@
     <p>Direct Debit Date: {{direct_debit.date}}</p>
     <p>Direct Debit Priority: {{direct_debit.priority_rating}}</p>
     <p>Direct Debit Tag: {{direct_debit.tag.tag_name}}</p>
+    <p>Direct Debit id: {{direct_debit.id}}</p>
+    <div>
+        <form action="/transaction_delete/direct_debit/{{direct_debit.id}}/delete" method='post'>
+            <button type="submit">Delete</button>
+        </form>
+    </div>
     <hr>
 {% endfor %}
 
@@ -36,6 +48,12 @@
     <p>Debt Date: {{debt.date}}</p>
     <p>Debt Priority: {{debt.priority_rating}}</p>
     <p>Debt Tag: {{debt.tag.tag_name}}</p>
+    <p>Debt id: {{debt.id}}</p>
+    <div>
+        <form action="/transaction_delete/debt/{{debt.id}}/delete" method='post'>
+            <button type="submit">Delete</button>
+        </form>
+    </div>
     <hr>
 {% endfor %}
 
