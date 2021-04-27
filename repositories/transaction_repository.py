@@ -118,3 +118,8 @@ def select_by_user(user_id):
         transaction.priority_rating = row['priority']
         transactions.append(transaction)
     return transactions
+
+def update(transaction):
+    sql = "UPDATE transactions SET (date, value, description, merchant_id, priority, tag_id) = (%s, %s, %s, %s, %s, %s) WHERE id = %s"
+    values = [transaction.date, transaction.value, transaction.description, transaction.merchant.id, transaction.priority_rating, transaction.tag.id, transaction.id]
+    run_sql(sql, values)

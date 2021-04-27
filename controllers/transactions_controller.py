@@ -124,7 +124,7 @@ def delete_transaction(id, transaction_type):
         debt_repository.delete(id)
     return redirect(url_for('transactions.transactions'))
 
-@transactions_blueprint.route('/transaction_edit/<transaction_type>/<id>/edit', methods=['GET', 'POST'])
+@transactions_blueprint.route('/transaction_edit/<transaction_type>/<id>/edit', methods=['GET'])
 def edit_transaction(id, transaction_type):
     user = user_repository.select(session)  
     merchants = frequent_trade_repository.select_all_by_user(str(user.id))
@@ -137,6 +137,41 @@ def edit_transaction(id, transaction_type):
         return 'Hello Direct Debit'
     elif transaction_type == 'debt':
         return 'Hello Debt'
+
+@transactions_blueprint.route('/transaction_edit/<transaction_type>/<id>/edit', methods=['POST'])
+def edit_transaction_post(id, transaction_type):
+    user = user_repository.select(session)  
+    if transaction_type == 'transaction':
+            value = request.form['value']
+            description = request.form['description']
+            date = request.form['date']
+            transaction = Transaction(user, value, description)
+            transaction.date = date
+            if 'merchant' in request.form:
+                merchant_name = request.form['merchant']
+                merchant = merchant_repository.select_by_name(merchant_name)[0]
+                transaction.merchant = merchant
+            if 'priority_rating' in request.form:
+                priority_rating = request.form['priority_rating']
+                transaction.priority_rating = priority_rating
+            if 'tag' in request.form:
+                tag_name = request.form['tag']
+                tag = tag_repository.select_by_name(tag_name)[0]
+                transaction.tag = tag
+            transaction.id = id
+            transaction_repository.update(transaction)
+            return redirect(url_for('transactions.transactions'))
+    # user = user_repository.select(session)  
+    # merchants = frequent_trade_repository.select_all_by_user(str(user.id))
+    # tags = tag_repository.select_all_by_user(str(user.id))
+    # transaction_priority_list = ["none", "low", "medium", "high"]
+    # if transaction_type == 'transaction':
+    #     transaction = transaction_repository.select(id)
+    #     return render_template('transactions/edit_transaction.html', transaction_priority_list=transaction_priority_list, merchants=merchants, tags=tags, transaction=transaction)
+    # elif transaction_type == 'direct_debit':
+    #     return 'Hello Direct Debit'
+    # elif transaction_type == 'debt':
+    #     return 'Hello Debt'
 
 @transactions_blueprint.route('/add_custom_tag', methods=['GET', 'POST'])
 def add_custom_tag():
