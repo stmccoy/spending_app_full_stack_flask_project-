@@ -7,9 +7,9 @@
     <form action="/transaction_edit/debt/{{debt.id}}/edit" method="post">
         <div>
             <label for="value">Value</label>
-            <input type="number" name="value" id="value" placeholder="Write value here" required autofocus>
+            <input type="number" name="value" id="value" placeholder="{{debt.value}}" required autofocus>
             <label for="description">Description</label>
-            <input type="text" name="description" id="debt_description" placeholder="Transaction description" required>
+            <input type="text" name="description" id="debt_description" placeholder="{{debt.description}}" required autofocus>
             <label for="date">Date</label>
             <input type="date" name="date" id="debt_date" required>
             <label for="merchant">Merchant</label>
@@ -27,7 +27,7 @@
                 {% endfor %}
             </select>
             <label for="reoccurence-frequency-amount">How Often</label>
-            <input type="number" name="reoccurence_frequency_amount" id="debt_reoccurence_frequency_amount" placeholder="How Often" required>
+            <input type="number" name="reoccurence_frequency_amount" id="debt_reoccurence_frequency_amount" placeholder="{{debt.reoccurence_frequency_amount}}" required>
             <br>
             <label for="reoccurence_frequency_type">Time Scale</label>
             <select name="reoccurence_frequency_type" id="reoccurence_frequency_type" required>
@@ -37,9 +37,9 @@
                 {% endfor %}
             </select>
             <label for="interest">Interest</label>
-            <input type="number" name="interest" id="debt_interest" placeholder="Interest Rate" required>
+            <input type="number" name="interest" id="debt_interest" placeholder="{{debt.interest}}" required>
             <label for="late-payment-fine">Late Payment Fine</label>
-            <input type="number" name="late_payment_fine" id="late_payment_fine" placeholder="late_payment_fine" required>
+            <input type="number" name="late_payment_fine" id="late_payment_fine" placeholder="{{debt.late_payment_fine}}" required>
             <label for="date">Pay Off Date</label>
             <input type="date" name="pay_off_date" id="pay_off_date" required>
             <label for="tag">Tag</label>

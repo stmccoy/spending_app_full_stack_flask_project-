@@ -7,9 +7,9 @@
     <form action="/transaction_edit/direct_debit/{{direct_debit.id}}/edit" method="post">
         <div>
             <label for="value">Value</label>
-            <input type="number" name="value" id="value" placeholder="Write value here" required autofocus>
+            <input type="number" name="value" id="value" placeholder="{{direct_debit.value}}" required autofocus>
             <label for="description">Description</label>
-            <input type="text" name="description" id="direct_debit_description" placeholder="Transaction description" required>
+            <input type="text" name="description" id="direct_debit_description" placeholder="{{direct_debit.description}}" required>
             <label for="date">Date</label>
             <input type="date" name="date" id="direct_debit_date" required>
             <label for="merchant">Merchant</label>
@@ -27,7 +27,7 @@
                 {% endfor %}
             </select>
             <label for="reoccurence-frequency-amount">How Often</label>
-            <input type="number" name="reoccurence_frequency_amount" id="direct_debit_reoccurence_frequency_amount" placeholder="How Often" required>
+            <input type="number" name="reoccurence_frequency_amount" id="direct_debit_reoccurence_frequency_amount" placeholder="{{direct_debit.reoccurence_frequency_amount}}" required>
             <br>
             <label for="reoccurence_frequency_type">Time Scale</label>
             <select name="reoccurence_frequency_type" id="reoccurence_frequency_type" required>
