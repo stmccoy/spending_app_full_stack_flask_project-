@@ -124,6 +124,20 @@ def delete_transaction(id, transaction_type):
         debt_repository.delete(id)
     return redirect(url_for('transactions.transactions'))
 
+@transactions_blueprint.route('/transaction_edit/<transaction_type>/<id>/edit', methods=['GET', 'POST'])
+def edit_transaction(id, transaction_type):
+    user = user_repository.select(session)  
+    merchants = frequent_trade_repository.select_all_by_user(str(user.id))
+    tags = tag_repository.select_all_by_user(str(user.id))
+    transaction_priority_list = ["none", "low", "medium", "high"]
+    if transaction_type == 'transaction':
+        transaction = transaction_repository.select(id)
+        return render_template('transactions/edit_transaction.html', transaction_priority_list=transaction_priority_list, merchants=merchants, tags=tags, transaction=transaction)
+    elif transaction_type == 'direct_debit':
+        return 'Hello Direct Debit'
+    elif transaction_type == 'debt':
+        return 'Hello Debt'
+
 @transactions_blueprint.route('/add_custom_tag', methods=['GET', 'POST'])
 def add_custom_tag():
     user = user_repository.select(session)

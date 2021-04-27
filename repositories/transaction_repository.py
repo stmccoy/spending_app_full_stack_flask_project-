@@ -34,7 +34,10 @@ def select(id):
     if result is not None:
         user = user_repository.select(result['user_id'])
         merchant = merchant_repository.select(result['merchant_id'])
-        tag = tag_repository.select(row['tag_id'])
+        if tag_repository.select(result['tag_id']) is None:
+            tag = None
+        else:
+            tag = tag_repository.select(result['tag_id'])
         transaction = Transaction(user, result['value'], result['description'], result['id'])
         transaction.date = result['date']
         transaction.merchant = merchant
