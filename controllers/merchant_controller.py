@@ -16,20 +16,6 @@ merchants_blueprint = Blueprint('merchants', __name__)
 def merchants():
     user = user_repository.select(session)  
     merchants = frequent_trade_repository.select_all_by_user(str(user.id))
-    # temp_merchants_names = []
-    # temp_merchants_ids = []
-    # for merchant in merchants:
-    #     if merchant.merchant_name not in temp_merchants_names:
-    #         temp_merchants_names.append(merchant.merchant_name)
-    #     else:
-    #         temp_merchants_ids.append(merchant.id) 
-    # merchant_copy = merchants[:] 
-    # for merchant_id in temp_merchants_ids:
-    #     for merchant in merchant_copy:
-    #         list_index = 0
-    #         if merchant_id == merchant.id:
-    #             merchants.pop(list_index)
-    #         list_index +=1
     return render_template('merchants/merchants.html', merchants=merchants)
 
 @merchants_blueprint.route('/add_favourite_merchant', methods=['GET', 'POST'])

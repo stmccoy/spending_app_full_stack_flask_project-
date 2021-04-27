@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-{% include 'transactions/transactions_nav.html' %}
+{% include 'navs_and_footers/transactions_nav.html' %}
 <h1>Edit Merchant</h1>
 <p>Edit Merchant content goes here</p>
 <form action="/merchant/{{merchant.id}}/update" method="post">

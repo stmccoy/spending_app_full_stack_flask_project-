@@ -1,8 +1,8 @@
 {% extends "base.html" %}
 
 {% block content %}
-    {% include 'transactions/transactions_nav.html' %}
-    {% include 'transactions/add_transaction_nav.html' %}
+    {% include 'navs_and_footers/transactions_nav.html' %}
+    {% include 'navs_and_footers/add_transaction_nav.html' %}
     <p>Add Transaction Content goes here</p>
     <form action="/add_transaction" method="post">
         <div>
@@ -37,6 +37,6 @@
     
         </div>
     </form>
-    {% include 'transactions/add_transaction_footer.html' %}
+    {% include 'navs_and_footers/add_transaction_footer.html' %}
 {% endblock %}
 

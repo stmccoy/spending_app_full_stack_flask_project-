@@ -11,9 +11,10 @@ import repositories.direct_debit_repository as direct_debit_repository
 import repositories.debt_repository as debt_repository
 import repositories.tag_repository as tag_repository
 import repositories.frequent_trade_repository as frequent_trade_repository
-import pdb
+
 
 transactions_blueprint = Blueprint('transactions', __name__)
+
 @transactions_blueprint.route('/transactions')
 def transactions():
     user = user_repository.select(session)
@@ -82,7 +83,7 @@ def add_direct_debit():
     tags = tag_repository.select_all_by_user(str(user.id))
     direct_debit_priority_list = ["none", "low", "medium", "high"]
     direct_debit_time_scales = ["week", "fortnight", "month", "year"]
-    return render_template('transactions/add_direct_debit.html', direct_debit_priority_list=direct_debit_priority_list, direct_debit_time_scales=direct_debit_time_scales, merchants=merchants, tags=tags)
+    return render_template('direct_debit/add_direct_debit.html', direct_debit_priority_list=direct_debit_priority_list, direct_debit_time_scales=direct_debit_time_scales, merchants=merchants, tags=tags)
 
 @transactions_blueprint.route('/add_debt', methods=['GET', 'POST'])
 def add_debt():
@@ -115,7 +116,7 @@ def add_debt():
     tags = tag_repository.select_all_by_user(str(user.id))
     debt_priority_list = ["none", "low", "medium", "high"]
     debt_time_scales = ["week", "fortnight", "month", "year"]
-    return render_template('transactions/add_debt.html', debt_priority_list=debt_priority_list, debt_time_scales=debt_time_scales, merchants=merchants, tags=tags)
+    return render_template('debt/add_debt.html', debt_priority_list=debt_priority_list, debt_time_scales=debt_time_scales, merchants=merchants, tags=tags)
 
 @transactions_blueprint.route('/transaction_delete/<transaction_type>/<id>/delete', methods=['POST'])
 def delete_transaction(id, transaction_type):
@@ -139,10 +140,10 @@ def edit_transaction(id, transaction_type):
         return render_template('transactions/edit_transaction.html', transaction_priority_list=transaction_priority_list, merchants=merchants, tags=tags, transaction=transaction)
     elif transaction_type == 'direct_debit':
         direct_debit = direct_debit_repository.select(id)
-        return render_template('transactions/edit_direct_debit.html', transaction_priority_list=transaction_priority_list, merchants=merchants, tags=tags, direct_debit=direct_debit, direct_debit_time_scales=direct_debit_time_scales)
+        return render_template('direct_debit/edit_direct_debit.html', transaction_priority_list=transaction_priority_list, merchants=merchants, tags=tags, direct_debit=direct_debit, direct_debit_time_scales=direct_debit_time_scales)
     elif transaction_type == 'debt':
         debt = debt_repository.select(id)
-        return render_template('transactions/edit_debt.html', transaction_priority_list=transaction_priority_list, merchants=merchants, tags=tags, debt=debt, direct_debit_time_scales=direct_debit_time_scales)        
+        return render_template('debt/edit_debt.html', transaction_priority_list=transaction_priority_list, merchants=merchants, tags=tags, debt=debt, direct_debit_time_scales=direct_debit_time_scales)        
 
 @transactions_blueprint.route('/transaction_edit/<transaction_type>/<id>/edit', methods=['POST'])
 def edit_transaction_post(id, transaction_type):
@@ -216,55 +217,40 @@ def edit_transaction_post(id, transaction_type):
             debt.id = id
             debt_repository.update(debt)
             return redirect(url_for('transactions.transactions'))
-    # user = user_repository.select(session)  
-    # merchants = frequent_trade_repository.select_all_by_user(str(user.id))
-    # tags = tag_repository.select_all_by_user(str(user.id))
-    # transaction_priority_list = ["none", "low", "medium", "high"]
-    # if transaction_type == 'transaction':
-    #     transaction = transaction_repository.select(id)
-    #     return render_template('transactions/edit_transaction.html', transaction_priority_list=transaction_priority_list, merchants=merchants, tags=tags, transaction=transaction)
-    # elif transaction_type == 'direct_debit':
-    #     return 'Hello Direct Debit'
-    # elif transaction_type == 'debt':
-    #     return 'Hello Debt'
 
-@transactions_blueprint.route('/add_custom_tag', methods=['GET', 'POST'])
-def add_custom_tag():
-    user = user_repository.select(session)
-    if request.method == 'POST':
-        tag_name = request.form['tag_name']
-        tag = Tag(tag_name)
-        if 'adult_rating' in request.form:
-            tag = Tag(tag_name, True)
-        user = user_repository.select(session)
-        tag.user = user
-        tag_repository.save(tag)
-        return redirect(url_for('transactions.add_custom_tag'))
-    tags = tag_repository.select_all_by_user(str(user.id))
-    return render_template('transactions/extras/add_custom_tag.html', tags=tags)
+# @transactions_blueprint.route('/add_custom_tag', methods=['GET', 'POST'])
+# def add_custom_tag():
+#     user = user_repository.select(session)
+#     if request.method == 'POST':
+#         tag_name = request.form['tag_name']
+#         tag = Tag(tag_name)
+#         if 'adult_rating' in request.form:
+#             tag = Tag(tag_name, True)
+#         user = user_repository.select(session)
+#         tag.user = user
+#         tag_repository.save(tag)
+#         return redirect(url_for('tags.view_tags'))
+#     tags = tag_repository.select_all_by_user(str(user.id))
+#     return render_template('tags/add_custom_tag.html', tags=tags)
 
-@transactions_blueprint.route('/view_tags', methods=['GET', 'POST'])
-def view_tags():
-    user = user_repository.select(session)        
-    tags = tag_repository.select_all_by_user(str(user.id))
-    return render_template('transactions/extras/view_tags.html', tags=tags)
+# @transactions_blueprint.route('/view_tags', methods=['GET', 'POST'])
+# def view_tags():
+#     user = user_repository.select(session)        
+#     tags = tag_repository.select_all_by_user(str(user.id))
+#     return render_template('tags/view_tags.html', tags=tags)
 
-@transactions_blueprint.route("/tag/<id>/delete", methods=['POST'])
-def delete_tag(id):
-    tag_repository.delete(id)
-    return redirect(url_for('transactions.view_tags'))
+# @transactions_blueprint.route("/tag/<id>/delete", methods=['POST'])
+# def delete_tag(id):
+#     tag_repository.delete(id)
+#     return redirect(url_for('tags.view_tags'))
 
-@transactions_blueprint.route("/tag/<id>/update", methods=['GET', 'POST'])
-def update_tag(id):
-    tag = tag_repository.select(id)
-    if request.method == 'POST':
-        tag.tag_name = request.form['tag_name']
-        if 'adult_rating' in request.form:
-            tag.adult_rating = True
-        tag_repository.update(tag)
-        return redirect(url_for('transactions.view_tags'))
-    return render_template('transactions/extras/edit_tag.html', tag=tag)
-
-# @transactions_blueprint.route('/add_merchant')
-# def add_merchant():
-#     return render_template('transactions/extras/add_merchant.html')
+# @transactions_blueprint.route("/tag/<id>/update", methods=['GET', 'POST'])
+# def update_tag(id):
+#     tag = tag_repository.select(id)
+#     if request.method == 'POST':
+#         tag.tag_name = request.form['tag_name']
+#         if 'adult_rating' in request.form:
+#             tag.adult_rating = True
+#         tag_repository.update(tag)
+#         return redirect(url_for('tags.view_tags'))
+#     return render_template('tags/edit_tag.html', tag=tag)
