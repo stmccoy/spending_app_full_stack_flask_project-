@@ -182,3 +182,31 @@ button:hover{
     background-color: white;
 }
 
+input, select {
+    width: 30%;
+    height: 1%;
+    font-size: 15px;
+    border-radius: 25px;
+    text-align: center;
+    margin-top: 1%;
+    margin-bottom: 2%;
+}
+
+label {
+    font-size: 20px;
+}
+
+#checkbox{
+    width: 10px;
+    height: 10px;
+}
+
+#difficult-form-input{
+    margin-top: 1%;
+    margin-bottom: 1%;
+}
+
+#difficult-form-input-2{
+    width: 30%;
+    height: 1%;
+}
