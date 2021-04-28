@@ -2,43 +2,43 @@
 
 {% block content %}
     <div class='transaction-sidebar'>
-    {% include 'navs_and_footers/transactions_nav.html' %}
-    <div id='transaction-tables'>
-    <p>Add Transaction Content goes here</p>
-    <form action="/transaction_edit/transaction/{{transaction.id}}/edit" method="post">
-        <div>
-            <label for="value">Value</label>
-            <input type="number" name="value" id="value" placeholder="{{transaction.value}}" required autofocus>
-            <label for="description">Description</label>
-            <input type="text" name="description" id="transaction_description" placeholder="{{transaction.description}}" required>
-            <label for="date">Date</label>
-            <input type="date" name="date" id="transaction_date" required>
-            <label for="merchant">Merchant</label>
-            <select name="merchant" id="merchant" required>
-                <option value="" selected disabled>Pick a tag</option>
-                {% for merchant in merchants %}
-                <option value="{{merchant.merchant_name}}">{{merchant.merchant_name}}</option>
-                {% endfor %}
-            </select>
-            <label for="priority-rating">Priority rating</label>
-            <select name="priority_rating" id="priority-rating" required>
-                <option value="" selected disabled>Pick a priority rating</option>
-                {% for transaction_priority in transaction_priority_list %}
-                <option value={{transaction_priority}}>{{transaction_priority}}</option>
-                {% endfor %}
-            </select>
-            <label for="tag">Tag</label>
-            <select name="tag" id="tag" required>
-                <option value="" selected disabled>Pick a tag</option>
-                {% for tag in tags %}
-                <option value={{tag.tag_name}}>{{tag.tag_name}}</option>
-                {% endfor %}
-            </select>
-            <button class="button" type="submit">Add Transaction</button>
-    
+        {% include 'navs_and_footers/transactions_nav.html' %}
+        <div class= 'form-div'>
+            <p>Add Transaction Content goes here</p>
+            <form action="/transaction_edit/transaction/{{transaction.id}}/edit" method="post">
+                <div>
+                    <label for="value">Value</label><br>
+                    <input type="number" name="value" id="value" placeholder="{{transaction.value}}" required autofocus><br>
+                    <label for="description">Description</label><br>
+                    <input type="text" name="description" id="transaction_description" placeholder="{{transaction.description}}" required><br>
+                    <label for="date">Date</label><br>
+                    <input type="date" name="date" id="transaction_date" required><br>
+                    <label for="merchant">Merchant</label><br>
+                    <select name="merchant" id="merchant" required>
+                        <option value="" selected disabled>Pick a tag</option>
+                        {% for merchant in merchants %}
+                        <option value="{{merchant.merchant_name}}">{{merchant.merchant_name}}</option>
+                        {% endfor %}
+                    </select><br>
+                    <label for="priority-rating">Priority rating</label><br>
+                    <select name="priority_rating" id="priority-rating" required>
+                        <option value="" selected disabled>Pick a priority rating</option>
+                        {% for transaction_priority in transaction_priority_list %}
+                        <option value={{transaction_priority}}>{{transaction_priority}}</option>
+                        {% endfor %}
+                    </select><br>
+                    <label for="tag">Tag</label><br>
+                    <select name="tag" id="tag" required>
+                        <option value="" selected disabled>Pick a tag</option>
+                        {% for tag in tags %}
+                        <option value={{tag.tag_name}}>{{tag.tag_name}}</option>
+                        {% endfor %}
+                    </select><br>
+                    <button class="button" type="submit">Add Transaction</button>
+            
+                </div>
+            </form>
         </div>
-    </form>
-    </div>
     </div>
 {% endblock %}
 

@@ -2,16 +2,16 @@
 
 {% block content %}
     <div class="container">
-        <div class= 'transaction-sidebar' id='test_1'>
+        <div class= 'transaction-sidebar'>
         {% include 'navs_and_footers/transactions_nav.html' %}
-            <div class= 'form-div' id='test_2'>
+            <div class= 'form-div'>
                 <p>Edit Custom Tag content goes here</p>
                 <form action="/tag/{{tag.id}}/update" method="post">
                     <div>
-                        <label for="tag-name">Tag Name</label>
-                        <input type="text" name="tag_name" id="tag-name" placeholder="{{tag.tag_name}}" required autofocus>
+                        <label for="tag-name">Tag Name</label><br>
+                        <input type="text" name="tag_name" id="tag-name" placeholder="{{tag.tag_name}}" required autofocus><br>
                         <label for="adult-rating">Adult Rating?</label>
-                        <input type="checkbox" id="adult_rating" name="adult_rating">
+                        <input type="checkbox" id="adult_rating" name="adult_rating"><br>
                         <button class="button" type="submit">Update Tag</button>
                     </div>
                 </form>

@@ -41,6 +41,49 @@
 {% endfor %}
 </table>
 <table>
+    <h2>My Debts</h2>
+    <tr>
+        <th>Debt Value</th>
+        <th>Debt Description</th>
+        <th>Debt Merchant</th>
+        <th>Debt Date</th>
+        <th>Debt Priority Rating</th>
+        <th>Debt Tag</th>
+        <th>Debt ID</th>
+        <th>Debt Occurence</th>
+        <th>Debt Late Payment Fine</th>
+        <th>Debt Payoff Date</th>
+        <th>Days to go until Debt Paid off</th>
+        <th>Debt Edit</th>
+        <th>Debt Delete</th>
+    </tr>
+{% for debt in debts %}
+    <tr>
+        <td>{{debt.value}}</td>
+        <td>{{debt.description}}</td>
+        <td>{{debt.merchant.merchant_name}}</td>
+        <td>{{debt.date}}</td>
+        <td>{{debt.priority_rating}}</td>
+        <td>{{debt.tag.tag_name}}</td>
+        <td>{{debt.id}}</td>
+        <td>{{debt.reoccurence_frequency_amount}} payment a {{debt.reoccurence_frequency_type}}</td>
+        <td>{{debt.late_payment_fine}}</td>
+        <td>{{debt.pay_off_date}}</td>
+        <td>TODO</td>
+        <td>
+            <form action="/transaction_edit/debt/{{debt.id}}/edit">
+                <button type="submit">Edit</button>
+            </form>
+        </td>
+        <td>
+            <form action="/transaction_delete/debt/{{debt.id}}/delete" method='post'>
+                <button type="submit">Delete</button>
+            </form>
+        </td>
+    </tr>
+{% endfor %}
+</table>
+<table>
     <h2>My Direct Debits</h2>
     <tr>
         <th>Direct Debit Value</th>
@@ -71,49 +114,6 @@
         </td>
         <td>
             <form action="/transaction_delete/direct_debit/{{direct_debit.id}}/delete" method='post'>
-                <button type="submit">Delete</button>
-            </form>
-        </td>
-    </tr>
-{% endfor %}
-</table>
-<table>
-    <h2>My Debts</h2>
-    <tr>
-        <th>Debt Value</th>
-        <th>Debt Description</th>
-        <th>Debt Merchant</th>
-        <th>Debt Date</th>
-        <th>Debt Priority Rating</th>
-        <th>Debt Tag</th>
-        <th>Debt ID</th>
-        <th>Debt Occurence</th>
-        <th>Debt Late Payment Fine</th>
-        <th>Debt Payoff Date</th>
-        <th>Days to go until Debt Paid off</th>
-        <th>Debt Edit</th>
-        <th>Debt Delete</th>
-    </tr>
-{% for debt in debts %}
-    <tr>
-        <td>{{debt.value}}</td>
-        <td>{{debt.description}}</td>
-        <td>{{debt.merchant.merchant_name}}</td>
-        <td>{{debt.date}}</td>
-        <td>{{debt.priority_rating}}</td>
-        <td>{{debt.tag.tag_name}}</td>
-        <td>{{debt.id}}</td>
-        <td>{{debt.reoccurence_frequency_amount}} a {{debt.reoccurence_frequency_type}}</td>
-        <td>{{debt.late_payment_fine}}</td>
-        <td>{{debt.pay_off_date}}</td>
-        <td>TODO</td>
-        <td>
-            <form action="/transaction_edit/debt/{{debt.id}}/edit">
-                <button type="submit">Edit</button>
-            </form>
-        </td>
-        <td>
-            <form action="/transaction_delete/debt/{{debt.id}}/delete" method='post'>
                 <button type="submit">Delete</button>
             </form>
         </td>

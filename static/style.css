@@ -1,4 +1,4 @@
-#main-header, #budget{
+#main-header, #budget, .form-content{
     text-align: center;
 }
 
@@ -54,5 +54,15 @@ table{
 }
 
 .form-div{
+    text-align: center;
+    margin: auto;
+}
+
+.form-content{
+    margin: auto;
+}
+
+#transaction-tables{
+    text-align: center;
     margin: auto;
 }
