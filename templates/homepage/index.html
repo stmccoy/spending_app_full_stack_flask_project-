@@ -2,8 +2,9 @@
 
 {% block content %}
     <div id="homepage">
-        <h1>Home page</h1>
-        <p>Homepage content goes here</p>
+        <img src="{{ url_for('static', filename='homepage_image.jpeg') }}" alt="Homepage Image" id="homepage-image">
+        <h1><a href="/transactions">Enter</a></h1>
+        
     </div>
 
 {% endblock %}

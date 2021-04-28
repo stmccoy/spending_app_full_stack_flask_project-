@@ -8,7 +8,10 @@
     <div class='box'>
         <div class='body-of-layout'>
             <h2>My Tags</h2>
-            <table>
+            <div>
+                <img src="{{ url_for('static', filename='my_tags_image.jpeg') }}" alt="tags-image" id="tags-image">
+            </div>
+            <table id='difficult-table'>
                 <tr>
                     <th>Tag Name</th>
                     <th>Adult Rating</th>

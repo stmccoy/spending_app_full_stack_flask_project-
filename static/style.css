@@ -37,12 +37,9 @@ th, td {
     border: solid black;
 }
 
-/* table{
-    margin-left:auto;
-    margin-right:auto;
+table{
     border-collapse: collapse;
-    margin-bottom: 5%;
-} */
+}
 
 /* #transaction-footer{
     text-align: center;
@@ -127,3 +124,19 @@ body{
     border-top: none;
 }
 
+#homepage-image{
+    margin-top: 3%;
+}
+
+#my-details-image, #tags-image{
+    width:600px;
+    margin-bottom: 3%;
+}
+
+#merchants-image{
+    margin-bottom: 3%;
+}
+
+#difficult-table{
+    margin: auto
+}
