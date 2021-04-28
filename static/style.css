@@ -103,6 +103,7 @@ nav{
     border:solid black;
     padding-left: 0.1%;
     padding-right: 0.1%;
+    background-color: #99ddff;
 }
 
 nav > ul{
@@ -150,4 +151,34 @@ body{
     width:600px;
 }
 
+body{
+    background-color: #cceeff;
+}
+
+#main-header{
+    background-color:  #0099e6;
+    margin: 0;
+    padding: 1%;
+}
+
+table{
+    background-color: white;
+}
+
+button{
+    background-color: #99ddff;
+    border-radius: 25px;
+}
+
+button:hover{
+    background-color: #0099e6;
+}
+
+#budget{
+    border: solid black;
+    margin: 0;
+    margin-top: 3%;
+    padding: 1%;
+    background-color: white;
+}
 
