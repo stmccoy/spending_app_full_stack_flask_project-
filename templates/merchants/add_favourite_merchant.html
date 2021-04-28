@@ -8,6 +8,7 @@
     <div class= 'box'>
         <div class='body-of-layout'>
             <h2>Add Favourite Merchant</h2>
+            <img src="{{ url_for('static', filename='my_merchants_image.svg') }}" alt="merchants-image" id="merchants-image">
             <form action="/add_favourite_merchant" method="post">
                 <div>
                     <label for="merchant-name">Merchant Name</label><br>

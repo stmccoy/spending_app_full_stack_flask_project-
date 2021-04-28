@@ -9,6 +9,7 @@
         <form action="/transaction_edit/debt/{{debt.id}}/edit" method="post">
             <div class='body-of-layout'>
             <h2>Edit Debt</h2>
+            <img src="{{ url_for('static', filename='debt_image.jpeg') }}" alt="debt-image" id='debt-image'>
                 <div>
                     <label for="value">Value</label><br>
                     <input type="number" name="value" id="value" placeholder="{{debt.value}}" required autofocus><br>

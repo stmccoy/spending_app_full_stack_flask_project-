@@ -8,6 +8,7 @@
     <div class= 'box'>
         <div class='body-of-layout'>
             <h2>Add Custom Tag</h2>
+            <img src="{{ url_for('static', filename='my_tags_image.jpeg') }}" alt="tags-image" id="tags-image">
             <form action="/add_custom_tag" method="post">
                 <div>
                     <label for="tag-name" class="form-content">Tag Name</label><br>

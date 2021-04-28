@@ -8,6 +8,7 @@
     <div class = 'box'>
         <div class='body-of-layout'>
             <h2>Set Budget </h2>
+            <img src="{{ url_for('static', filename='my_budget_image.png') }}" alt="budget-image" id="budget-image">
             <form action="/set_budget" method="post">
                 <div>
                     <label for="budget-amount">Budget Amount</label><br>

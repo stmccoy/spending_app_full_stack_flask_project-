@@ -8,6 +8,7 @@
     <div class= 'box'>
         <div class='body-of-layout'>
             <h2>Edit Direct Debit</h2>
+            <img src="{{ url_for('static', filename='direct_debit_image.webp') }}" alt="direct-debit-image" id='direct-debit-image'>
             <form action="/transaction_edit/direct_debit/{{direct_debit.id}}/edit" method="post">
                 <div>
                     <label for="value">Value</label><br>

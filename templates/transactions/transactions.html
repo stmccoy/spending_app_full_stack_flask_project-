@@ -8,6 +8,7 @@
     <div class='box'>
         <div class='body-of-layout'>
             <h2 id = "budget">My Budget is £{{ budget }}</h2>
+            <img src="{{ url_for('static', filename='my_transactions_image.jpeg') }}" alt="my-transactions-image" id='my-transactions-image'>
             <h1>My Transactions</h1>
             <table>
                 <tr>
@@ -43,6 +44,7 @@
                 </tr>
                 {% endfor %}
             </table>
+            <img src="{{ url_for('static', filename='debt_image.jpeg') }}" alt="debt-image" id='debt-image'>
             <table>
                 <h2>My Debts</h2>
                 <tr>
@@ -86,6 +88,7 @@
                 </tr>
                 {% endfor %}
             </table>
+            <img src="{{ url_for('static', filename='direct_debit_image.webp') }}" alt="direct-debit-image" id='direct-debit-image'>
             <table>
                 <h2>My Direct Debits</h2>
                 <tr>
