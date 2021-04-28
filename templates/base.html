@@ -4,19 +4,19 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <title>My Spending App</title>
 </head>
 <body>
-    <h1>My Spending App, also in header</h1>
-    <nav>
+    <h1 id="main-header">My Spending App, also in header</h1>
+    <nav id ="main-nav">
         <ul>
-            <li><h5><a href="/">Home</a></h5></li>
-            <li><h5><a href="/transactions">View My Transactions</a></h5></li>
-            <li><h5><a href="/account_details">View My Details</a></h5></li>
-            <li><h5><a href="/support">Help and Support</a></h5></li>
-            <li><h5><a href="/merchants">View my merchants</a></h5></li>
-            <li><h5><a href="/view_tags">View my tags</a></h5></li>
+            <li><a href="/">Home</a></li>
+            <li><a href="/transactions">View My Transactions</a></li>
+            <li><a href="/account_details">View My Details</a></li>
+            <li><a href="/support">Help and Support</a></li>
+            <li><a href="/merchants">View my merchants</a></li>
+            <li><a href="/view_tags">View my tags</a></li>
         </ul>
     </nav>
     {% block content %}

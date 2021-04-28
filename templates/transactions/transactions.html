@@ -1,10 +1,11 @@
 {% extends "base.html" %}
 
 {% block content %}
+<div class='transaction-sidebar'>
 {% include 'navs_and_footers/transactions_nav.html' %}
-<h2>My Budget is £{{ budget }}</h2>
+<div id='transaction-tables'>
+<h2 id = "budget">My Budget is £{{ budget }}</h2>
 <h2>My Transactions</h2>
-<hr>
 <table>
     <tr>
         <th>Transaction Value</th>
@@ -39,10 +40,8 @@
     </tr>
 {% endfor %}
 </table>
-<hr>
-<h2>My Direct Debits</h2>
-<hr>
 <table>
+    <h2>My Direct Debits</h2>
     <tr>
         <th>Direct Debit Value</th>
         <th>Direct Debit Description</th>
@@ -78,10 +77,8 @@
     </tr>
 {% endfor %}
 </table>
-<hr>
-<h2>My Debts</h2>
-<hr>
 <table>
+    <h2>My Debts</h2>
     <tr>
         <th>Debt Value</th>
         <th>Debt Description</th>
@@ -123,5 +120,7 @@
     </tr>
 {% endfor %}
 </table>
-<hr>
+</div>
+</div>
+
 {% endblock %}

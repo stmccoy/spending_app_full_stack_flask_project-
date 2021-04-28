@@ -1,9 +1,10 @@
 {% extends "base.html" %}
 
 {% block content %}
+    <div class= 'transaction-sidebar'>
     {% include 'navs_and_footers/transactions_nav.html' %}
-    {% include 'navs_and_footers/add_transaction_nav.html' %}
-    <p>Add Debt Content goes here</p>
+    <div class= 'form-div'>
+    <h2>Add Debt</h2>
     <form action="/add_debt" method="post">
         <div>
             <label for="value">Value</label>
@@ -47,9 +48,7 @@
             <button class="button" type="submit">Add Debt</button>    
         </div>
     </form>
-
-
-
-    {% include 'navs_and_footers/add_transaction_footer.html' %}
+    </div>
+    </div>
 {% endblock %}
 

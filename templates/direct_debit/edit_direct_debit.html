@@ -1,8 +1,9 @@
 {% extends "base.html" %}
 
 {% block content %}
+    <div class='transaction-sidebar'>
     {% include 'navs_and_footers/transactions_nav.html' %}
-    {% include 'navs_and_footers/add_transaction_nav.html' %}
+    <div id='transaction-tables'>
     <p>Add Transaction Content goes here</p>
     <form action="/transaction_edit/direct_debit/{{direct_debit.id}}/edit" method="post">
         <div>
@@ -46,6 +47,7 @@
             <button class="button" type="submit">Edit Direct Debit</button>    
         </div>
     </form>
-    {% include 'navs_and_footers/add_transaction_footer.html' %}
+    </div>
+    </div>
 {% endblock %}
 

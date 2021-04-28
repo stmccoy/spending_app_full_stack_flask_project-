@@ -1,6 +1,10 @@
 {% extends "base.html" %}
 
 {% block content %}
+<div class='transaction-sidebar'>
+{% include 'navs_and_footers/transactions_nav.html' %}
+<div id='transaction-tables'>
+<div>
 <h1>Edit Account Details</h1>
 
 <form action="/edit_account_details/{{user.id}}" method='post'>
@@ -16,6 +20,8 @@
     <input type="checkbox" id="dark-mode" name="dark_mode">
     <button class="button" type="submit">Update Details</button>
 </form>
-
+</div>
+</div>
+</div>
 
 {% endblock %}

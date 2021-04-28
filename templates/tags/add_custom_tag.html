@@ -1,7 +1,10 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <p>Add Custom Tag content goes here</p>
+    <div class= 'transaction-sidebar'>
+    {% include 'navs_and_footers/transactions_nav.html' %}
+    <div class= 'form-div'>
+    <h2>Add Custom Tag</h2>
     <form action="/add_custom_tag" method="post">
         <div>
             <label for="tag-name">Tag Name</label>
@@ -10,19 +13,7 @@
             <input type="checkbox" id="adult_rating" name="adult_rating">
             <button class="button" type="submit">Add Tag</button>
         </div>
-    <!-- </form>
-    <br>
-    <hr>
-    <p>My Tags</p>
-    <hr>
-    {% for tag in tags %}
-    <p>Tag: {{tag.tag_name}}</p>
-    <p>Adult Rating: {{tag.adult_rating}}</p>
-    <div>
-        <form action="/tag/{{tag.id}}/delete" method='post'>
-            <button type="submit">Delete</button>
-        </form>
-    </div>
-    <hr>
-    {% endfor %} -->
+    </form>
+</div>
+</div>
 {% endblock %}

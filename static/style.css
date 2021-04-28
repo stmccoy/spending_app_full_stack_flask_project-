@@ -1,0 +1,58 @@
+#main-header, #budget{
+    text-align: center;
+}
+
+#main-nav > ul{
+    display: flex;
+    justify-content: space-between;
+    padding: 0;
+}
+
+ul{
+    padding: 0;
+}
+
+.transaction-sidebar > ul{
+    margin-right: 5%;
+}
+
+li{
+    list-style: none;
+}
+
+a{
+    text-decoration: none;
+}
+
+.transaction-sidebar{
+    display:flex;
+}
+
+#transaction-tables > h2{
+    text-align: center;
+}
+
+th, td {
+    text-align: center;
+    border: solid black;
+}
+
+table{
+    margin-left:auto;
+    margin-right:auto;
+    border-collapse: collapse;
+    margin-bottom: 5%;
+}
+
+/* #transaction-footer{
+    text-align: center;
+} */
+
+#transaction-footer > ul{
+    display: flex;
+    justify-content: center;
+}
+
+.form-div{
+    text-align: center;
+}

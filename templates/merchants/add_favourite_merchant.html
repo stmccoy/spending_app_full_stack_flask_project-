@@ -1,16 +1,20 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>Add Merchant</h1>
-<p>Add Merchant content goes here</p>
-<form action="/add_favourite_merchant" method="post">
-    <div>
-        <label for="merchant-name">Merchant Name</label>
-        <input type="text" name="merchant_name" id="merchant-name" placeholder="Merchant Name" required autofocus>
-        <label for="merchant-website">Merchant Website</label>
-        <input type="text" name="merchant_website" id="merchant-website" placeholder="Merchant Website" required>
-        <button class="button" type="submit">Add Merchant</button>
+    <div class= 'transaction-sidebar'>
+    {% include 'navs_and_footers/transactions_nav.html' %}
+    <div class= 'form-div'>
+    <h2>Add Favourite Merchant</h2>
+    <form action="/add_favourite_merchant" method="post">
+        <div>
+            <label for="merchant-name">Merchant Name</label>
+            <input type="text" name="merchant_name" id="merchant-name" placeholder="Merchant Name" required autofocus>
+            <label for="merchant-website">Merchant Website</label>
+            <input type="text" name="merchant_website" id="merchant-website" placeholder="Merchant Website" required>
+            <button class="button" type="submit">Add Merchant</button>
+        </div>
+    </form>
     </div>
-</form>
+    </div>
 
 {% endblock %}

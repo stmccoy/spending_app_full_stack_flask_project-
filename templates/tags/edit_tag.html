@@ -1,7 +1,9 @@
 {% extends "base.html" %}
 
 {% block content %}
+    <div class= 'transaction-sidebar'>
     {% include 'navs_and_footers/transactions_nav.html' %}
+    <div class= 'form-div'>
     <p>Edit Custom Tag content goes here</p>
     <form action="/tag/{{tag.id}}/update" method="post">
         <div>
@@ -12,4 +14,6 @@
             <button class="button" type="submit">Update Tag</button>
         </div>
     </form>
+    </div>
+    </div>
 {% endblock %}
