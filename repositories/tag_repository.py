@@ -48,8 +48,6 @@ def select_all():
 
 def select_all_by_user(user_id):
     tags = []
-
-    # sql = "SELECT * FROM tags INNER JOIN transactions ON transactions.tag_id = tags.id WHERE transactions.user_id = %s"
     sql = "SELECT * FROM tags WHERE user_id = %s OR user_id is NULL"
     values = [user_id]
     results = run_sql(sql, values)
@@ -59,32 +57,6 @@ def select_all_by_user(user_id):
         tag.user = row['user_id']
         tags.append(tag)
     return tags
-
-# def select_all_by_user_direct_debit(user_id):
-#     tags = []
-
-#     sql = "SELECT * FROM tags INNER JOIN direct_debits ON direct_debits.tag_id = tags.id WHERE direct_debits.user_id = %s"
-#     values = [user_id]
-#     results = run_sql(sql, values)
-
-#     for row in results:
-#         tag = Tag(row['tag_name'], row['adult_rating'], row['id'])
-#         tag.user = row['user_id']
-#         tags.append(tag)
-#     return tags
-
-# def select_all_by_user_debt(user_id):
-#     tags = []
-
-#     sql = "SELECT * FROM tags INNER JOIN debts ON debts.tag_id = tags.id WHERE debts.user_id = %s"
-#     values = [user_id]
-#     results = run_sql(sql, values)
-
-#     for row in results:
-#         tag = Tag(row['tag_name'], row['adult_rating'], row['id'])
-#         tag.user = row['user_id']
-#         tags.append(tag)
-#     return tags
 
 def select_by_name(name):
     tags = []

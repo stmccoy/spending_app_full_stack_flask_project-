@@ -1,5 +1,4 @@
 DROP TABLE frequent_trades;
--- DROP TABLE transaction_categories;
 DROP TABLE transactions; 
 DROP TABLE direct_debits;
 DROP TABLE debts;
@@ -8,7 +7,6 @@ DROP TABLE tags;
 DROP TABLE users;
 
 
--- deleted Favourite_merchants because you can do it with function and many to many table 
 CREATE TABLE users(
     id SERIAL PRIMARY KEY,
     first_name VARCHAR(255),
@@ -32,7 +30,6 @@ CREATE TABLE tags(
     user_id INT REFERENCES users(id) 
 );
 
--- removed tags from all transactions as I think I'm just doing them in transaction categories table
 CREATE TABLE transactions(
     id SERIAL PRIMARY KEY,
     user_id INT REFERENCES users(id),
@@ -95,10 +92,3 @@ CREATE TABLE frequent_trades(
     merchant_id INT REFERENCES merchants(id) ON DELETE SET NULL
 );
 
--- CREATE TABLE transaction_categories(
---     id SERIAL PRIMARY KEY,
---     transaction_id INT REFERENCES transactions(id) ON DELETE CASCADE,
---     direct_debit_id INT REFERENCES direct_debits(id) ON DELETE CASCADE,
---     debt_id INT REFERENCES debts(id) ON DELETE CASCADE,
---     tag_id INT REFERENCES tags(id) ON DELETE CASCADE
--- );

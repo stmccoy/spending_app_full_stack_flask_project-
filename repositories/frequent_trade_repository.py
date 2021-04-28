@@ -57,23 +57,24 @@ def select_all_by_user(user_id):
 
     return merchants
 
-def select_all_by_user_and_merchant(user_id, merchant_id):
-    merchants = []
+##
+# def select_all_by_user_and_merchant(user_id, merchant_id):
+#     merchants = []
 
-    sql = "SELECT * FROM frequent_trades INNER JOIN merchants ON merchants.id = frequent_trades.merchant_id WHERE user_id = %s AND merchant_id = %s"
-    values = [user_id, merchant_id]
-    results = run_sql(sql, values)
+#     sql = "SELECT * FROM frequent_trades INNER JOIN merchants ON merchants.id = frequent_trades.merchant_id WHERE user_id = %s AND merchant_id = %s"
+#     values = [user_id, merchant_id]
+#     results = run_sql(sql, values)
 
-    for row in results:
-        merchant_name = row['merchant_name']
-        merchant_icon = row['icon']
-        merchant_website = row['website']
-        merchant = Merchant(merchant_name)
-        merchant.website = merchant_website
-        merchant.icon = merchant_icon
-        merchants.append(merchant)
+#     for row in results:
+#         merchant_name = row['merchant_name']
+#         merchant_icon = row['icon']
+#         merchant_website = row['website']
+#         merchant = Merchant(merchant_name)
+#         merchant.website = merchant_website
+#         merchant.icon = merchant_icon
+#         merchants.append(merchant)
 
-    return merchants
+#     return merchants
 
 
 def save(frequent_trade):

@@ -63,7 +63,7 @@ def select_all():
         transactions.append(transaction)
     return transactions
 
-def select_by_name(name):
+def select_by_description(description):
     transactions = []
 
     sql = "SELECT * FROM transactions WHERE description = %s"
