@@ -25,11 +25,13 @@ def select(id):
     tag = None
     sql = "SELECT * FROM tags WHERE id = %s"
     values = [id]
-    result = run_sql(sql, values)[0]
-
-    if result is not None:
-        tag = Tag(result['tag_name'], result['adult_rating'], result['id'])
-        tag.user = result['user_id']
+    try:
+        result = run_sql(sql, values)[0]
+        if result is not None:
+            tag = Tag(result['tag_name'], result['adult_rating'], result['id'])
+            tag.user = result['user_id']
+    except:
+        tag= None
     return tag
 
 def select_all():

@@ -40,9 +40,9 @@ CREATE TABLE transactions(
     date VARCHAR(255),
     value INT,
     description VARCHAR(255),
-    merchant_id INT REFERENCES merchants(id) ON DELETE CASCADE,
+    merchant_id INT REFERENCES merchants(id) ON DELETE SET NULL,
     priority VARCHAR(255),
-    tag_id INT REFERENCES tags(id) ON DELETE CASCADE
+    tag_id INT REFERENCES tags(id) ON DELETE SET NULL
 );
 
 CREATE TABLE direct_debits(
@@ -52,9 +52,9 @@ CREATE TABLE direct_debits(
     date VARCHAR(255),
     value INT,
     description VARCHAR(255),
-    merchant_id INT REFERENCES merchants(id) ON DELETE CASCADE,
+    merchant_id INT REFERENCES merchants(id) ON DELETE SET NULL,
     priority VARCHAR(255),
-    tag_id INT REFERENCES tags(id) ON DELETE CASCADE,
+    tag_id INT REFERENCES tags(id) ON DELETE SET NULL,
     reoccurence_frequency_amount INT,
 
     -- missing type list as I don't think I need it
@@ -72,9 +72,9 @@ CREATE TABLE debts(
     date VARCHAR(255),
     value INT,
     description VARCHAR(255),
-    merchant_id INT REFERENCES merchants(id) ON DELETE CASCADE,
+    merchant_id INT REFERENCES merchants(id) ON DELETE SET NULL,
     priority VARCHAR(255),
-    tag_id INT REFERENCES tags(id) ON DELETE CASCADE,
+    tag_id INT REFERENCES tags(id) ON DELETE SET NULL,
     reoccurence_frequency_amount INT,
 
     -- missing type list as I don't think I need it
@@ -92,7 +92,7 @@ CREATE TABLE debts(
 CREATE TABLE frequent_trades(
     id SERIAL PRIMARY KEY,
     user_id INT REFERENCES users(id),
-    merchant_id INT REFERENCES merchants(id) ON DELETE CASCADE
+    merchant_id INT REFERENCES merchants(id) ON DELETE SET NULL
 );
 
 -- CREATE TABLE transaction_categories(
