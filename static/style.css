@@ -37,12 +37,12 @@ th, td {
     border: solid black;
 }
 
-table{
+/* table{
     margin-left:auto;
     margin-right:auto;
     border-collapse: collapse;
     margin-bottom: 5%;
-}
+} */
 
 /* #transaction-footer{
     text-align: center;
@@ -65,4 +65,31 @@ table{
 #transaction-tables{
     text-align: center;
     margin: auto;
+}
+
+.container {
+    display: flex;
+}
+.box {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+  
+.box:first-child > span { margin-right: auto; }
+  
+.box:last-child  > span { margin-left: auto;  }
+  
+/* non-essential */
+.box {
+    align-items: center;
+    height: 40px;
+}
+p {
+    text-align: center;
+    margin: 5px 0 0 0;
+}
+
+#left{
+    justify-content: left;
 }
