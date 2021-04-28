@@ -1,3 +1,4 @@
+from datetime import *
 from app import app
 from flask import render_template, request, redirect, url_for
 from flask import Blueprint
@@ -17,6 +18,7 @@ transactions_blueprint = Blueprint('transactions', __name__)
 
 @transactions_blueprint.route('/transactions')
 def transactions():
+    current_date = date.today()
     user = user_repository.select(session)
     budget = user.budget
     transaction_total = 0
@@ -27,10 +29,15 @@ def transactions():
     debts = debt_repository.select_by_user(str(user.id))
     for transaction in transactions:
         transaction_total += transaction.value 
+        transaction.date = datetime.strptime(str(transaction.date), '%Y-%m-%d').strftime('%d-%m-%Y')
     for direct_debit in direct_debits:
         direct_debit_total += direct_debit.value 
+        direct_debit.date = datetime.strptime(str(direct_debit.date), '%Y-%m-%d').strftime('%d-%m-%Y')
     for debt in debts:
         debt_total += debt.value 
+        debt.date = datetime.strptime(str(debt.date), '%Y-%m-%d').strftime('%d-%m-%Y')
+        debt.days_left = debt.calculate_time_left(str(current_date), debt.pay_off_date)
+        debt.pay_off_date = datetime.strptime(str(debt.pay_off_date), '%Y-%m-%d').strftime('%d-%m-%Y')
     overall_total = transaction_total + direct_debit_total + debt_total
     budget_remaining = user.budget - overall_total
     return render_template('transactions/transactions.html', budget= budget, transactions=transactions, direct_debits=direct_debits, debts= debts, transaction_total=transaction_total, direct_debit_total=direct_debit_total, debt_total=debt_total, overall_total=overall_total, budget_remaining=budget_remaining)

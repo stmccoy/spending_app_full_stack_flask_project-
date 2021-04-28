@@ -46,6 +46,7 @@ class Debt(DirectDebit):
         # self.interest = None
         self.late_payment_fine = None
         self.pay_off_date = None 
+        self.days_left = None
     
     def calculate_time_left(self, date_1, date_2):
         date_1 = datetime.strptime(date_1, "%Y-%m-%d")

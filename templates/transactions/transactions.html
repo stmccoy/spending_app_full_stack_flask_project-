@@ -106,7 +106,7 @@
                     <td>{{debt.reoccurence_frequency_amount}} payment a {{debt.reoccurence_frequency_type}}</td>
                     <td>{{debt.late_payment_fine}}</td>
                     <td>{{debt.pay_off_date}}</td>
-                    <td>TODO</td>
+                    <td>{{debt.days_left}} days until paid</td>
                     <td>
                         <form action="/transaction_edit/debt/{{debt.id}}/edit">
                             <button type="submit">Edit</button>
