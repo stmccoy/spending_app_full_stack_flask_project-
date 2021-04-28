@@ -6,34 +6,37 @@
         {% include 'navs_and_footers/transactions_nav.html' %}
     </div>
     <div class='box'>
-        <table>
-            <tr>
-                <th>Merchant name</th>
-                <th>Merchant Website</th>
-                <th>Merchant Icon</th>
-                <th>Merchant Id</th>
-                <th>Edit Merchant</th>
-                <th>Delete Merchant</th>
-            </tr>
-            {% for merchant in merchants %}
-            <tr>
-                <td>{{merchant.merchant_name}}</td>
-                <td>{{merchant.website}}</td>
-                <td>{{merchant.icon}}</td>
-                <td>Merchant id: {{merchant.id}}</td>
-                <td>
-                <form action="/merchant/{{merchant.id}}/update">  
-                    <button type="submit">Edit</button>
-                </form> 
-                </td>  
-                <td>
-                    <form action="/merchant/{{merchant.id}}/delete" method='post'>
-                        <button type="submit">Delete</button>
-                    </form>
-                </td>
-            </tr>
-            {% endfor %}
-        </table>
+        <div class='body-of-layout'>
+            <h2>My Merchants</h2>
+            <table>
+                <tr>
+                    <th>Merchant name</th>
+                    <th>Merchant Website</th>
+                    <th>Merchant Icon</th>
+                    <th>Merchant Id</th>
+                    <th>Edit Merchant</th>
+                    <th>Delete Merchant</th>
+                </tr>
+                {% for merchant in merchants %}
+                <tr>
+                    <td>{{merchant.merchant_name}}</td>
+                    <td>{{merchant.website}}</td>
+                    <td>{{merchant.icon}}</td>
+                    <td>Merchant id: {{merchant.id}}</td>
+                    <td>
+                    <form action="/merchant/{{merchant.id}}/update">  
+                        <button type="submit">Edit</button>
+                    </form> 
+                    </td>  
+                    <td>
+                        <form action="/merchant/{{merchant.id}}/delete" method='post'>
+                            <button type="submit">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
     </div>
     <div class='box'>
 

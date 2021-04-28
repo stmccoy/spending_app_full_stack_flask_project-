@@ -6,47 +6,50 @@
         {% include 'navs_and_footers/transactions_nav.html' %}
     </div>
     <div class= 'box'>
-        <form action="/transaction_edit/direct_debit/{{direct_debit.id}}/edit" method="post">
-            <div>
-                <label for="value">Value</label><br>
-                <input type="number" name="value" id="value" placeholder="{{direct_debit.value}}" required autofocus><br>
-                <label for="description">Description</label><br>
-                <input type="text" name="description" id="direct_debit_description" placeholder="{{direct_debit.description}}" required><br>
-                <label for="date">Date</label><br>
-                <input type="date" name="date" id="direct_debit_date" required><br>
-                <label for="merchant">Merchant</label><br>
-                <select name="merchant" id="merchant" required>
-                    <option value="" selected disabled>Pick a merchant</option>
-                    {% for merchant in merchants %}
-                    <option value="{{merchant.merchant_name}}">{{merchant.merchant_name}}</option>
-                    {% endfor %}
-                </select><br>
-                <label for="priority-rating">Priority rating</label><br>
-                <select name="priority_rating" id="priority-rating" required>
-                    <option value="" selected disabled>Pick a priority rating</option>
-                    {% for transaction_priority in transaction_priority_list %}
-                    <option value={{transaction_priority}}>{{transaction_priority}}</option>
-                    {% endfor %}
-                </select><br>
-                <label for="reoccurence-frequency-amount">How Often</label><br>
-                <input type="number" name="reoccurence_frequency_amount" id="direct_debit_reoccurence_frequency_amount" placeholder="{{direct_debit.reoccurence_frequency_amount}}" required><br>
-                <label for="reoccurence_frequency_type">Time Scale</label><br>
-                <select name="reoccurence_frequency_type" id="reoccurence_frequency_type" required>
-                    <option value="" selected disabled>Pick a time scale</option>
-                    {% for direct_debit_time_scale in direct_debit_time_scales %}
-                    <option value={{direct_debit_time_scale}}>{{direct_debit_time_scale}}</option>
-                    {% endfor %}
-                </select><br>
-                <label for="tag">Tag</label><br>
-                <select name="tag" id="tag" required>
-                    <option value="" selected disabled>Pick a tag</option>
-                    {% for tag in tags %}
-                    <option value={{tag.tag_name}}>{{tag.tag_name}}</option>
-                    {% endfor %}
-                </select><br>
-                <button class="button" type="submit">Edit Direct Debit</button>    
-                </div>
-        </form>
+        <div class='body-of-layout'>
+            <h2>Edit Direct Debit</h2>
+            <form action="/transaction_edit/direct_debit/{{direct_debit.id}}/edit" method="post">
+                <div>
+                    <label for="value">Value</label><br>
+                    <input type="number" name="value" id="value" placeholder="{{direct_debit.value}}" required autofocus><br>
+                    <label for="description">Description</label><br>
+                    <input type="text" name="description" id="direct_debit_description" placeholder="{{direct_debit.description}}" required><br>
+                    <label for="date">Date</label><br>
+                    <input type="date" name="date" id="direct_debit_date" required><br>
+                    <label for="merchant">Merchant</label><br>
+                    <select name="merchant" id="merchant" required>
+                        <option value="" selected disabled>Pick a merchant</option>
+                        {% for merchant in merchants %}
+                        <option value="{{merchant.merchant_name}}">{{merchant.merchant_name}}</option>
+                        {% endfor %}
+                    </select><br>
+                    <label for="priority-rating">Priority rating</label><br>
+                    <select name="priority_rating" id="priority-rating" required>
+                        <option value="" selected disabled>Pick a priority rating</option>
+                        {% for transaction_priority in transaction_priority_list %}
+                        <option value={{transaction_priority}}>{{transaction_priority}}</option>
+                        {% endfor %}
+                    </select><br>
+                    <label for="reoccurence-frequency-amount">How Often</label><br>
+                    <input type="number" name="reoccurence_frequency_amount" id="direct_debit_reoccurence_frequency_amount" placeholder="{{direct_debit.reoccurence_frequency_amount}}" required><br>
+                    <label for="reoccurence_frequency_type">Time Scale</label><br>
+                    <select name="reoccurence_frequency_type" id="reoccurence_frequency_type" required>
+                        <option value="" selected disabled>Pick a time scale</option>
+                        {% for direct_debit_time_scale in direct_debit_time_scales %}
+                        <option value={{direct_debit_time_scale}}>{{direct_debit_time_scale}}</option>
+                        {% endfor %}
+                    </select><br>
+                    <label for="tag">Tag</label><br>
+                    <select name="tag" id="tag" required>
+                        <option value="" selected disabled>Pick a tag</option>
+                        {% for tag in tags %}
+                        <option value={{tag.tag_name}}>{{tag.tag_name}}</option>
+                        {% endfor %}
+                    </select><br>
+                    <button class="button" type="submit">Edit Direct Debit</button>    
+                    </div>
+            </form>
+        </div>
     </div>
     <div class='box'>
 

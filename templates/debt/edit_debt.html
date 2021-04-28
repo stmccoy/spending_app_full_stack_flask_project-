@@ -7,51 +7,54 @@
     </div>
     <div class= 'box'>
         <form action="/transaction_edit/debt/{{debt.id}}/edit" method="post">
-            <div>
-                <label for="value">Value</label><br>
-                <input type="number" name="value" id="value" placeholder="{{debt.value}}" required autofocus><br>
-                <label for="description">Description</label><br>
-                <input type="text" name="description" id="debt_description" placeholder="{{debt.description}}" required autofocus><br>
-                <label for="date">Date</label><br>
-                <input type="date" name="date" id="debt_date" required><br>
-                <label for="merchant">Merchant</label><br>
-                <select name="merchant" id="merchant" required>
-                    <option value="" selected disabled>Pick a merchant</option>
-                    {% for merchant in merchants %}
-                    <option value="{{merchant.merchant_name}}">{{merchant.merchant_name}}</option>
-                    {% endfor %}
-                </select><br>
-                <label for="priority-rating">Priority rating</label><br>
-                <select name="priority_rating" id="priority-rating" required>
-                    <option value="" selected disabled>Pick a priority rating</option>
-                    {% for transaction_priority in transaction_priority_list %}
-                    <option value={{transaction_priority}}>{{transaction_priority}}</option>
-                    {% endfor %}
-                </select><br>
-                <label for="reoccurence-frequency-amount">How Often</label><br>
-                <input type="number" name="reoccurence_frequency_amount" id="debt_reoccurence_frequency_amount" placeholder="{{debt.reoccurence_frequency_amount}}" required><br>
-                <label for="reoccurence_frequency_type">Time Scale</label><br>
-                <select name="reoccurence_frequency_type" id="reoccurence_frequency_type" required>
-                    <option value="" selected disabled>Pick a time scale</option>
-                    {% for direct_debit_time_scale in direct_debit_time_scales %}
-                    <option value={{direct_debit_time_scale}}>{{direct_debit_time_scale}}</option>
-                    {% endfor %}
-                </select><br>
-                <label for="late-payment-fine">Late Payment Fine</label><br>
-                <input type="number" name="late_payment_fine" id="late_payment_fine" placeholder="{{debt.late_payment_fine}}" required><br>
-                <label for="date">Pay Off Date</label><br>
-                <input type="date" name="pay_off_date" id="pay_off_date" required><br>
-                <label for="tag">Tag</label><br>
-                <select name="tag" id="tag" required>
-                    <option value="" selected disabled>Pick a tag</option>
-                    {% for tag in tags %}
-                    <option value={{tag.tag_name}}>{{tag.tag_name}}</option>
-                    {% endfor %}
-                </select><br>
-                <button class="button" type="submit">Edit Debt</button>
-        
-            </div>
-        </form>
+            <div class='body-of-layout'>
+            <h2>Edit Debt</h2>
+                <div>
+                    <label for="value">Value</label><br>
+                    <input type="number" name="value" id="value" placeholder="{{debt.value}}" required autofocus><br>
+                    <label for="description">Description</label><br>
+                    <input type="text" name="description" id="debt_description" placeholder="{{debt.description}}" required autofocus><br>
+                    <label for="date">Date</label><br>
+                    <input type="date" name="date" id="debt_date" required><br>
+                    <label for="merchant">Merchant</label><br>
+                    <select name="merchant" id="merchant" required>
+                        <option value="" selected disabled>Pick a merchant</option>
+                        {% for merchant in merchants %}
+                        <option value="{{merchant.merchant_name}}">{{merchant.merchant_name}}</option>
+                        {% endfor %}
+                    </select><br>
+                    <label for="priority-rating">Priority rating</label><br>
+                    <select name="priority_rating" id="priority-rating" required>
+                        <option value="" selected disabled>Pick a priority rating</option>
+                        {% for transaction_priority in transaction_priority_list %}
+                        <option value={{transaction_priority}}>{{transaction_priority}}</option>
+                        {% endfor %}
+                    </select><br>
+                    <label for="reoccurence-frequency-amount">How Often</label><br>
+                    <input type="number" name="reoccurence_frequency_amount" id="debt_reoccurence_frequency_amount" placeholder="{{debt.reoccurence_frequency_amount}}" required><br>
+                    <label for="reoccurence_frequency_type">Time Scale</label><br>
+                    <select name="reoccurence_frequency_type" id="reoccurence_frequency_type" required>
+                        <option value="" selected disabled>Pick a time scale</option>
+                        {% for direct_debit_time_scale in direct_debit_time_scales %}
+                        <option value={{direct_debit_time_scale}}>{{direct_debit_time_scale}}</option>
+                        {% endfor %}
+                    </select><br>
+                    <label for="late-payment-fine">Late Payment Fine</label><br>
+                    <input type="number" name="late_payment_fine" id="late_payment_fine" placeholder="{{debt.late_payment_fine}}" required><br>
+                    <label for="date">Pay Off Date</label><br>
+                    <input type="date" name="pay_off_date" id="pay_off_date" required><br>
+                    <label for="tag">Tag</label><br>
+                    <select name="tag" id="tag" required>
+                        <option value="" selected disabled>Pick a tag</option>
+                        {% for tag in tags %}
+                        <option value={{tag.tag_name}}>{{tag.tag_name}}</option>
+                        {% endfor %}
+                    </select><br>
+                    <button class="button" type="submit">Edit Debt</button>
+            
+                </div>
+            </form>
+        </div>
     </div>
     <div class='box'>
 

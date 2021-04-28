@@ -7,36 +7,39 @@
     </div>
     <div class= 'box'>
         <form action="/add_transaction" method="post">
-            <div>
-                <label for="value">Value</label><br>
-                <input type="number" name="value" id="value" placeholder="Write value here" required autofocus><br>
-                <label for="description">Description</label><br>
-                <input type="text" name="description" id="transaction_description" placeholder="Transaction description" required><br>
-                <label for="date">Date</label><br>
-                <input type="date" name="date" id="transaction_date" required><br>
-                <label for="merchant">Merchant</label><br>
-                <select name="merchant" id="merchant" required>
-                    <option value="" selected disabled>Pick a merchant</option>
-                    {% for merchant in merchants %}
-                    <option value="{{merchant.merchant_name}}">{{merchant.merchant_name}}</option>
-                    {% endfor %}
-                </select><br>
-                <label for="priority-rating">Priority rating</label><br>
-                <select name="priority_rating" id="priority-rating" required>
-                    <option value="" selected disabled>Pick a priority rating</option>
-                    {% for transaction_priority in transaction_priority_list %}
-                    <option value={{transaction_priority}}>{{transaction_priority}}</option>
-                    {% endfor %}
-                </select><br>
-                <label for="tag">Tag</label><br>
-                <select name="tag" id="tag"required>
-                    <option value="" selected disabled>Pick a tag</option>
-                    {% for tag in tags %}
-                    <option value={{tag.tag_name}}>{{tag.tag_name}}</option>
-                    {% endfor %}
-                </select><br>
-                <button class="button" type="submit">Add Transaction</button>
-            
+            <div class='body-of-layout'>
+                <h2>Add Transaction</h2>
+                <div>
+                    <label for="value">Value</label><br>
+                    <input type="number" name="value" id="value" placeholder="Write value here" required autofocus><br>
+                    <label for="description">Description</label><br>
+                    <input type="text" name="description" id="transaction_description" placeholder="Transaction description" required><br>
+                    <label for="date">Date</label><br>
+                    <input type="date" name="date" id="transaction_date" required><br>
+                    <label for="merchant">Merchant</label><br>
+                    <select name="merchant" id="merchant" required>
+                        <option value="" selected disabled>Pick a merchant</option>
+                        {% for merchant in merchants %}
+                        <option value="{{merchant.merchant_name}}">{{merchant.merchant_name}}</option>
+                        {% endfor %}
+                    </select><br>
+                    <label for="priority-rating">Priority rating</label><br>
+                    <select name="priority_rating" id="priority-rating" required>
+                        <option value="" selected disabled>Pick a priority rating</option>
+                        {% for transaction_priority in transaction_priority_list %}
+                        <option value={{transaction_priority}}>{{transaction_priority}}</option>
+                        {% endfor %}
+                    </select><br>
+                    <label for="tag">Tag</label><br>
+                    <select name="tag" id="tag"required>
+                        <option value="" selected disabled>Pick a tag</option>
+                        {% for tag in tags %}
+                        <option value={{tag.tag_name}}>{{tag.tag_name}}</option>
+                        {% endfor %}
+                    </select><br>
+                    <button class="button" type="submit">Add Transaction</button>
+                
+                </div>
             </div>
         </form>
     </div>

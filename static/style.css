@@ -92,3 +92,7 @@ p {
 #left{
     justify-content: left;
 }
+
+.body-of-layout{
+    text-align: center;
+}

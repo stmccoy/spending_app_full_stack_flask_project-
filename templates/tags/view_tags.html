@@ -6,35 +6,37 @@
         {% include 'navs_and_footers/transactions_nav.html' %}
     </div>
     <div class='box'>
-        <table>
-            <tr>
-                <th>Tag Name</th>
-                <th>Adult Rating</th>
-                <th>Add Tag</th>
-                <th>Delete Tag</th>
-            </tr>
-            {% for tag in tags %}
-            <tr>
-                <td>{{tag.tag_name}}</td>
-                <td>{{tag.adult_rating}}</td>
-                <td>
-                    <form action="/tag/{{tag.id}}/update">  
-                        <button type="submit">Edit</button>
-                    </form> 
-                </td>
-                <td>
-                    <form action="/tag/{{tag.id}}/delete" method='post'>
-                        <button type="submit">Delete</button>
-                    </form>
-                </td>
-            </tr>
-            {% endfor %}
-        </table>
+        <div class='body-of-layout'>
+            <h2>My Tags</h2>
+            <table>
+                <tr>
+                    <th>Tag Name</th>
+                    <th>Adult Rating</th>
+                    <th>Add Tag</th>
+                    <th>Delete Tag</th>
+                </tr>
+                {% for tag in tags %}
+                <tr>
+                    <td>{{tag.tag_name}}</td>
+                    <td>{{tag.adult_rating}}</td>
+                    <td>
+                        <form action="/tag/{{tag.id}}/update">  
+                            <button type="submit">Edit</button>
+                        </form> 
+                    </td>
+                    <td>
+                        <form action="/tag/{{tag.id}}/delete" method='post'>
+                            <button type="submit">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
     </div>
     <div class='box'>
-
+        
     </div>
-
 </div>
 <p>&#8593;<br>true center</p>
 {% endblock %}

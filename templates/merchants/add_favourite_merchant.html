@@ -6,15 +6,18 @@
         {% include 'navs_and_footers/transactions_nav.html' %}
     </div>
     <div class= 'box'>
-        <form action="/add_favourite_merchant" method="post">
-            <div>
-                <label for="merchant-name">Merchant Name</label><br>
-                <input type="text" name="merchant_name" id="merchant-name" placeholder="Merchant Name" required autofocus><br>
-                <label for="merchant-website">Merchant Website</label><br>
-                <input type="text" name="merchant_website" id="merchant-website" placeholder="Merchant Website" required><br>
-                <button class="button" type="submit">Add Merchant</button>
-            </div>
-        </form>
+        <div class='body-of-layout'>
+            <h2>Add Favourite Merchant</h2>
+            <form action="/add_favourite_merchant" method="post">
+                <div>
+                    <label for="merchant-name">Merchant Name</label><br>
+                    <input type="text" name="merchant_name" id="merchant-name" placeholder="Merchant Name" required autofocus><br>
+                    <label for="merchant-website">Merchant Website</label><br>
+                    <input type="text" name="merchant_website" id="merchant-website" placeholder="Merchant Website" required><br>
+                    <button class="button" type="submit">Add Merchant</button>
+                </div>
+            </form>
+        </div>
     </div>
     <div class='box'>
 
