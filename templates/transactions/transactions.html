@@ -18,7 +18,6 @@
                     <th>Transaction Date</th>
                     <th>Transaction Priority Rating</th>
                     <th>Transaction Tag</th>
-                    <th>Transaction id</th>
                     <th>Edit Transaction</th>
                     <th>Delete Transaction</th>
                 </tr>
@@ -30,7 +29,6 @@
                     <td>{{transaction.date}}</td>
                     <td>{{transaction.priority_rating}}</td>
                     <td>{{transaction.tag.tag_name}}</td>
-                    <td>{{transaction.id}}</td>
                     <td>
                         <form action="/transaction_edit/transaction/{{transaction.id}}/edit">
                             <button type="submit">Edit</button>
@@ -54,7 +52,6 @@
                     <th>Debt Date</th>
                     <th>Debt Priority Rating</th>
                     <th>Debt Tag</th>
-                    <th>Debt ID</th>
                     <th>Debt Occurence</th>
                     <th>Debt Late Payment Fine</th>
                     <th>Debt Payoff Date</th>
@@ -70,7 +67,6 @@
                     <td>{{debt.date}}</td>
                     <td>{{debt.priority_rating}}</td>
                     <td>{{debt.tag.tag_name}}</td>
-                    <td>{{debt.id}}</td>
                     <td>{{debt.reoccurence_frequency_amount}} payment a {{debt.reoccurence_frequency_type}}</td>
                     <td>{{debt.late_payment_fine}}</td>
                     <td>{{debt.pay_off_date}}</td>
@@ -98,7 +94,6 @@
                     <th>Direct Debit Date</th>
                     <th>Direct Debit Priority Rating</th>
                     <th>Direct Debit Tag</th>
-                    <th>Direct Debit id</th>
                     <th>Direct Debit Occurence</th>
                     <th>Direct Debit Edit</th>
                     <th>Direct Debit Delete</th>
@@ -111,7 +106,6 @@
                     <td>{{direct_debit.date}}</td>
                     <td>{{direct_debit.priority_rating}}</td>
                     <td>{{direct_debit.tag.tag_name}}</td>
-                    <td>{{direct_debit.id}}</td>
                     <td>{{direct_debit.reoccurence_frequency_amount}} payment a {{direct_debit.reoccurence_frequency_type}} </td>
                     <td>
                         <form action="/transaction_edit/direct_debit/{{direct_debit.id}}/edit">
