@@ -1,4 +1,4 @@
-#main-header, #budget, .form-content{
+#main-header, #budget, .form-content, #homepage, footer{
     text-align: center;
 }
 
@@ -82,7 +82,7 @@ th, td {
   
 /* non-essential */
 .box {
-    align-items: center;
+    align-items: flex-start;
 }
 p {
     text-align: center;
@@ -96,3 +96,34 @@ p {
 .body-of-layout{
     text-align: center;
 }
+
+
+footer{
+    margin-top: 2%;
+}
+
+nav{
+    border:solid black;
+    padding-left: 0.1%;
+    padding-right: 0.1%;
+}
+
+nav > ul{
+    margin:0;
+}
+
+body{
+    border-style: none;
+    margin: 0;
+}
+
+#left > ul {
+    margin-top: 0;
+}
+
+#left > ul > li {
+    border: solid black;
+    text-align: center;
+    border-top: none;
+}
+
