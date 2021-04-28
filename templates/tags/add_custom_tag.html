@@ -1,19 +1,22 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <div class= 'transaction-sidebar'>
-    {% include 'navs_and_footers/transactions_nav.html' %}
-    <div class= 'form-div'>
-    <h2>Add Custom Tag</h2>
-    <form action="/add_custom_tag" method="post">
-        <div>
-            <label for="tag-name" class="form-content">Tag Name</label><br>
-            <input type="text" name="tag_name" class="form-content" placeholder="Tag Name" required autofocus><br>
-            <label for="adult-rating" class="form-content">Adult Rating?</label>
-            <input type="checkbox" class="form-content" name="adult_rating"><br>
-            <button class="button" type="submit" class="form-content">Add Tag</button>
-        </div>
-    </form>
-</div>
+<div class='container'>
+    <div class='box' id="left">
+        {% include 'navs_and_footers/transactions_nav.html' %}
+    </div>
+    <div class= 'box'>
+        <form action="/add_custom_tag" method="post">
+            <div>
+                <label for="tag-name" class="form-content">Tag Name</label><br>
+                <input type="text" name="tag_name" class="form-content" placeholder="Tag Name" required autofocus><br>
+                <label for="adult-rating" class="form-content">Adult Rating?</label>
+                <input type="checkbox" class="form-content" name="adult_rating"><br>
+                <button class="button" type="submit" class="form-content">Add Tag</button>
+            </div>
+        </form>
+    </div>
+    <div class='box'>
+    </div>
 </div>
 {% endblock %}

@@ -1,18 +1,22 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class= 'transaction-sidebar'>
-    {% include 'navs_and_footers/transactions_nav.html' %}
-    <div class = 'form-div'>
-    <h2>Set Budget</h2>
+<div class='container'>
+    <div class='box' id="left">
+        {% include 'navs_and_footers/transactions_nav.html' %}
+    </div>
+    <div class = 'box'>
         <form action="/set_budget" method="post">
             <div>
-                <label for="budget-amount">Budget Amount</label>
-                <input type="number" name="budget" id="budget" placeholder="enter budget" required autofocus>
+                <label for="budget-amount">Budget Amount</label><br>
+                <input type="number" name="budget" id="budget" placeholder="enter budget" required autofocus><br>
                 <button class="button" type="submit">Confirm Budget</button>
         
             </div>
         </form>
+    </div>
+    <div class='box'>
+
     </div>
 </div>
 {% endblock %}

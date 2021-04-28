@@ -1,11 +1,11 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class='transaction-sidebar'>
-    {% include 'navs_and_footers/transactions_nav.html' %}
-    <div class= 'form-div'>
-        <h1>Edit Merchant</h1>
-        <p>Edit Merchant content goes here</p>
+<div class='container'>
+    <div class='box' id="left">
+        {% include 'navs_and_footers/transactions_nav.html' %}
+    </div>
+    <div class= 'box'>
         <form action="/merchant/{{merchant.id}}/update" method="post">
             <div>
                 <label for="merchant-name">Merchant Name</label><br>
@@ -15,6 +15,9 @@
                 <button class="button" type="submit">Update Merchant</button>
             </div>
         </form>
+    </div>
+    <div class= 'box'>
+
     </div>
 </div>
 

@@ -1,126 +1,133 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class='transaction-sidebar'>
-{% include 'navs_and_footers/transactions_nav.html' %}
-<div id='transaction-tables'>
-<h2 id = "budget">My Budget is £{{ budget }}</h2>
-<h2>My Transactions</h2>
-<table>
-    <tr>
-        <th>Transaction Value</th>
-        <th>Transaction Description</th>
-        <th>Transaction Merchant</th>
-        <th>Transaction Date</th>
-        <th>Transaction Priority Rating</th>
-        <th>Transaction Tag</th>
-        <th>Transaction id</th>
-        <th>Edit Transaction</th>
-        <th>Delete Transaction</th>
-    </tr>
-{% for transaction in transactions %}
-    <tr>
-        <td>{{transaction.value}}</td>
-        <td>{{transaction.description}}</td>
-        <td>{{transaction.merchant.merchant_name}}</td>
-        <td>{{transaction.date}}</td>
-        <td>{{transaction.priority_rating}}</td>
-        <td>{{transaction.tag.tag_name}}</td>
-        <td>{{transaction.id}}</td>
-        <td>
-            <form action="/transaction_edit/transaction/{{transaction.id}}/edit">
-                <button type="submit">Edit</button>
-            </form>
-        </td>
-        <td>
-            <form action="/transaction_delete/transaction/{{transaction.id}}/delete" method='post'>
-                <button type="submit">Delete</button>
-            </form>
-        </td>
-    </tr>
-{% endfor %}
-</table>
-<table>
-    <h2>My Debts</h2>
-    <tr>
-        <th>Debt Value</th>
-        <th>Debt Description</th>
-        <th>Debt Merchant</th>
-        <th>Debt Date</th>
-        <th>Debt Priority Rating</th>
-        <th>Debt Tag</th>
-        <th>Debt ID</th>
-        <th>Debt Occurence</th>
-        <th>Debt Late Payment Fine</th>
-        <th>Debt Payoff Date</th>
-        <th>Days to go until Debt Paid off</th>
-        <th>Debt Edit</th>
-        <th>Debt Delete</th>
-    </tr>
-{% for debt in debts %}
-    <tr>
-        <td>{{debt.value}}</td>
-        <td>{{debt.description}}</td>
-        <td>{{debt.merchant.merchant_name}}</td>
-        <td>{{debt.date}}</td>
-        <td>{{debt.priority_rating}}</td>
-        <td>{{debt.tag.tag_name}}</td>
-        <td>{{debt.id}}</td>
-        <td>{{debt.reoccurence_frequency_amount}} payment a {{debt.reoccurence_frequency_type}}</td>
-        <td>{{debt.late_payment_fine}}</td>
-        <td>{{debt.pay_off_date}}</td>
-        <td>TODO</td>
-        <td>
-            <form action="/transaction_edit/debt/{{debt.id}}/edit">
-                <button type="submit">Edit</button>
-            </form>
-        </td>
-        <td>
-            <form action="/transaction_delete/debt/{{debt.id}}/delete" method='post'>
-                <button type="submit">Delete</button>
-            </form>
-        </td>
-    </tr>
-{% endfor %}
-</table>
-<table>
-    <h2>My Direct Debits</h2>
-    <tr>
-        <th>Direct Debit Value</th>
-        <th>Direct Debit Description</th>
-        <th>Direct Debit Merchant</th>
-        <th>Direct Debit Date</th>
-        <th>Direct Debit Priority Rating</th>
-        <th>Direct Debit Tag</th>
-        <th>Direct Debit id</th>
-        <th>Direct Debit Occurence</th>
-        <th>Direct Debit Edit</th>
-        <th>Direct Debit Delete</th>
-    </tr>
-{% for direct_debit in direct_debits %}
-    <tr>
-        <td>{{direct_debit.value}}</td>
-        <td>{{direct_debit.description}}</td>
-        <td>{{direct_debit.merchant.merchant_name}}</td>
-        <td>{{direct_debit.date}}</td>
-        <td>{{direct_debit.priority_rating}}</td>
-        <td>{{direct_debit.tag.tag_name}}</td>
-        <td>{{direct_debit.id}}</td>
-        <td>{{direct_debit.reoccurence_frequency_amount}} payment a {{direct_debit.reoccurence_frequency_type}} </td>
-        <td>
-            <form action="/transaction_edit/direct_debit/{{direct_debit.id}}/edit">
-                <button type="submit">Edit</button>
-            </form>
-        </td>
-        <td>
-            <form action="/transaction_delete/direct_debit/{{direct_debit.id}}/delete" method='post'>
-                <button type="submit">Delete</button>
-            </form>
-        </td>
-    </tr>
-{% endfor %}
-</table>
-</div>
+<div class='container'>
+    <div class='box' id="left">
+        {% include 'navs_and_footers/transactions_nav.html' %}
+    </div>
+    <div class='box'>
+        <div>
+            <h2 id = "budget">My Budget is £{{ budget }}</h2>
+            <h1>My Transactions</h1>
+            <table>
+                <tr>
+                    <th>Transaction Value</th>
+                    <th>Transaction Description</th>
+                    <th>Transaction Merchant</th>
+                    <th>Transaction Date</th>
+                    <th>Transaction Priority Rating</th>
+                    <th>Transaction Tag</th>
+                    <th>Transaction id</th>
+                    <th>Edit Transaction</th>
+                    <th>Delete Transaction</th>
+                </tr>
+                {% for transaction in transactions %}
+                <tr>
+                    <td>{{transaction.value}}</td>
+                    <td>{{transaction.description}}</td>
+                    <td>{{transaction.merchant.merchant_name}}</td>
+                    <td>{{transaction.date}}</td>
+                    <td>{{transaction.priority_rating}}</td>
+                    <td>{{transaction.tag.tag_name}}</td>
+                    <td>{{transaction.id}}</td>
+                    <td>
+                        <form action="/transaction_edit/transaction/{{transaction.id}}/edit">
+                            <button type="submit">Edit</button>
+                        </form>
+                    </td>
+                    <td>
+                        <form action="/transaction_delete/transaction/{{transaction.id}}/delete" method='post'>
+                            <button type="submit">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+            <table>
+                <h2>My Debts</h2>
+                <tr>
+                    <th>Debt Value</th>
+                    <th>Debt Description</th>
+                    <th>Debt Merchant</th>
+                    <th>Debt Date</th>
+                    <th>Debt Priority Rating</th>
+                    <th>Debt Tag</th>
+                    <th>Debt ID</th>
+                    <th>Debt Occurence</th>
+                    <th>Debt Late Payment Fine</th>
+                    <th>Debt Payoff Date</th>
+                    <th>Days to go until Debt Paid off</th>
+                    <th>Debt Edit</th>
+                    <th>Debt Delete</th>
+                </tr>
+                {% for debt in debts %}
+                <tr>
+                    <td>{{debt.value}}</td>
+                    <td>{{debt.description}}</td>
+                    <td>{{debt.merchant.merchant_name}}</td>
+                    <td>{{debt.date}}</td>
+                    <td>{{debt.priority_rating}}</td>
+                    <td>{{debt.tag.tag_name}}</td>
+                    <td>{{debt.id}}</td>
+                    <td>{{debt.reoccurence_frequency_amount}} payment a {{debt.reoccurence_frequency_type}}</td>
+                    <td>{{debt.late_payment_fine}}</td>
+                    <td>{{debt.pay_off_date}}</td>
+                    <td>TODO</td>
+                    <td>
+                        <form action="/transaction_edit/debt/{{debt.id}}/edit">
+                            <button type="submit">Edit</button>
+                        </form>
+                    </td>
+                    <td>
+                        <form action="/transaction_delete/debt/{{debt.id}}/delete" method='post'>
+                            <button type="submit">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+            <table>
+                <h2>My Direct Debits</h2>
+                <tr>
+                    <th>Direct Debit Value</th>
+                    <th>Direct Debit Description</th>
+                    <th>Direct Debit Merchant</th>
+                    <th>Direct Debit Date</th>
+                    <th>Direct Debit Priority Rating</th>
+                    <th>Direct Debit Tag</th>
+                    <th>Direct Debit id</th>
+                    <th>Direct Debit Occurence</th>
+                    <th>Direct Debit Edit</th>
+                    <th>Direct Debit Delete</th>
+                </tr>
+                {% for direct_debit in direct_debits %}
+                <tr>
+                    <td>{{direct_debit.value}}</td>
+                    <td>{{direct_debit.description}}</td>
+                    <td>{{direct_debit.merchant.merchant_name}}</td>
+                    <td>{{direct_debit.date}}</td>
+                    <td>{{direct_debit.priority_rating}}</td>
+                    <td>{{direct_debit.tag.tag_name}}</td>
+                    <td>{{direct_debit.id}}</td>
+                    <td>{{direct_debit.reoccurence_frequency_amount}} payment a {{direct_debit.reoccurence_frequency_type}} </td>
+                    <td>
+                        <form action="/transaction_edit/direct_debit/{{direct_debit.id}}/edit">
+                            <button type="submit">Edit</button>
+                        </form>
+                    </td>
+                    <td>
+                        <form action="/transaction_delete/direct_debit/{{direct_debit.id}}/delete" method='post'>
+                            <button type="submit">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+    <div class='box'>
+
+    </div>
 </div>
 
 {% endblock %}

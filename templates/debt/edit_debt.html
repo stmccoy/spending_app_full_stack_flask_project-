@@ -1,10 +1,11 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class='transaction-sidebar'>
-    {% include 'navs_and_footers/transactions_nav.html' %}
-    <div class= 'form-div'>
-        <p>Add Transaction Content goes here</p>
+<div class='container'>
+    <div class='box' id="left">
+        {% include 'navs_and_footers/transactions_nav.html' %}
+    </div>
+    <div class= 'box'>
         <form action="/transaction_edit/debt/{{debt.id}}/edit" method="post">
             <div>
                 <label for="value">Value</label><br>
@@ -51,6 +52,9 @@
         
             </div>
         </form>
+    </div>
+    <div class='box'>
+
     </div>
 </div>
 {% endblock %}
