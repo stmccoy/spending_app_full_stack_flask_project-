@@ -28,7 +28,7 @@
                     <select name="priority_rating" id="priority-rating" required>
                         <option value="" selected disabled>Pick a priority rating</option>
                         {% for transaction_priority in transaction_priority_list %}
-                        <option value={{transaction_priority}}>{{transaction_priority}}</option>
+                        <option value="{{transaction_priority}}">{{transaction_priority}}</option>
                         {% endfor %}
                     </select><br>
                     <label for="reoccurence-frequency-amount">How Often</label><br>
@@ -37,7 +37,7 @@
                     <select name="reoccurence_frequency_type" id="reoccurence_frequency_type" required>
                         <option value="" selected disabled>Pick a time scale</option>
                         {% for direct_debit_time_scale in direct_debit_time_scales %}
-                        <option value={{direct_debit_time_scale}}>{{direct_debit_time_scale}}</option>
+                        <option value="{{direct_debit_time_scale}}">{{direct_debit_time_scale}}</option>
                         {% endfor %}
                     </select><br>
                     <label for="late-payment-fine">Late Payment Fine</label><br>
@@ -48,7 +48,7 @@
                     <select name="tag" id="tag" required>
                         <option value="" selected disabled>Pick a tag</option>
                         {% for tag in tags %}
-                        <option value={{tag.tag_name}}>{{tag.tag_name}}</option>
+                        <option value="{{tag.tag_name}}">{{tag.tag_name}}</option>
                         {% endfor %}
                     </select><br>
                     <button class="button" type="submit">Edit Debt</button>

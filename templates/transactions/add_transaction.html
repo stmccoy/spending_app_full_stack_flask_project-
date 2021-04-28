@@ -28,14 +28,14 @@
                     <select name="priority_rating" id="priority-rating" required>
                         <option value="" selected disabled>Pick a priority rating</option>
                         {% for transaction_priority in transaction_priority_list %}
-                        <option value={{transaction_priority}}>{{transaction_priority}}</option>
+                        <option value="{{transaction_priority}}">{{transaction_priority}}</option>
                         {% endfor %}
                     </select><br>
                     <label for="tag">Tag</label><br>
                     <select name="tag" id="tag"required>
                         <option value="" selected disabled>Pick a tag</option>
                         {% for tag in tags %}
-                        <option value={{tag.tag_name}}>{{tag.tag_name}}</option>
+                        <option value="{{tag.tag_name}}">{{tag.tag_name}}</option>
                         {% endfor %}
                     </select><br>
                     <button class="button" type="submit">Add Transaction</button>

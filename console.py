@@ -1,4 +1,3 @@
-import pdb
 from models.user import User
 from models.extras import *
 from models.transaction import *
@@ -272,6 +271,3 @@ frequent_trade_repository.save(frequent_trade_2)
 
 frequent_trade_3 = FrequentTrade(user_3, merchant_9)
 frequent_trade_repository.save(frequent_trade_3)
-
-
-pdb.set_trace()
