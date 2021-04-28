@@ -19,10 +19,21 @@ transactions_blueprint = Blueprint('transactions', __name__)
 def transactions():
     user = user_repository.select(session)
     budget = user.budget
+    transaction_total = 0
+    direct_debit_total = 0
+    debt_total = 0
     transactions = transaction_repository.select_by_user(str(user.id))
     direct_debits = direct_debit_repository.select_by_user(str(user.id))
     debts = debt_repository.select_by_user(str(user.id))
-    return render_template('transactions/transactions.html', budget= budget, transactions=transactions, direct_debits=direct_debits, debts= debts)
+    for transaction in transactions:
+        transaction_total += transaction.value 
+    for direct_debit in direct_debits:
+        direct_debit_total += direct_debit.value 
+    for debt in debts:
+        debt_total += debt.value 
+    overall_total = transaction_total + direct_debit_total + debt_total
+    budget_remaining = user.budget - overall_total
+    return render_template('transactions/transactions.html', budget= budget, transactions=transactions, direct_debits=direct_debits, debts= debts, transaction_total=transaction_total, direct_debit_total=direct_debit_total, debt_total=debt_total, overall_total=overall_total, budget_remaining=budget_remaining)
 
 @transactions_blueprint.route('/set_budget', methods=['GET', 'POST'])
 def set_budget():

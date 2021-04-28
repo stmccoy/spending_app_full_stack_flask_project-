@@ -1,11 +1,11 @@
 from flask import Flask, render_template
 app = Flask(__name__)
 
-from controllers.support_controller import support_blueprint
-from controllers.merchant_controller import merchants_blueprint
-from controllers.account_controller import account_blueprint
-from controllers.transactions_controller import transactions_blueprint
-from controllers.tag_controller import tag_blueprint
+from controllers.support_controllers import support_blueprint
+from controllers.merchant_controllers import merchants_blueprint
+from controllers.account_controllers import account_blueprint
+from controllers.transaction_controllers import transactions_blueprint
+from controllers.tag_controllers import tag_blueprint
 
 
 app.register_blueprint(support_blueprint)

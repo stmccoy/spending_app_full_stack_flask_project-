@@ -9,7 +9,7 @@
         <div class='body-of-layout'>
             <h2 id = "budget">My Budget is £{{ budget }}</h2>
             <img src="{{ url_for('static', filename='my_transactions_image.jpeg') }}" alt="my-transactions-image" id='my-transactions-image'>
-            <h1>My Transactions</h1>
+            <h2>My Transactions</h2>
             <table>
                 <tr>
                     <th>Transaction Value</th>
@@ -23,7 +23,7 @@
                 </tr>
                 {% for transaction in transactions %}
                 <tr>
-                    <td>{{transaction.value}}</td>
+                    <td>£{{transaction.value}}</td>
                     <td>{{transaction.description}}</td>
                     <td>{{transaction.merchant.merchant_name}}</td>
                     <td>{{transaction.date}}</td>
@@ -61,7 +61,7 @@
                 </tr>
                 {% for debt in debts %}
                 <tr>
-                    <td>{{debt.value}}</td>
+                    <td>£{{debt.value}}</td>
                     <td>{{debt.description}}</td>
                     <td>{{debt.merchant.merchant_name}}</td>
                     <td>{{debt.date}}</td>
@@ -100,7 +100,7 @@
                 </tr>
                 {% for direct_debit in direct_debits %}
                 <tr>
-                    <td>{{direct_debit.value}}</td>
+                    <td>£{{direct_debit.value}}</td>
                     <td>{{direct_debit.description}}</td>
                     <td>{{direct_debit.merchant.merchant_name}}</td>
                     <td>{{direct_debit.date}}</td>
@@ -119,6 +119,24 @@
                     </td>
                 </tr>
                 {% endfor %}
+            </table>
+            <img src="{{ url_for('static', filename='overall_impact_image.jpeg') }}" alt="overall-impact-image" id='overall-impact-image'>
+            <h2>Overall Impact</h2>
+            <table id='difficult-table'>
+                <tr>
+                    <th>Transactions Total</th>
+                    <th>Direct debit Total</th>
+                    <th>Debt Total</th>
+                    <th>Overall Total</th>
+                    <th>Budget Remaining</th>
+                </tr>
+                <tr>
+                    <td>£{{transaction_total}}</td>
+                    <td>£{{direct_debit_total}}</td>
+                    <td>£{{debt_total}}</td>
+                    <td>£{{overall_total}}</td>
+                    <td>£{{budget_remaining}}</td>
+                </tr>
             </table>
         </div>
     </div>

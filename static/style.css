@@ -142,7 +142,7 @@ body{
     margin: auto
 }
 
-#debt-image, #direct-debit-image,  #my-transactions-image, #budget-image{
+#debt-image, #direct-debit-image,  #my-transactions-image, #budget-image, #overall-impact-image{
     width:750px;
     margin-top: 5%;
 }
