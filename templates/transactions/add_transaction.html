@@ -6,7 +6,7 @@
         {% include 'navs_and_footers/transactions_nav.html' %}
     </div>
     <div class= 'box'>
-        <form action="/add_transaction" method="post">
+        <form action="/add_transaction" method="post" autocomplete="off">
             <div class='body-of-layout'>
                 <img src="{{ url_for('static', filename='my_transactions_image.jpeg') }}" alt="my-transactions-image" id='my-transactions-image'>
                 <h2>Add Transaction</h2>

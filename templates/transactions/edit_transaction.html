@@ -9,7 +9,7 @@
         <div class='body-of-layout'>
             <h2>Edit Transaction</h2>
             <img src="{{ url_for('static', filename='my_transactions_image.jpeg') }}" alt="my-transactions-image" id='my-transactions-image'>
-            <form action="/transaction_edit/transaction/{{transaction.id}}/edit" method="post">
+            <form action="/transaction_edit/transaction/{{transaction.id}}/edit" method="post" autocomplete="off">
                 <div>
                     <label for="value">Value</label><br>
                     <input type="number" name="value" id="value" placeholder="{{transaction.value}}" required autofocus><br>

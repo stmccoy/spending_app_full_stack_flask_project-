@@ -8,17 +8,19 @@
     <div class= 'box'>
         <div class='body-of-layout'>
             <h2>Edit Your Details</h2>
-            <form action="/edit_account_details/{{user.id}}" method='post'>
+            <form action="/edit_account_details/{{user.id}}" method='post' autocomplete="off">
                 <label for="first-name">First Name</label><br>
-                <input type="text" name="first_name" id="first-name" placeholder="{{user.first_name}}" required autofocus><br>
+                <input type="text" name="first_name" placeholder="{{user.first_name}}" required autofocus class='difficult-form-inputs'><br>
                 <label for="Surname">Surname</label><br>
-                <input type="text" name="surname" id="surname" placeholder="{{user.surname}}" required><br>
+                <input type="text" name="surname" placeholder="{{user.surname}}" required class='difficult-form-inputs'><br>
                 <label for="Age">Age</label><br>
-                <input type="number" name="age" id="age" placeholder="{{user.age}}" required><br>
+                <input type="number" name="age" placeholder="{{user.age}}" required class='difficult-form-inputs'><br>
                 <label for="Budget">Budget</label><br>
-                <input type="number" name="budget" id="budget" placeholder="{{user.budget}}" required><br>
-                <label for="Dark-Mode">Dark Mode</label><br>
-                <input type="checkbox" id="dark-mode" name="dark_mode"><br>
+                <input type="number" name="budget" placeholder="{{user.budget}}" required class='difficult-form-inputs'><br>
+                <div id = 'difficult-form-input-accounts'>
+                    <label for="Dark-Mode">Dark Mode</label>
+                    <input type="checkbox" name="dark_mode" id='checkbox'>
+                </div>
                 <button class="button" type="submit">Update Details</button>
             </form>
         </div>

@@ -9,7 +9,7 @@
         <div class='body-of-layout'>
             <h2>Edit Merchant</h2>
             <img src="{{ url_for('static', filename='my_merchants_image.svg') }}" alt="merchants-image" id="merchants-image">
-            <form action="/merchant/{{merchant.id}}/update" method="post">
+            <form action="/merchant/{{merchant.id}}/update" method="post" autocomplete="off">
                 <div>
                     <label for="merchant-name">Merchant Name</label><br>
                     <input type="text" name="merchant_name" id="merchant-name" placeholder="{{merchant.merchant_name}}" required autofocus><br>

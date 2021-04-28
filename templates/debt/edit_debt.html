@@ -6,7 +6,7 @@
         {% include 'navs_and_footers/transactions_nav.html' %}
     </div>
     <div class= 'box'>
-        <form action="/transaction_edit/debt/{{debt.id}}/edit" method="post">
+        <form action="/transaction_edit/debt/{{debt.id}}/edit" method="post" autocomplete="off">
             <div class='body-of-layout'>
             <h2>Edit Debt</h2>
             <img src="{{ url_for('static', filename='debt_image.jpeg') }}" alt="debt-image" id='debt-image'>

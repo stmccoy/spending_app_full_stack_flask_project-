@@ -11,7 +11,7 @@
                 <h2>Set Budget </h2>
             </div>
             <img src="{{ url_for('static', filename='my_budget_image.png') }}" alt="budget-image" id="budget-image">
-            <form action="/set_budget" method="post">
+            <form action="/set_budget" method="post" autocomplete="off">
                 <div>
                     <label for="budget-amount">Budget Amount</label><br>
                     <input id='difficult-form-input-2' type="number" name="budget" id="budget" placeholder="enter budget" required autofocus><br>

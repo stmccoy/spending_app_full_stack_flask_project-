@@ -33,6 +33,10 @@ user_3.budget = 1000
 user_3.dark_mode = True
 user_repository.save(user_3)
 
+merchant = Merchant('None')
+merchant.website = 'None'
+merchant_repository.save(merchant)
+
 merchant_1 = Merchant('Amazon')
 merchant_1.website = 'https//:www.amazon.co.uk'
 merchant_repository.save(merchant_1)
@@ -80,6 +84,9 @@ merchant_repository.save(merchant_11)
 merchant_12 = Merchant("Kyle")
 merchant_12.website = "https://www.instagram.com/kylesinstagram"
 merchant_repository.save(merchant_12)
+
+tag = Tag('None')
+tag_repository.save(tag)
 
 tag_1 = Tag('Clothes')
 tag_repository.save(tag_1)
@@ -162,6 +169,13 @@ transaction_7.merchant = merchant_2
 transaction_7.priority_rating = None
 transaction_7.tag = tag_1
 transaction_repository.save(transaction_7)
+
+transaction_8 = Transaction(user_1, 10, "Lost the money")
+transaction_8.date = "2021-05-27"
+transaction_8.merchant = merchant
+transaction_8.priority_rating = None
+transaction_8.tag = tag
+transaction_repository.save(transaction_8)
 
 direct_debit_1 = DirectDebit(user_1, 20, "Gym")
 direct_debit_1.date = "2021-02-07"

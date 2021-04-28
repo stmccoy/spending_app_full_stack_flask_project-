@@ -9,7 +9,7 @@
         <div class='body-of-layout'>
             <h2>Add Custom Tag</h2>
             <img src="{{ url_for('static', filename='my_tags_image.jpeg') }}" alt="tags-image" id="tags-image">
-            <form action="/add_custom_tag" method="post">
+            <form action="/add_custom_tag" method="post" autocomplete="off">
                 <div>
                     <label for="tag-name" class="form-content">Tag Name</label><br>
                     <input type="text" name="tag_name" class="form-content" placeholder="Tag Name" required autofocus><br>

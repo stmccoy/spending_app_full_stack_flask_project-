@@ -9,7 +9,7 @@
         <div class='body-of-layout'>
             <h2>Add Favourite Merchant</h2>
             <img src="{{ url_for('static', filename='my_merchants_image.svg') }}" alt="merchants-image" id="merchants-image">
-            <form action="/add_favourite_merchant" method="post">
+            <form action="/add_favourite_merchant" method="post" autocomplete="off">
                 <div>
                     <label for="merchant-name">Merchant Name</label><br>
                     <input type="text" name="merchant_name" id="merchant-name" placeholder="Merchant Name" required autofocus><br>

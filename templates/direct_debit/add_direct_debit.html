@@ -9,7 +9,7 @@
         <div class='body-of-layout'>
             <h2>Add Direct Debit</h2>
             <img src="{{ url_for('static', filename='direct_debit_image.webp') }}" alt="direct-debit-image" id='direct-debit-image'>
-            <form action="/add_direct_debit" method="post">
+            <form action="/add_direct_debit" method="post" autocomplete="off">
                 <div>
                     <label for="value">Value</label><br>
                     <input type="number" name="value" id="value" placeholder="Write value here" required autofocus><br>

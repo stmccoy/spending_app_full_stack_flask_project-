@@ -9,12 +9,14 @@
             <div class='body-of-layout'>
                 <h2>Edit Tag</h2>
                 <img src="{{ url_for('static', filename='my_tags_image.jpeg') }}" alt="tags-image" id="tags-image">
-                <form action="/tag/{{tag.id}}/update" method="post">
+                <form action="/tag/{{tag.id}}/update" method="post" autocomplete="off">
                     <div>
                         <label for="tag-name">Tag Name</label><br>
                         <input type="text" name="tag_name" id="tag-name" placeholder="{{tag.tag_name}}" required autofocus><br>
-                        <label for="adult-rating">Adult Rating?</label>
-                        <input type="checkbox" id="adult_rating" name="adult_rating"><br>
+                        <div id = 'difficult-form-input'>
+                            <label for="adult-rating">Adult Rating?</label>
+                            <input type="checkbox" name="adult_rating" id='checkbox'>
+                        </div>
                         <button class="button" type="submit">Update Tag</button>
                     </div>
                 </form>
