@@ -19,7 +19,6 @@ CREATE TABLE users(
 CREATE TABLE merchants(
     id SERIAL PRIMARY KEY,
     merchant_name VARCHAR(255),
-    icon VARCHAR(255),
     website VARCHAR(255)
 );
 
@@ -55,11 +54,7 @@ CREATE TABLE direct_debits(
     reoccurence_frequency_amount INT,
 
     -- missing type list as I don't think I need it
-    reoccurence_frequency_type VARCHAR(255),
-    reoccurence_frequency_type_amount INT,
-
-    -- needs to be an image
-    icon VARCHAR(255)
+    reoccurence_frequency_type VARCHAR(255)
 );
 
 CREATE TABLE debts(
@@ -73,14 +68,8 @@ CREATE TABLE debts(
     priority VARCHAR(255),
     tag_id INT REFERENCES tags(id) ON DELETE SET NULL,
     reoccurence_frequency_amount INT,
-
     -- missing type list as I don't think I need it
     reoccurence_frequency_type VARCHAR(255),
-    reoccurence_frequency_type_amount INT,
-
-    -- needs to be an image
-    icon VARCHAR(255),
-    -- interest INT,
     late_payment_fine INT,
     -- technically a date
     pay_off_date VARCHAR(255)

@@ -7,8 +7,8 @@ import repositories.frequent_trade_repository as frequent_trade_repository
 import repositories.tag_repository as tag_repository
 
 def save(direct_debit):
-    sql = "INSERT INTO direct_debits (user_id, date, value, description, merchant_id, priority, tag_id, reoccurence_frequency_amount, reoccurence_frequency_type, reoccurence_frequency_type_amount, icon) VALUES (%s, %s,%s, %s, %s, %s, %s, %s, %s, %s, %s) RETURNING ID"
-    values = [direct_debit.user.id, direct_debit.date, direct_debit.value, direct_debit.description, direct_debit.merchant.id, direct_debit.priority_rating, direct_debit.tag.id, direct_debit.reoccurence_frequency_amount, direct_debit.reoccurence_frequency_type, direct_debit.reoccurence_frequency_type_amount, direct_debit.icon]
+    sql = "INSERT INTO direct_debits (user_id, date, value, description, merchant_id, priority, tag_id, reoccurence_frequency_amount, reoccurence_frequency_type) VALUES (%s, %s,%s, %s, %s, %s, %s, %s, %s) RETURNING ID"
+    values = [direct_debit.user.id, direct_debit.date, direct_debit.value, direct_debit.description, direct_debit.merchant.id, direct_debit.priority_rating, direct_debit.tag.id, direct_debit.reoccurence_frequency_amount, direct_debit.reoccurence_frequency_type]
     results = run_sql(sql, values)
     direct_debit.id = results[0]['id']
     frequent_trade = FrequentTrade(direct_debit.user, direct_debit.merchant)
@@ -41,8 +41,6 @@ def select(id):
         direct_debit.priority_rating = result['priority']
         direct_debit.reoccurence_frequency_amount = result['reoccurence_frequency_amount']
         direct_debit.reoccurence_frequency_type = result['reoccurence_frequency_type']
-        direct_debit.reoccurence_frequency_type_amount = result['reoccurence_frequency_type_amount']
-        direct_debit.icon = result['icon']
     return direct_debit
 
 def select_all():
@@ -62,8 +60,6 @@ def select_all():
         direct_debit.priority_rating = row['priority']
         direct_debit.reoccurence_frequency_amount = row['reoccurence_frequency_amount']
         direct_debit.reoccurence_frequency_type = row['reoccurence_frequency_type']
-        direct_debit.reoccurence_frequency_type_amount = row['reoccurence_frequency_type_amount']
-        direct_debit.icon = row['icon']
         direct_debits.append(direct_debit)
     return direct_debits
 
@@ -85,8 +81,6 @@ def select_by_user(user_id):
         direct_debit.priority_rating = row['priority']
         direct_debit.reoccurence_frequency_amount = row['reoccurence_frequency_amount']
         direct_debit.reoccurence_frequency_type = row['reoccurence_frequency_type']
-        direct_debit.reoccurence_frequency_type_amount = row['reoccurence_frequency_type_amount']
-        direct_debit.icon = row['icon']
         direct_debits.append(direct_debit)
     return direct_debits
 

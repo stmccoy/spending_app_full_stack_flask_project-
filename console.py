@@ -35,17 +35,14 @@ user_3.dark_mode = True
 user_repository.save(user_3)
 
 merchant_1 = Merchant('Amazon')
-merchant_1.icon = 'Piccy'
 merchant_1.website = 'https//:www.amazon.co.uk'
 merchant_repository.save(merchant_1)
 
 merchant_2 = Merchant('Ebay')
-merchant_2.icon = 'Piccy'
 merchant_2.website = 'https//:www.ebay.co.uk'
 merchant_repository.save(merchant_2)
 
 merchant_3 = Merchant('Asos')
-merchant_3.icon = 'Piccy'
 merchant_3.website = 'https//:www.asos.co.uk'
 merchant_repository.save(merchant_3)
 
@@ -97,8 +94,6 @@ direct_debit_1.merchant = merchant_4
 direct_debit_1.priority_rating = "medium"
 direct_debit_1.reoccurence_frequency_amount = 1
 direct_debit_1.reoccurence_frequency_type = 'year'
-direct_debit_1.reoccurence_frequency_type_amount = 3
-direct_debit_1.icon = "Piccy"
 direct_debit_1.tag = tag_1
 direct_debit_repository.save(direct_debit_1)
 
@@ -108,8 +103,6 @@ direct_debit_2.merchant = merchant_5
 direct_debit_2.priority_rating = "medium"
 direct_debit_2.reoccurence_frequency_amount = 2
 direct_debit_2.reoccurence_frequency_type = 'month'
-direct_debit_2.reoccurence_frequency_type_amount = 3
-direct_debit_2.icon = "Piccy"
 direct_debit_2.tag = tag_2
 direct_debit_repository.save(direct_debit_2)
 
@@ -119,8 +112,6 @@ direct_debit_3.merchant = merchant_6
 direct_debit_3.priority_rating = "high"
 direct_debit_3.reoccurence_frequency_amount = 1
 direct_debit_3.reoccurence_frequency_type = 'week'
-direct_debit_3.reoccurence_frequency_type_amount = 2
-direct_debit_3.icon = "Piccy"
 direct_debit_3.tag = tag_1
 direct_debit_repository.save(direct_debit_3)
 
@@ -145,8 +136,6 @@ debt_1.merchant = merchant_7
 debt_1.priority_rating = "high"
 debt_1.reoccurence_frequency_amount = 1
 debt_1.reoccurence_frequency_type = 'Year'
-debt_1.reoccurence_frequency_type_amount = 1
-debt_1.icon = "Piccy"
 debt_1.late_payment_fine = 10
 debt_1.pay_off_date = "2022-02-12"
 debt_1.tag = tag_1
@@ -158,8 +147,6 @@ debt_2.merchant = merchant_8
 debt_2.priority_rating = "high"
 debt_2.reoccurence_frequency_amount = 1
 debt_2.reoccurence_frequency_type = 'Month'
-debt_2.reoccurence_frequency_type_amount = 2
-debt_2.icon = "Piccy"
 debt_2.late_payment_fine = 50
 debt_2.pay_off_date = "2023-06-12"
 debt_2.tag = tag_2
@@ -171,8 +158,6 @@ debt_3.merchant = merchant_9
 debt_3.priority_rating = "high"
 debt_3.reoccurence_frequency_amount = 2
 debt_3.reoccurence_frequency_type = 'Week'
-debt_3.reoccurence_frequency_type_amount = 1
-debt_3.icon = "Piccy"
 debt_3.late_payment_fine = 40
 debt_3.pay_off_date = "2021-11-12"
 debt_3.tag = tag_1

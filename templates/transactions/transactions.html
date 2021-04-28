@@ -42,6 +42,42 @@
                 </tr>
                 {% endfor %}
             </table>
+            <img src="{{ url_for('static', filename='direct_debit_image.webp') }}" alt="direct-debit-image" id='direct-debit-image'>
+            <table>
+                <h2>My Direct Debits</h2>
+                <tr>
+                    <th>Direct Debit Value</th>
+                    <th>Direct Debit Description</th>
+                    <th>Direct Debit Merchant</th>
+                    <th>Direct Debit Date</th>
+                    <th>Direct Debit Priority Rating</th>
+                    <th>Direct Debit Tag</th>
+                    <th>Direct Debit Occurence</th>
+                    <th>Direct Debit Edit</th>
+                    <th>Direct Debit Delete</th>
+                </tr>
+                {% for direct_debit in direct_debits %}
+                <tr>
+                    <td>£{{direct_debit.value}}</td>
+                    <td>{{direct_debit.description}}</td>
+                    <td>{{direct_debit.merchant.merchant_name}}</td>
+                    <td>{{direct_debit.date}}</td>
+                    <td>{{direct_debit.priority_rating}}</td>
+                    <td>{{direct_debit.tag.tag_name}}</td>
+                    <td>{{direct_debit.reoccurence_frequency_amount}} payment a {{direct_debit.reoccurence_frequency_type}} </td>
+                    <td>
+                        <form action="/transaction_edit/direct_debit/{{direct_debit.id}}/edit">
+                            <button type="submit">Edit</button>
+                        </form>
+                    </td>
+                    <td>
+                        <form action="/transaction_delete/direct_debit/{{direct_debit.id}}/delete" method='post'>
+                            <button type="submit">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
             <img src="{{ url_for('static', filename='debt_image.jpeg') }}" alt="debt-image" id='debt-image'>
             <table>
                 <h2>My Debts</h2>
@@ -78,42 +114,6 @@
                     </td>
                     <td>
                         <form action="/transaction_delete/debt/{{debt.id}}/delete" method='post'>
-                            <button type="submit">Delete</button>
-                        </form>
-                    </td>
-                </tr>
-                {% endfor %}
-            </table>
-            <img src="{{ url_for('static', filename='direct_debit_image.webp') }}" alt="direct-debit-image" id='direct-debit-image'>
-            <table>
-                <h2>My Direct Debits</h2>
-                <tr>
-                    <th>Direct Debit Value</th>
-                    <th>Direct Debit Description</th>
-                    <th>Direct Debit Merchant</th>
-                    <th>Direct Debit Date</th>
-                    <th>Direct Debit Priority Rating</th>
-                    <th>Direct Debit Tag</th>
-                    <th>Direct Debit Occurence</th>
-                    <th>Direct Debit Edit</th>
-                    <th>Direct Debit Delete</th>
-                </tr>
-                {% for direct_debit in direct_debits %}
-                <tr>
-                    <td>£{{direct_debit.value}}</td>
-                    <td>{{direct_debit.description}}</td>
-                    <td>{{direct_debit.merchant.merchant_name}}</td>
-                    <td>{{direct_debit.date}}</td>
-                    <td>{{direct_debit.priority_rating}}</td>
-                    <td>{{direct_debit.tag.tag_name}}</td>
-                    <td>{{direct_debit.reoccurence_frequency_amount}} payment a {{direct_debit.reoccurence_frequency_type}} </td>
-                    <td>
-                        <form action="/transaction_edit/direct_debit/{{direct_debit.id}}/edit">
-                            <button type="submit">Edit</button>
-                        </form>
-                    </td>
-                    <td>
-                        <form action="/transaction_delete/direct_debit/{{direct_debit.id}}/delete" method='post'>
                             <button type="submit">Delete</button>
                         </form>
                     </td>

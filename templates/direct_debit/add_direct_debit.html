@@ -17,6 +17,7 @@
                     <input type="text" name="description" id="direct_debit_description" placeholder="Direct Debit description" required><br>
                     <label for="date">Date</label><br>
                     <input type="date" name="date" id="direct_debit_date" required><br>
+                    <label for="merchant">Merchant</label><br>
                     <select name="merchant" id="merchant" required>
                         <option value="" selected disabled>Pick a merchant</option>
                         {% for merchant in merchants %}

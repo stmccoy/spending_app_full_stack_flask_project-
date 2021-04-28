@@ -2,7 +2,6 @@ class Merchant:
 
     def __init__(self, name, id= None):
         self.merchant_name = name
-        self.icon = None
         self.website = None
         self.id = id
 

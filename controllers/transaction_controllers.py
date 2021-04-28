@@ -83,6 +83,7 @@ def add_direct_debit():
         tag = tag_repository.select_by_name(tag_name)[0]
         direct_debit.tag = tag
         direct_debit.merchant = merchant
+        direct_debit.reoccurence_frequency_type = request.form['reoccurence_frequency_type']
         direct_debit.reoccurence_frequency_amount = request.form['reoccurence_frequency_amount']
         direct_debit_repository.save(direct_debit)
         return redirect(url_for('transactions.transactions'))
@@ -108,6 +109,7 @@ def add_debt():
         tag_name = request.form['tag']
         tag = tag_repository.select_by_name(tag_name)[0]
         debt.tag = tag
+        debt.reoccurence_frequency_type = request.form['reoccurence_frequency_type']
         debt.reoccurence_frequency_amount = request.form['reoccurence_frequency_amount']
         debt.late_payment_fine = request.form['late_payment_fine']
         debt.pay_off_date = request.form['pay_off_date']
