@@ -1,11 +1,9 @@
-import pdb
 from app import app
 from flask import render_template, request, redirect, url_for
 from flask import Blueprint
 from session import session
 from models.extras import Merchant
 from models.frequent_trades import FrequentTrade
-from models.user import User
 import repositories.user_repository as user_repository
 import repositories.merchant_repository as merchant_repository
 import repositories.frequent_trade_repository as frequent_trade_repository
@@ -23,8 +21,6 @@ def add_merchant():
     if request.method == 'POST':
         user = user_repository.select(session) 
         merchant_name = request.form['merchant_name']
-        if 'merchant_website' in request.form:
-            merchant_website = request.form['merchant_website']
         merchant = Merchant(merchant_name)
         merchant.website = request.form['merchant_website']
         merchant_repository.save(merchant)

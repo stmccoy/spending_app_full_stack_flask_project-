@@ -1,6 +1,5 @@
 class User:
 
-#deleted self.favourite_merchants, self.debts=[], self.transactions = [] self.direct_debits = [] as they're done on another table, deleted
     def __init__(self, first_name, surname, age, id=None):
         self.first_name = first_name
         self.surname = surname

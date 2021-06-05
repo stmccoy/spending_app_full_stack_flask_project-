@@ -266,7 +266,7 @@ debt_4.pay_off_date = "2022-03-12"
 debt_4.tag = tag_11
 debt_repository.save(debt_4)
 
-debt_5 = Debt(user_2, 20, "tic")
+debt_5 = Debt(user_2, 20, "Pints at pub")
 debt_5.date = "2022-02-10"
 debt_5.merchant = merchant_12
 debt_5.priority_rating = "high"

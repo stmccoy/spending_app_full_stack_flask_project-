@@ -1,5 +1,3 @@
-#NEEDS TESTS
-
 class FrequentTrade:
 
     def __init__(self, user, merchant, id=None):

@@ -32,7 +32,6 @@ CREATE TABLE tags(
 CREATE TABLE transactions(
     id SERIAL PRIMARY KEY,
     user_id INT REFERENCES users(id),
-    -- needs to be date
     date VARCHAR(255),
     value INT,
     description VARCHAR(255),
@@ -44,7 +43,6 @@ CREATE TABLE transactions(
 CREATE TABLE direct_debits(
     id SERIAL PRIMARY KEY,
     user_id INT REFERENCES users(id),
-    -- needs to be date
     date VARCHAR(255),
     value INT,
     description VARCHAR(255),
@@ -52,15 +50,12 @@ CREATE TABLE direct_debits(
     priority VARCHAR(255),
     tag_id INT REFERENCES tags(id) ON DELETE SET NULL,
     reoccurence_frequency_amount INT,
-
-    -- missing type list as I don't think I need it
     reoccurence_frequency_type VARCHAR(255)
 );
 
 CREATE TABLE debts(
     id SERIAL PRIMARY KEY,
     user_id INT REFERENCES users(id),
-    -- needs to be date
     date VARCHAR(255),
     value INT,
     description VARCHAR(255),
@@ -68,10 +63,8 @@ CREATE TABLE debts(
     priority VARCHAR(255),
     tag_id INT REFERENCES tags(id) ON DELETE SET NULL,
     reoccurence_frequency_amount INT,
-    -- missing type list as I don't think I need it
     reoccurence_frequency_type VARCHAR(255),
     late_payment_fine INT,
-    -- technically a date
     pay_off_date VARCHAR(255)
 );
 
