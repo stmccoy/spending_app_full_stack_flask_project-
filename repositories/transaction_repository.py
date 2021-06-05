@@ -8,12 +8,18 @@ import repositories.tag_repository as tag_repository
 
 
 def save(transaction):
+    transaction_merchant_data = None
+    transaction_tag_data = None
     sql = "INSERT INTO transactions (user_id, date, value, description, merchant_id, priority, tag_id) VALUES (%s, %s, %s, %s, %s, %s, %s) RETURNING ID"
-    values = [transaction.user.id, transaction.date, transaction.value, transaction.description, transaction.merchant.id, transaction.priority_rating, transaction.tag.id]#needs to be id for tag
+    if transaction.merchant:
+        transaction_merchant_data = transaction.merchant.id
+        frequent_trade = FrequentTrade(transaction.user, transaction.merchant)
+        frequent_trade_repository.save(frequent_trade)
+    if transaction.tag:
+        transaction_tag_data = transaction.tag.id
+    values = [transaction.user.id, transaction.date, transaction.value, transaction.description, transaction_merchant_data, transaction.priority_rating, transaction_tag_data]#needs to be id for tag
     results = run_sql(sql, values)
     transaction.id = results[0]['id']
-    frequent_trade = FrequentTrade(transaction.user, transaction.merchant)
-    frequent_trade_repository.save(frequent_trade)
     return transaction
 
 def delete_all():

@@ -27,7 +27,11 @@
                     <td>{{transaction.description}}</td>
                     <td>{{transaction.merchant.merchant_name}}</td>
                     <td>{{transaction.date}}</td>
-                    <td>{{transaction.priority_rating}}</td>
+                    {% if transaction.priority_rating %}
+                        <td>{{transaction.priority_rating}}</td>
+                    {% else %}
+                        <td></td>
+                    {% endif %}
                     <td>{{transaction.tag.tag_name}}</td>
                     <td>
                         <form action="/transaction_edit/transaction/{{transaction.id}}/edit">

@@ -14,25 +14,25 @@
                     <label for="value">Value</label><br>
                     <input type="number" name="value" id="value" placeholder="Write value here" required autofocus><br>
                     <label for="description">Description</label><br>
-                    <input type="text" name="description" id="transaction_description" placeholder="Transaction description" required><br>
+                    <input type="text" name="description" id="transaction_description" placeholder="Transaction description" ><br>
                     <label for="date">Date</label><br>
-                    <input type="date" name="date" id="transaction_date" required><br>
+                    <input type="date" name="date" id="transaction_date" ><br>
                     <label for="merchant">Merchant</label><br>
-                    <select name="merchant" id="merchant" required>
+                    <select name="merchant" id="merchant" >
                         <option value="" selected disabled>Pick a merchant</option>
                         {% for merchant in merchants %}
                         <option value="{{merchant.merchant_name}}">{{merchant.merchant_name}}</option>
                         {% endfor %}
                     </select><br>
                     <label for="priority-rating">Priority rating</label><br>
-                    <select name="priority_rating" id="priority-rating" required>
+                    <select name="priority_rating" id="priority-rating" >
                         <option value="" selected disabled>Pick a priority rating</option>
                         {% for transaction_priority in transaction_priority_list %}
                         <option value="{{transaction_priority}}">{{transaction_priority}}</option>
                         {% endfor %}
                     </select><br>
                     <label for="tag">Tag</label><br>
-                    <select name="tag" id="tag"required>
+                    <select name="tag" id="tag">
                         <option value="" selected disabled>Pick a tag</option>
                         {% for tag in tags %}
                         <option value="{{tag.tag_name}}">{{tag.tag_name}}</option>

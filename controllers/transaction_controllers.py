@@ -29,7 +29,8 @@ def transactions():
     debts = debt_repository.select_by_user(str(user.id))
     for transaction in transactions:
         transaction_total += transaction.value 
-        transaction.date = datetime.strptime(str(transaction.date), '%Y-%m-%d').strftime('%d-%m-%Y')
+        if transaction.date:
+            transaction.date = datetime.strptime(str(transaction.date), '%Y-%m-%d').strftime('%d-%m-%Y')
     for direct_debit in direct_debits:
         direct_debit_total += direct_debit.value 
         direct_debit.date = datetime.strptime(str(direct_debit.date), '%Y-%m-%d').strftime('%d-%m-%Y')
@@ -58,13 +59,19 @@ def add_transaction():
         description = request.form['description']
         transaction = Transaction(user, value, description)
         transaction.date = request.form['date']
-        transaction.priority_rating = request.form['priority_rating']
-        merchant_name = request.form['merchant']
-        merchant = merchant_repository.select_by_name(merchant_name)[0]
-        transaction.merchant = merchant
-        tag_name = request.form['tag']
-        tag = tag_repository.select_by_name(tag_name)[0]
-        transaction.tag = tag
+        if 'priority_rating' in request.form:
+            print('priority')
+            transaction.priority_rating = request.form['priority_rating']
+        if 'merchant' in request.form:
+            print('merchant')
+            merchant_name = request.form['merchant']
+            merchant = merchant_repository.select_by_name(merchant_name)[0]
+            transaction.merchant = merchant
+        if 'tag' in request.form:
+            print('tag')
+            tag_name = request.form['tag']
+            tag = tag_repository.select_by_name(tag_name)[0]
+            transaction.tag = tag
         transaction_repository.save(transaction)
         return redirect(url_for('transactions.transactions'))
     user = user_repository.select(session)  
