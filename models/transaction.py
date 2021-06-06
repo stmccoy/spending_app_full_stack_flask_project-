@@ -37,7 +37,6 @@ class DirectDebit(Transaction):
         self.reoccurence_frequency_type_list = ["day", "week", "year"] 
         self.reoccurence_frequency_type_amount= None
         #picture to highlight it's a direct debit
-        self.icon = "Test"
 
 class Debt(DirectDebit):
     def __init__(self, *args, **kwargs):        

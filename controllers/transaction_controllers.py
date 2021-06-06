@@ -32,8 +32,9 @@ def transactions():
         if transaction.date:
             transaction.date = datetime.strptime(str(transaction.date), '%Y-%m-%d').strftime('%d-%m-%Y')
     for direct_debit in direct_debits:
-        direct_debit_total += direct_debit.value 
-        direct_debit.date = datetime.strptime(str(direct_debit.date), '%Y-%m-%d').strftime('%d-%m-%Y')
+        direct_debit_total += direct_debit.value
+        if direct_debit.date: 
+            direct_debit.date = datetime.strptime(str(direct_debit.date), '%Y-%m-%d').strftime('%d-%m-%Y')
     for debt in debts:
         debt_total += debt.value 
         debt.date = datetime.strptime(str(debt.date), '%Y-%m-%d').strftime('%d-%m-%Y')
@@ -60,15 +61,12 @@ def add_transaction():
         transaction = Transaction(user, value, description)
         transaction.date = request.form['date']
         if 'priority_rating' in request.form:
-            print('priority')
             transaction.priority_rating = request.form['priority_rating']
         if 'merchant' in request.form:
-            print('merchant')
             merchant_name = request.form['merchant']
             merchant = merchant_repository.select_by_name(merchant_name)[0]
             transaction.merchant = merchant
         if 'tag' in request.form:
-            print('tag')
             tag_name = request.form['tag']
             tag = tag_repository.select_by_name(tag_name)[0]
             transaction.tag = tag
@@ -90,15 +88,20 @@ def add_direct_debit():
         description = request.form['description']
         direct_debit = DirectDebit(user, value, description)
         direct_debit.date = request.form['date']
-        direct_debit.priority_rating = request.form['priority_rating']
-        merchant_name = request.form['merchant']
-        merchant = merchant_repository.select_by_name(merchant_name)[0]
-        tag_name = request.form['tag']
-        tag = tag_repository.select_by_name(tag_name)[0]
-        direct_debit.tag = tag
-        direct_debit.merchant = merchant
-        direct_debit.reoccurence_frequency_type = request.form['reoccurence_frequency_type']
-        direct_debit.reoccurence_frequency_amount = request.form['reoccurence_frequency_amount']
+        if 'priority_rating' in request.form:
+            direct_debit.priority_rating = request.form['priority_rating']
+        if 'merchant' in request.form:
+            merchant_name = request.form['merchant']
+            merchant = merchant_repository.select_by_name(merchant_name)[0]
+            direct_debit.merchant = merchant
+        if 'tag' in request.form:
+            tag_name = request.form['tag']
+            tag = tag_repository.select_by_name(tag_name)[0]
+            direct_debit.tag = tag
+        if 'reoccurence_frequency_type' in request.form:
+            direct_debit.reoccurence_frequency_type = request.form['reoccurence_frequency_type']
+        if request.form['reoccurence_frequency_amount']:
+            direct_debit.reoccurence_frequency_amount = request.form['reoccurence_frequency_amount']
         direct_debit_repository.save(direct_debit)
         return redirect(url_for('transactions.transactions'))
     user = user_repository.select(session)  

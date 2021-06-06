@@ -66,9 +66,24 @@
                     <td>{{direct_debit.description}}</td>
                     <td>{{direct_debit.merchant.merchant_name}}</td>
                     <td>{{direct_debit.date}}</td>
-                    <td>{{direct_debit.priority_rating}}</td>
+                    {% if direct_debit.priority_rating %}
+                        <td>{{direct_debit.priority_rating}}</td>
+                    {% else %}
+                        <td></td>
+                    {% endif %}
                     <td>{{direct_debit.tag.tag_name}}</td>
-                    <td>{{direct_debit.reoccurence_frequency_amount}} payment a {{direct_debit.reoccurence_frequency_type}} </td>
+                    {% if direct_debit.reoccurence_frequency_amount  %}
+                        <td>{{direct_debit.reoccurence_frequency_amount}} 
+                            {% if direct_debit.reoccurence_frequency_amount > 1%}
+                                payments a 
+                            {% else %}
+                                payment a
+                            {% endif %}
+                            {{direct_debit.reoccurence_frequency_type}} 
+                        </td>
+                    {% else %}
+                        <td></td>
+                    {% endif %}
                     <td>
                         <form action="/transaction_edit/direct_debit/{{direct_debit.id}}/edit">
                             <button type="submit">Edit</button>
