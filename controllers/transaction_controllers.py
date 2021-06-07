@@ -37,9 +37,11 @@ def transactions():
             direct_debit.date = datetime.strptime(str(direct_debit.date), '%Y-%m-%d').strftime('%d-%m-%Y')
     for debt in debts:
         debt_total += debt.value 
-        debt.date = datetime.strptime(str(debt.date), '%Y-%m-%d').strftime('%d-%m-%Y')
-        debt.days_left = debt.calculate_time_left(str(current_date), debt.pay_off_date)
-        debt.pay_off_date = datetime.strptime(str(debt.pay_off_date), '%Y-%m-%d').strftime('%d-%m-%Y')
+        if debt.date:
+            debt.date = datetime.strptime(str(debt.date), '%Y-%m-%d').strftime('%d-%m-%Y')
+        if debt.pay_off_date:
+            debt.days_left = debt.calculate_time_left(str(current_date), debt.pay_off_date)
+            debt.pay_off_date = datetime.strptime(str(debt.pay_off_date), '%Y-%m-%d').strftime('%d-%m-%Y')
     overall_total = transaction_total + direct_debit_total + debt_total
     budget_remaining = user.budget - overall_total
     return render_template('transactions/transactions.html', budget= budget, transactions=transactions, direct_debits=direct_debits, debts= debts, transaction_total=transaction_total, direct_debit_total=direct_debit_total, debt_total=debt_total, overall_total=overall_total, budget_remaining=budget_remaining)
@@ -119,16 +121,22 @@ def add_debt():
         description = request.form['description']
         debt = Debt(user, value, description)
         debt.date = request.form['date']
-        debt.priority_rating = request.form['priority_rating']
-        merchant_name = request.form['merchant']
-        merchant = merchant_repository.select_by_name(merchant_name)[0]
-        debt.merchant = merchant
-        tag_name = request.form['tag']
-        tag = tag_repository.select_by_name(tag_name)[0]
-        debt.tag = tag
-        debt.reoccurence_frequency_type = request.form['reoccurence_frequency_type']
-        debt.reoccurence_frequency_amount = request.form['reoccurence_frequency_amount']
-        debt.late_payment_fine = request.form['late_payment_fine']
+        if 'priority_rating' in request.form:
+            debt.priority_rating = request.form['priority_rating']
+        if 'merchant' in request.form:
+            merchant_name = request.form['merchant']
+            merchant = merchant_repository.select_by_name(merchant_name)[0]
+            debt.merchant = merchant
+        if 'tag' in request.form:
+            tag_name = request.form['tag']
+            tag = tag_repository.select_by_name(tag_name)[0]
+            debt.tag = tag
+        if 'reoccurence_frequency_type' in request.form:
+            debt.reoccurence_frequency_type = request.form['reoccurence_frequency_type']
+        if request.form['reoccurence_frequency_amount']:
+            debt.reoccurence_frequency_amount = request.form['reoccurence_frequency_amount']
+        if request.form['late_payment_fine']:
+            debt.late_payment_fine = request.form['late_payment_fine']
         debt.pay_off_date = request.form['pay_off_date']
         debt_repository.save(debt)
         return redirect(url_for('transactions.transactions'))

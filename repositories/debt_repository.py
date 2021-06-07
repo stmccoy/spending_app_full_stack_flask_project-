@@ -8,12 +8,19 @@ import repositories.tag_repository as tag_repository
 
 
 def save(debt):
+    debt_merchant_data = None
+    debt_tag_data = None
     sql = "INSERT INTO debts (user_id, date, value, description, merchant_id, priority, tag_id,reoccurence_frequency_amount, reoccurence_frequency_type, late_payment_fine, pay_off_date) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s) RETURNING ID"
-    values = [debt.user.id, debt.date, debt.value, debt.description, debt.merchant.id, debt.priority_rating, debt.tag.id, debt.reoccurence_frequency_amount, debt.reoccurence_frequency_type, debt.late_payment_fine, debt.pay_off_date]
+    if debt.merchant:
+        debt_merchant_data = debt.merchant.id
+        frequent_trade = FrequentTrade(debt.user, debt.merchant)
+        frequent_trade_repository.save(frequent_trade)
+    if debt.tag:
+        debt_tag_data = debt.tag.id
+    values = [debt.user.id, debt.date, debt.value, debt.description, debt_merchant_data, debt.priority_rating, debt_tag_data, debt.reoccurence_frequency_amount, debt.reoccurence_frequency_type, debt.late_payment_fine, debt.pay_off_date]
     results = run_sql(sql, values)
     debt.id = results[0]['id']
-    frequent_trade = FrequentTrade(debt.user, debt.merchant)
-    frequent_trade_repository.save(frequent_trade)
+
     return debt
 
 def delete_all():
