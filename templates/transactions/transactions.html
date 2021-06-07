@@ -120,12 +120,36 @@
                     <td>{{debt.description}}</td>
                     <td>{{debt.merchant.merchant_name}}</td>
                     <td>{{debt.date}}</td>
-                    <td>{{debt.priority_rating}}</td>
+                    {% if debt.priority_rating %}
+                        <td>{{debt.priority_rating}}</td>
+                    {% else %}
+                        <td></td>
+                    {% endif %}
                     <td>{{debt.tag.tag_name}}</td>
-                    <td>{{debt.reoccurence_frequency_amount}} payment a {{debt.reoccurence_frequency_type}}</td>
-                    <td>{{debt.late_payment_fine}}</td>
-                    <td>{{debt.pay_off_date}}</td>
-                    <td>{{debt.days_left}} days until paid</td>
+                    {% if debt.reoccurence_frequency_amount  %}
+                        <td>{{debt.reoccurence_frequency_amount}} 
+                            {% if debt.reoccurence_frequency_amount > 1%}
+                                payments a 
+                            {% else %}
+                                payment a
+                            {% endif %}
+                            {{debt.reoccurence_frequency_type}} 
+                        </td>
+                    {% else %}
+                        <td></td>
+                    {% endif %}
+                    {% if debt.late_payment_fine %}
+                        <td>{{debt.late_payment_fine}}</td>
+                    {% else %}
+                        <td></td>
+                    {% endif %}
+                    {% if debt.pay_off_date %}
+                        <td>{{debt.pay_off_date}}</td>
+                        <td>{{debt.days_left}} days until paid</td>
+                    {% else %}
+                        <td></td>
+                        <td></td>
+                    {% endif %}
                     <td>
                         <form action="/transaction_edit/debt/{{debt.id}}/edit">
                             <button type="submit">Edit</button>
