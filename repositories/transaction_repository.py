@@ -126,6 +126,14 @@ def select_by_user(user_id):
     return transactions
 
 def update(transaction):
+    transaction_merchant_data = None
+    transaction_tag_data = None
     sql = "UPDATE transactions SET (date, value, description, merchant_id, priority, tag_id) = (%s, %s, %s, %s, %s, %s) WHERE id = %s"
-    values = [transaction.date, transaction.value, transaction.description, transaction.merchant.id, transaction.priority_rating, transaction.tag.id, transaction.id]
+    if transaction.merchant:
+        transaction_merchant_data = transaction.merchant.id
+        frequent_trade = FrequentTrade(transaction.user, transaction.merchant)
+        frequent_trade_repository.save(frequent_trade)
+    if transaction.tag:
+        transaction_tag_data = transaction.tag.id
+    values = [transaction.date, transaction.value, transaction.description, transaction_merchant_data, transaction.priority_rating, transaction_tag_data, transaction.id]
     run_sql(sql, values)

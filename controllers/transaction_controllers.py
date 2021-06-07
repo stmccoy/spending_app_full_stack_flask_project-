@@ -183,14 +183,17 @@ def edit_transaction_post(id, transaction_type):
             date = request.form['date']
             transaction = Transaction(user, value, description)
             transaction.date = date
-            merchant_name = request.form['merchant']
-            merchant = merchant_repository.select_by_name(merchant_name)[0]
-            transaction.merchant = merchant
-            priority_rating = request.form['priority_rating']
-            transaction.priority_rating = priority_rating
-            tag_name = request.form['tag']
-            tag = tag_repository.select_by_name(tag_name)[0]
-            transaction.tag = tag
+            if 'merchant' in request.form:
+                merchant_name = request.form['merchant']
+                merchant = merchant_repository.select_by_name(merchant_name)[0]
+                transaction.merchant = merchant
+            if 'priority_rating' in request.form:
+                priority_rating = request.form['priority_rating']
+                transaction.priority_rating = priority_rating
+            if 'tag' in request.form:
+                tag_name = request.form['tag']
+                tag = tag_repository.select_by_name(tag_name)[0]
+                transaction.tag = tag
             transaction.id = id
             transaction_repository.update(transaction)
             return redirect(url_for('transactions.transactions'))
@@ -200,16 +203,21 @@ def edit_transaction_post(id, transaction_type):
             date = request.form['date']
             direct_debit = DirectDebit(user, value, description)
             direct_debit.date = date
-            merchant_name = request.form['merchant']
-            merchant = merchant_repository.select_by_name(merchant_name)[0]
-            direct_debit.merchant = merchant
-            priority_rating = request.form['priority_rating']
-            direct_debit.priority_rating = priority_rating
-            tag_name = request.form['tag']
-            tag = tag_repository.select_by_name(tag_name)[0]
-            direct_debit.tag = tag
-            direct_debit.reoccurence_frequency_amount = request.form['reoccurence_frequency_amount']
-            direct_debit.reoccurence_frequency_type = request.form['reoccurence_frequency_type']
+            if 'merchant' in request.form:
+                merchant_name = request.form['merchant']
+                merchant = merchant_repository.select_by_name(merchant_name)[0]
+                direct_debit.merchant = merchant
+            if 'priority_rating' in request.form:
+                priority_rating = request.form['priority_rating']
+                direct_debit.priority_rating = priority_rating
+            if 'tag' in request.form:
+                tag_name = request.form['tag']
+                tag = tag_repository.select_by_name(tag_name)[0]
+                direct_debit.tag = tag
+            if request.form['reoccurence_frequency_amount']:
+                direct_debit.reoccurence_frequency_amount = request.form['reoccurence_frequency_amount']
+            if 'reoccurence_frequency_type' in request.form:
+                direct_debit.reoccurence_frequency_type = request.form['reoccurence_frequency_type']
             direct_debit.id = id
             direct_debit_repository.update(direct_debit)
             return redirect(url_for('transactions.transactions'))
@@ -219,19 +227,26 @@ def edit_transaction_post(id, transaction_type):
             date = request.form['date']
             debt = Debt(user, value, description)
             debt.date = date
-            merchant_name = request.form['merchant']
-            merchant = merchant_repository.select_by_name(merchant_name)[0]
-            debt.merchant = merchant
-            priority_rating = request.form['priority_rating']
-            debt.priority_rating = priority_rating
-            tag_name = request.form['tag']
-            tag = tag_repository.select_by_name(tag_name)[0]
-            debt.tag = tag
-            debt.reoccurence_frequency_amount = request.form['reoccurence_frequency_amount']
-            debt.reoccurence_frequency_type = request.form['reoccurence_frequency_type']
-            debt.late_payment_fine = request.form['late_payment_fine']
+            if 'merchant' in request.form:
+                merchant_name = request.form['merchant']
+                merchant = merchant_repository.select_by_name(merchant_name)[0]
+                debt.merchant = merchant
+            if 'priority_rating' in request.form:
+                priority_rating = request.form['priority_rating']
+                debt.priority_rating = priority_rating
+            if 'tag' in request.form:
+                tag_name = request.form['tag']
+                tag = tag_repository.select_by_name(tag_name)[0]
+                debt.tag = tag
+            if request.form['reoccurence_frequency_amount']:
+                debt.reoccurence_frequency_amount = request.form['reoccurence_frequency_amount']
+            if 'reoccurence_frequency_type' in request.form:
+                debt.reoccurence_frequency_type = request.form['reoccurence_frequency_type']
+            if request.form['late_payment_fine']:
+                debt.late_payment_fine = request.form['late_payment_fine']
             debt.pay_off_date = request.form['pay_off_date']
             debt.id = id
             debt_repository.update(debt)
             return redirect(url_for('transactions.transactions'))
+
 

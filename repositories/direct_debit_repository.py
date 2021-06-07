@@ -91,6 +91,14 @@ def select_by_user(user_id):
     return direct_debits
 
 def update(direct_debit):
+    direct_debit_merchant_data = None
+    direct_debit_tag_data = None
     sql = "UPDATE direct_debits SET (date, value, description, merchant_id, priority, tag_id, reoccurence_frequency_amount, reoccurence_frequency_type) = (%s, %s, %s, %s, %s, %s, %s, %s) WHERE id = %s"
-    values = [direct_debit.date, direct_debit.value, direct_debit.description, direct_debit.merchant.id, direct_debit.priority_rating, direct_debit.tag.id, direct_debit.reoccurence_frequency_amount, direct_debit.reoccurence_frequency_type, direct_debit.id]
+    if direct_debit.merchant:
+        direct_debit_merchant_data = direct_debit.merchant.id
+        frequent_trade = FrequentTrade(direct_debit.user, direct_debit.merchant)
+        frequent_trade_repository.save(frequent_trade)
+    if direct_debit.tag:
+        direct_debit_tag_data = direct_debit.tag.id
+    values = [direct_debit.date, direct_debit.value, direct_debit.description, direct_debit_merchant_data, direct_debit.priority_rating, direct_debit_tag_data, direct_debit.reoccurence_frequency_amount, direct_debit.reoccurence_frequency_type, direct_debit.id]
     run_sql(sql, values)
