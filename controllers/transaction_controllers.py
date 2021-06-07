@@ -44,15 +44,16 @@ def transactions():
             debt.pay_off_date = datetime.strptime(str(debt.pay_off_date), '%Y-%m-%d').strftime('%d-%m-%Y')
     overall_total = transaction_total + direct_debit_total + debt_total
     budget_remaining = user.budget - overall_total
-    return render_template('transactions/transactions.html', budget= budget, transactions=transactions, direct_debits=direct_debits, debts= debts, transaction_total=transaction_total, direct_debit_total=direct_debit_total, debt_total=debt_total, overall_total=overall_total, budget_remaining=budget_remaining)
+    return render_template('transactions/transactions.html', budget= budget, transactions=transactions, direct_debits=direct_debits, debts= debts, transaction_total=transaction_total, direct_debit_total=direct_debit_total, debt_total=debt_total, overall_total=overall_total, budget_remaining=budget_remaining, user=user)
 
 @transactions_blueprint.route('/set_budget', methods=['GET', 'POST'])
 def set_budget():
+    user = user_repository.select(session)
     if request.method == 'POST':
         budget = request.form['budget']
         user_repository.update_user_budget(budget, session)  
         return redirect(url_for('transactions.transactions'))
-    return render_template('transactions/set_budget.html')
+    return render_template('transactions/set_budget.html', user=user)
 
 @transactions_blueprint.route('/add_transaction', methods=['GET', 'POST'])
 def add_transaction():
@@ -79,7 +80,7 @@ def add_transaction():
     tags = tag_repository.select_all_by_user(str(user.id))
     transaction_priority_list = ["low", "medium", "high"]
     return render_template('transactions/add_transaction.html', 
-    transaction_priority_list=transaction_priority_list, merchants=merchants, tags=tags)
+    transaction_priority_list=transaction_priority_list, merchants=merchants, tags=tags, user=user)
 
 
 @transactions_blueprint.route('/add_direct_debit', methods=['GET', 'POST'])
@@ -111,7 +112,7 @@ def add_direct_debit():
     tags = tag_repository.select_all_by_user(str(user.id))
     direct_debit_priority_list = ["low", "medium", "high"]
     direct_debit_time_scales = ["week", "fortnight", "month", "year"]
-    return render_template('direct_debit/add_direct_debit.html', direct_debit_priority_list=direct_debit_priority_list, direct_debit_time_scales=direct_debit_time_scales, merchants=merchants, tags=tags)
+    return render_template('direct_debit/add_direct_debit.html', direct_debit_priority_list=direct_debit_priority_list, direct_debit_time_scales=direct_debit_time_scales, merchants=merchants, tags=tags, user=user)
 
 @transactions_blueprint.route('/add_debt', methods=['GET', 'POST'])
 def add_debt():
@@ -145,7 +146,7 @@ def add_debt():
     tags = tag_repository.select_all_by_user(str(user.id))
     debt_priority_list = ["low", "medium", "high"]
     debt_time_scales = ["week", "fortnight", "month", "year"]
-    return render_template('debt/add_debt.html', debt_priority_list=debt_priority_list, debt_time_scales=debt_time_scales, merchants=merchants, tags=tags)
+    return render_template('debt/add_debt.html', debt_priority_list=debt_priority_list, debt_time_scales=debt_time_scales, merchants=merchants, tags=tags, user=user)
 
 @transactions_blueprint.route('/transaction_delete/<transaction_type>/<id>/delete', methods=['POST'])
 def delete_transaction(id, transaction_type):
@@ -166,13 +167,13 @@ def edit_transaction(id, transaction_type):
     direct_debit_time_scales = ["week", "fortnight", "month", "year"]
     if transaction_type == 'transaction':
         transaction = transaction_repository.select(id)
-        return render_template('transactions/edit_transaction.html', transaction_priority_list=transaction_priority_list, merchants=merchants, tags=tags, transaction=transaction)
+        return render_template('transactions/edit_transaction.html', transaction_priority_list=transaction_priority_list, merchants=merchants, tags=tags, transaction=transaction, user=user)
     elif transaction_type == 'direct_debit':
         direct_debit = direct_debit_repository.select(id)
-        return render_template('direct_debit/edit_direct_debit.html', transaction_priority_list=transaction_priority_list, merchants=merchants, tags=tags, direct_debit=direct_debit, direct_debit_time_scales=direct_debit_time_scales)
+        return render_template('direct_debit/edit_direct_debit.html', transaction_priority_list=transaction_priority_list, merchants=merchants, tags=tags, direct_debit=direct_debit, direct_debit_time_scales=direct_debit_time_scales, user=user)
     elif transaction_type == 'debt':
         debt = debt_repository.select(id)
-        return render_template('debt/edit_debt.html', transaction_priority_list=transaction_priority_list, merchants=merchants, tags=tags, debt=debt, direct_debit_time_scales=direct_debit_time_scales)        
+        return render_template('debt/edit_debt.html', transaction_priority_list=transaction_priority_list, merchants=merchants, tags=tags, debt=debt, direct_debit_time_scales=direct_debit_time_scales, user=user)        
 
 @transactions_blueprint.route('/transaction_edit/<transaction_type>/<id>/edit', methods=['POST'])
 def edit_transaction_post(id, transaction_type):
