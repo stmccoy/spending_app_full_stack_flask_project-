@@ -77,7 +77,7 @@ def add_transaction():
     user = user_repository.select(session)  
     merchants = frequent_trade_repository.select_all_by_user(str(user.id))
     tags = tag_repository.select_all_by_user(str(user.id))
-    transaction_priority_list = ["none", "low", "medium", "high"]
+    transaction_priority_list = ["low", "medium", "high"]
     return render_template('transactions/add_transaction.html', 
     transaction_priority_list=transaction_priority_list, merchants=merchants, tags=tags)
 
@@ -109,7 +109,7 @@ def add_direct_debit():
     user = user_repository.select(session)  
     merchants = frequent_trade_repository.select_all_by_user(str(user.id))
     tags = tag_repository.select_all_by_user(str(user.id))
-    direct_debit_priority_list = ["none", "low", "medium", "high"]
+    direct_debit_priority_list = ["low", "medium", "high"]
     direct_debit_time_scales = ["week", "fortnight", "month", "year"]
     return render_template('direct_debit/add_direct_debit.html', direct_debit_priority_list=direct_debit_priority_list, direct_debit_time_scales=direct_debit_time_scales, merchants=merchants, tags=tags)
 
@@ -143,7 +143,7 @@ def add_debt():
     user = user_repository.select(session)  
     merchants = frequent_trade_repository.select_all_by_user(str(user.id))
     tags = tag_repository.select_all_by_user(str(user.id))
-    debt_priority_list = ["none", "low", "medium", "high"]
+    debt_priority_list = ["low", "medium", "high"]
     debt_time_scales = ["week", "fortnight", "month", "year"]
     return render_template('debt/add_debt.html', debt_priority_list=debt_priority_list, debt_time_scales=debt_time_scales, merchants=merchants, tags=tags)
 
@@ -162,7 +162,7 @@ def edit_transaction(id, transaction_type):
     user = user_repository.select(session)  
     merchants = frequent_trade_repository.select_all_by_user(str(user.id))
     tags = tag_repository.select_all_by_user(str(user.id))
-    transaction_priority_list = ["none", "low", "medium", "high"]
+    transaction_priority_list = ["low", "medium", "high"]
     direct_debit_time_scales = ["week", "fortnight", "month", "year"]
     if transaction_type == 'transaction':
         transaction = transaction_repository.select(id)
