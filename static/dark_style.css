@@ -22,6 +22,7 @@ li{
 
 a{
     text-decoration: none;
+    color:white
 }
 
 .transaction-sidebar{
@@ -34,13 +35,12 @@ a{
 
 th, td {
     text-align: center;
-    border: solid black;
+    border: solid white;
 }
 
 table{
     border-collapse: collapse;
 }
-
 
 #transaction-footer > ul{
     display: flex;
@@ -68,6 +68,7 @@ table{
     flex: 1;
     display: flex;
     justify-content: center;
+
 }
   
 .box:first-child > span { 
@@ -104,7 +105,7 @@ nav{
     border:solid black;
     padding-left: 0.1%;
     padding-right: 0.1%;
-    background-color: #99ddff;
+    background-color: #31393d;
 }
 
 nav > ul{
@@ -153,34 +154,47 @@ body{
 }
 
 body{
-    background-color: #cceeff;
+    background-color: #71838c;
 }
 
 #main-header{
-    background-color:  #0099e6;
+    background-color:  #000000;
+    color: white;
     margin: 0;
     padding: 1%;
 }
 
 table{
-    background-color: white;
+    background-color: black;
+    color: white;
 }
 
 button{
-    background-color: #99ddff;
+    background-color: #71838c;
     border-radius: 25px;
+    color: white;
 }
 
 button:hover{
-    background-color: #0099e6;
+    background-color: #a5bfcc;
+    cursor: pointer;
+}
+
+nav > ul> li:hover{
+    background-color: #70848d;
+}
+
+.box > ul> li:hover{
+    background-color: #3c464b;
 }
 
 #budget{
-    border: solid black;
+    border: solid white;
     margin: 0;
     margin-top: 3%;
     padding: 1%;
-    background-color: white;
+    background-color: black;
+    color: white;
 }
 
 input, select {
